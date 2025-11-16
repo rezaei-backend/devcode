@@ -17,10 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/subjects', [\App\Http\Controllers\SubjectController::class, 'index'])->name('subject.index');
-Route::get('/subjects/create', [\App\Http\Controllers\SubjectController::class, 'create'])->name('subject.create');
-Route::post('/subjects/create', [\App\Http\Controllers\SubjectController::class, 'store'])->name('subject.store');
-Route::put('/subjects/{slug}', [\App\Http\Controllers\SubjectController::class, 'update'])->name('subject.update');
-Route::delete('/subjects/{slug}', [\App\Http\Controllers\SubjectController::class, 'destroy'])->name('subject.destroy');
+Route::get('/subjects', [\App\Http\Controllers\Panel\SubjectController::class, 'index'])->name('subject.index');
+Route::get('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'create'])->name('subject.create');
+Route::post('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'store'])->name('subject.store');
+Route::put('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'update'])->name('subject.update');
+Route::delete('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'destroy'])->name('subject.destroy');
 
 require __DIR__.'/auth.php';
