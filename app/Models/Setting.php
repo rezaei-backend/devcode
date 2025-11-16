@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Setting extends Model
+class SiteSetting extends Model
 {
     use HasFactory;
 
@@ -19,7 +18,5 @@ class Setting extends Model
         'meta_description',
         'default_language',
         'contact_email',
-        'updated_by',
     ];
-
 }
