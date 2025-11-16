@@ -11,17 +11,17 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $setting = SiteSetting::firstOrCreate([]);
+        $setting = SiteSetting::first();
         return view('panel.settings.index', compact('setting'));
     }
 
     public function edit()
     {
-        $setting = SiteSetting::firstOrFail();
+        $setting = SiteSetting::firstOrCreate([]);
         return view('panel.settings.edit', compact('setting'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id = null)
     {
         $setting = SiteSetting::firstOrFail();
 
@@ -39,37 +39,46 @@ class SettingController extends Controller
         $logoPath = $setting->logo_path;
         $faviconPath = $setting->favicon_path;
 
-        // --- مدیریت لوگو ---
+        // === لوگو ===
         if ($request->hasFile('logo')) {
+
             if ($setting->logo_path && File::exists(public_path('images/settings/' . $setting->logo_path))) {
                 File::delete(public_path('images/settings/' . $setting->logo_path));
             }
+
             $fileName = time() . '_logo_' . $request->file('logo')->getClientOriginalName();
             $request->file('logo')->move(public_path('images/settings'), $fileName);
             $logoPath = $fileName;
-        } elseif ($request->filled('remove_logo') && $setting->logo_path) {
+
+        } elseif ($request->filled('remove_logo')) {
+
             if (File::exists(public_path('images/settings/' . $setting->logo_path))) {
                 File::delete(public_path('images/settings/' . $setting->logo_path));
             }
+
             $logoPath = null;
         }
 
-        // --- مدیریت فاوآیکون ---
+        // === فاوآیکون ===
         if ($request->hasFile('favicon')) {
+
             if ($setting->favicon_path && File::exists(public_path('images/settings/' . $setting->favicon_path))) {
                 File::delete(public_path('images/settings/' . $setting->favicon_path));
             }
+
             $fileName = time() . '_favicon_' . $request->file('favicon')->getClientOriginalName();
             $request->file('favicon')->move(public_path('images/settings'), $fileName);
             $faviconPath = $fileName;
-        } elseif ($request->filled('remove_favicon') && $setting->favicon_path) {
+
+        } elseif ($request->filled('remove_favicon')) {
+
             if (File::exists(public_path('images/settings/' . $setting->favicon_path))) {
                 File::delete(public_path('images/settings/' . $setting->favicon_path));
             }
+
             $faviconPath = null;
         }
 
-        // به‌روزرسانی فیلدها
         $setting->update([
             'site_name' => $validated['site_name'],
             'meta_description' => $validated['meta_description'],
@@ -79,6 +88,6 @@ class SettingController extends Controller
             'favicon_path' => $faviconPath,
         ]);
 
-        return redirect()->route('Settings.index')->with('ok', 'تنظیمات سایت با موفقیت به‌روزرسانی شد.');
+        return redirect()->route('Settings.index')->with('ok', 'تنظیمات سایت با موفقیت ذخیره شد.');
     }
 }
