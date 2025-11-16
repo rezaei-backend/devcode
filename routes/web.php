@@ -12,3 +12,5 @@ Route::get('/', function () {
 Route::get('/form', function () {
     return view('panel.form');
 });
+
+Route::resource('Settings', SettingController::class)->names('Settings');
