@@ -21,8 +21,19 @@ class Subject extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+                'separator' => '-',
+                'unique' => true,
+
+            ],
+
         ];
+    }
+    public function docjoin(){
+
+        return $this->hasMany(Doc::class,'subject_id', 'id')->select('docs.id', 'docs.title' );
+    }
+    public function langitem(){
+        return $this->hasOne(Language::class,'id','language_id')->select('languages.id','languages.name');
     }
 }
