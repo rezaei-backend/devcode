@@ -16,11 +16,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::prefix('admin')->group(function () {
 Route::get('/subjects', [\App\Http\Controllers\Panel\SubjectController::class, 'index'])->name('subject.index');
 Route::get('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'create'])->name('subject.create');
 Route::post('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'store'])->name('subject.store');
 Route::put('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'update'])->name('subject.update');
 Route::delete('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'destroy'])->name('subject.destroy');
+
+
+
+Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->names('doc');
+
+
+});
+
 
 require __DIR__.'/auth.php';
