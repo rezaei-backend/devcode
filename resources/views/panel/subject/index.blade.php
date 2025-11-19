@@ -50,7 +50,7 @@
                                     <td>{{$subject->description}}</td>
                                     <td>{{$subject->name}}</td>
                                     <td><button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target=".bd-example-modal-{{$subject->id}}"><i class="dripicons-document-edit" ></i></button>
-                                        <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="dripicons-tag-delete" ></i></button>
+                                        <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target=".bd-example-modal-delete{{$subject->id}}"><i class="dripicons-tag-delete" ></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action="/subjects/{{$subject->slug}}" method="post">
+                                    <form action="/admin/subjects/{{$subject->slug}}" method="post">
                                         @csrf
 @method('put')
 
@@ -123,7 +123,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="card m-b-30">
                                                         <div class="card-header">
-                                                            <h5 class="card-title">متن </h5>
+                                                            <h5 class="card-title">توضیحات </h5>
                                                         </div>
                                                         <div class="card-body">
 
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade bd-example-modal-delete{{$subject->id}}" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                                    <form action="/subjects/{{$subject->slug}}" method="post">
+                                    <form action="/admin/subjects/{{$subject->slug}}" method="post">
 @csrf
                                         @method('delete')
                                     <button type="submit" class="btn btn-danger">حذف</button>

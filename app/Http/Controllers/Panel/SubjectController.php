@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
+use App\Http\Controllers\Controller;
 use App\Models\Language;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -23,8 +24,13 @@ class SubjectController extends Controller
      */
     public function create()
     {
+        if (!empty(old('language_id'))) {
+            $oldlang=Language::find(old('language_id'));
+        }else{
+            $oldlang=null;
+        }
         $langs = Language::all();
-        return view('panel.subject.create',compact('langs'));
+        return view('panel.subject.create',compact('langs', "oldlang"));
     }
 
     /**
@@ -42,7 +48,7 @@ class SubjectController extends Controller
 
         subject::create($validatedData);
 
-return redirect('/subjects/')->with('massage','با موفقیت ثبت شد');
+return redirect('admin/subjects/')->with('massage','با موفقیت ثبت شد');
     }
 
 
@@ -106,7 +112,7 @@ return redirect('/subjects/')->with('massage','با موفقیت ثبت شد');
      */
     public function destroy(string $slug)
     {
-$subject=Subject::whereSlug($slug)->get()->first();
+$subject=Subject::whereSlug($slug);
 $subject->delete();
 return back()->with('unmassage','با موفقیت حذف شد');
     }

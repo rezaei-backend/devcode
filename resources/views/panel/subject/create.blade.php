@@ -37,7 +37,7 @@
                 <div class="col-lg-6">
                     <div class="card m-b-30">
                         <div class="card-header">
-                            <h5 class="card-title">متن </h5>
+                            <h5 class="card-title">توضیحات </h5>
                         </div>
                         <div class="card-body">
 
@@ -57,7 +57,12 @@
 
                             <div class="form-group">
                                 <select class="form-control" name="language_id" id="formControlSelect">
-                                    <option value="{{old('language_id')}}" >{{old('language_id')}}</option>
+                                    @if(!empty(old('language_id')))
+                                        <option value="{{old('language_id')}}" >{{$oldlang->name}}</option>
+                                    @else
+                                        <option value="">یکی را انتخاب کنید</option>
+                                    @endif
+
                                     @foreach($langs as $lang)
                                     <option value="{{$lang->id}}" >{{$lang->name}}</option>
                                     @endforeach
