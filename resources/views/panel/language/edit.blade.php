@@ -38,7 +38,8 @@
                                 <div class="col-lg-4">
                                     <label for="inputColor1">رنگ 1<span class="text-danger">*</span></label>
                                     <div class="form-group mb-0">
-                                        <input type="color" class="form-control" name="primary_color" id="inputColor1" value="{{ old('primary_color', $language->primary_color ?? '#0080ff') }}">
+                                        <input type="color" class="color-circle" name="primary_color" id="inputColor1" value="{{ old('primary_color', $language->primary_color ?? '#0080ff')}}">
+
                                         @error('primary_color')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -47,7 +48,8 @@
                                 <div class="col-lg-4">
                                     <label for="inputColor2">رنگ 2</label>
                                     <div class="form-group mb-0">
-                                        <input type="color" class="form-control" name="secondary_color" id="inputColor2" value="{{ old('secondary_color', $language->secondary_color ?? '#0000ff') }}">
+                                        <input type="color" class="color-circle" name="secondary_color" id="inputColor2" value="{{  old('secondary_color', $language->secondary_color ?? '#0000ff')}}">
+
                                     </div>
                                 </div>
                             </div>
@@ -60,4 +62,27 @@
         </div>
         <!-- End row -->
     </div>
+
+    <style>
+        .color-circle {
+            -webkit-appearance: none;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .color-circle::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-circle::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+        }
+
+    </style>
 @endsection

@@ -1,6 +1,15 @@
 @extends('panel.layouts.master')
 @section('title','زبان برنامه نویسی')
 
+<!-- پیام فلش -->
+@if (session('success'))
+    <div class="alert alert-success  p-[12px]" id="success-alert">{{ session('success') }}</div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger  p-[12px]" id="error-alert">{{ session('error') }}</div>
+@endif
+
+
 @section('content')
     <div class="contentbar">
         <!-- Start row -->
@@ -8,8 +17,9 @@
             <!-- Start col -->
             <div class="col-lg-12">
                 <div class="card m-b-30">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title">زبان برنامه نویسی</h5>
+                        <a class="btn btn-outline-primary" href="{{route('language.create')}}">ایجاد</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -19,22 +29,43 @@
                                     <th data-breakpoints="xs">#</th>
                                     <th>زبان برنامه نویسی</th>
                                     <th>اسلاگ</th>
+                                    <th>توضیحات متا</th>
+                                    <th>توضیحات</th>
+                                    <th>لوگو</th>
                                     <th>رنگ1</th>
                                     <th>رنگ2</th>
                                    <th>فعالیت</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($laguages as $language)
+                                @forelse($languages as $language)
                                 <tr data-expanded="true">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{$language->name}}</td>
                                     <td>{{$language->slug}}</td>
+                                    <td>{{Str::limit($language->meta_description,10,'...') ?? 'N/A'}}</td>
+                                    <td> {{ Str::limit($language->description, 10, '...') ?? 'بدون توضیحات' }}</td>
                                     <td>
-                                        <span class="badge bg-{{$language->primary_color}}"></span>
+                                        @if($language->logo)
+                                            <img src="{{asset('Panel/pictures/language/'.$language->logo)}}" alt="{{$language->logo}}" style="width: 100px;height: 60px;">
+                                        @else
+                                            <span>بدون لوگو</span>
+                                        @endif
                                     </td>
                                     <td>
-                                        <span class="badge bg-{{$language->secondary_color}}"></span>
+                                        <button
+                                            class="badge text-white font-medium py-2 px-4 rounded-lg"
+                                            style="background-color: {{ $language->primary_color }} !important;">
+
+                                        </button>
+                                    </td>
+
+                                    <td>
+                                        <button
+                                            class="badge text-white font-medium py-2 px-4 rounded-lg"
+                                            style="background-color: {{ $language->secondary_color }} !important;">
+
+                                        </button>
                                     </td>
                                     <td>
                                         <div  role="group">
@@ -46,7 +77,6 @@
                                             <button type="button" class="btn btn-round btn-danger mt-1 model-animation-btn" data-animation="zoomIn" data-toggle="modal" data-target="#deleteModalCenter{{ $language->id }}" title="حذف">
                                                 <i class="feather icon-trash-2"></i>
                                             </button>
-{{--                                            <button type="button" class="btn btn-round btn-danger"><i class="feather icon-trash-2"></i></button>--}}
                                         </div>
                                     </td>
                                 </tr>

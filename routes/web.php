@@ -14,5 +14,8 @@ Route::get('/edit', function () {
     return view('panel.language.edit');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::resource('language', LanguageController::class);
 
-Route::resource('language', LanguageController::class);
+});
+
