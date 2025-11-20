@@ -71,7 +71,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">ویرایش</button>
+                            <button type="submit" class="btn btn-primary">ثبت</button>
                         </form>
                     </div>
                 </div>
