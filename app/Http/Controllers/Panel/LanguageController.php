@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use Faker\Core\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Lang;
+//use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\File;
 
 class LanguageController extends Controller
 {
@@ -86,8 +86,9 @@ class LanguageController extends Controller
     {
         $language=Language::findorFail($id);
 
-        $destinationPath=public_path('Panel/pictures/language');
+        $destinationPath=public_path('Panel/pictures/language/');
 
+//        حذف لوگو اگر وجود داشت
         if ($language->logo && File::exists($destinationPath . $language->logo)) {
             File::delete($destinationPath . $language->logo);
         }

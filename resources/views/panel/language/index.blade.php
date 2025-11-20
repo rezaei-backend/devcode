@@ -91,6 +91,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <p>از حذف {{$language->name}}اطمینان دارید؟</p>
                                                 <form action="{{route('language.destroy',$language->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
