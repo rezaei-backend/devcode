@@ -28,6 +28,12 @@ Route::delete('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController
 Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->names('doc');
 
 
+// resourece
+
+    Route::post('/resource/store', [\App\Http\Controllers\panel\ResoureceContoroller::class, 'store']);
+    Route::put('/resource/{id}',[\App\Http\Controllers\panel\ResoureceContoroller::class, 'update']);
+
+//    end resourece
 });
 
 

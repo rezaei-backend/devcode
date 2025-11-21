@@ -29,6 +29,10 @@ class Subject extends Model
 
         ];
     }
+    public function joinresource()
+    {
+        return $this->hasOne(  resource::class, 'subject_id', 'id')->select('id','title','url');
+    }
     public function docjoin(){
 
         return $this->hasMany(Doc::class,'subject_id', 'id')->select('docs.id', 'docs.title' );

@@ -72,7 +72,7 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <textarea class="form-control" name="example_code" id="inputTextarea" rows="3"  placeholder="کد ">{{old('example_code')}}</textarea>
+                                <textarea class="form-control" style="  background-color: #2b2a2a ; color: white" name="example_code" id="inputTextarea" rows="3" placeholder="کد ">{{old('example_code')}}</textarea>
                             </div>
                         </div>
                     </div>

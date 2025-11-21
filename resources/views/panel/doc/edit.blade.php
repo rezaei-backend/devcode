@@ -71,7 +71,7 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <textarea class="form-control" name="example_code" id="inputTextarea" rows="3"  placeholder="کد ">{{$doc->example_code}}</textarea>
+                                <textarea class="form-control" style="background-color: #2b2a2a ; color: white" name="example_code" id="inputTextarea" rows="5"  placeholder="کد">{{$doc->example_code}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <textarea class="form-control" name="output" id="inputTextarea" rows="3"  placeholder="خروجی">{{$doc->output}}</textarea>
+                                <textarea class="form-control" name="output" id="inputTextarea" rows="5"  placeholder="خروجی">{{$doc->output}}</textarea>
                             </div>
                         </div>
                     </div>

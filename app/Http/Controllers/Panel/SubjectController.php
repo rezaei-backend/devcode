@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
+use App\Models\Resource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,11 @@ class SubjectController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {        $langs = Language::all();
-        $subjects=Subject::join('languages','subjects.language_id','=','languages.id')->select('languages.name','subjects.*')->orderBy('created_at', 'desc')->paginate(10);
+    {
+
+        $langs = Language::all();
+        $subjects=Subject::orderBy('created_at', 'desc')->paginate(5);
+
         return view('panel.subject.index',compact('subjects','langs'));
     }
 
