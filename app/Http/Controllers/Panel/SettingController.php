@@ -3,91 +3,102 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
-use App\Models\SiteSetting;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        $setting = SiteSetting::first();
+        $setting = Setting::first();
         return view('panel.settings.index', compact('setting'));
     }
 
     public function edit()
     {
-        $setting = SiteSetting::firstOrCreate([]);
+        $setting = Setting::firstOrCreate(
+            ['id' => 1],
+            [
+                'site_name' => 'نام سایت شما',
+                'default_language' => 'fa',
+                'meta_description' => 'توضیحات پیش‌فرض سایت شما...',
+                'contact_email' => 'info@yoursite.com',
+            ]
+        );
+
         return view('panel.settings.edit', compact('setting'));
     }
 
-    public function update(Request $request, $id = null)
+    public function update(Request $request)
     {
-        $setting = SiteSetting::firstOrFail();
+        $uploadPath = public_path('images/settings');
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
+        }
+
+        $setting = Setting::firstOrCreate(['id' => 1]);
 
         $validated = $request->validate([
-            'site_name' => 'required|string|max:255',
-            'meta_description' => 'nullable|string',
-            'default_language' => 'required|string|in:fa,en,ar',
-            'contact_email' => 'nullable|email|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
-            'favicon' => 'nullable|mimes:ico,png,svg|max:1024',
-            'remove_logo' => 'nullable|in:1',
-            'remove_favicon' => 'nullable|in:1',
+            'site_name'          => 'required|string|max:255',
+            'meta_description'   => 'nullable|string|max:500',
+            'default_language'   => 'required|in:fa,en,ar',
+            'contact_email'      => 'nullable|email|max:255',
+            'logo'               => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
+            'favicon'            => 'nullable|mimes:ico,png,svg,webp|max:1024',
+            'remove_logo'        => 'nullable|in:1',
+            'remove_favicon'     => 'nullable|in:1',
         ]);
 
         $logoPath = $setting->logo_path;
         $faviconPath = $setting->favicon_path;
 
-        // === لوگو ===
         if ($request->hasFile('logo')) {
-
-            if ($setting->logo_path && File::exists(public_path('images/settings/' . $setting->logo_path))) {
-                File::delete(public_path('images/settings/' . $setting->logo_path));
+            if ($logoPath && File::exists($uploadPath . '/' . $logoPath)) {
+                File::delete($uploadPath . '/' . $logoPath);
             }
 
-            $fileName = time() . '_logo_' . $request->file('logo')->getClientOriginalName();
-            $request->file('logo')->move(public_path('images/settings'), $fileName);
+            $file = $request->file('logo');
+            $fileName = 'logo_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $fileName);
             $logoPath = $fileName;
 
-        } elseif ($request->filled('remove_logo')) {
-
-            if (File::exists(public_path('images/settings/' . $setting->logo_path))) {
-                File::delete(public_path('images/settings/' . $setting->logo_path));
+        } elseif ($request->has('remove_logo')) {
+            if ($logoPath && File::exists($uploadPath . '/' . $logoPath)) {
+                File::delete($uploadPath . '/' . $logoPath);
             }
-
             $logoPath = null;
         }
 
-        // === فاوآیکون ===
         if ($request->hasFile('favicon')) {
-
-            if ($setting->favicon_path && File::exists(public_path('images/settings/' . $setting->favicon_path))) {
-                File::delete(public_path('images/settings/' . $setting->favicon_path));
+            if ($faviconPath && File::exists($uploadPath . '/' . $faviconPath)) {
+                File::delete($uploadPath . '/' . $faviconPath);
             }
 
-            $fileName = time() . '_favicon_' . $request->file('favicon')->getClientOriginalName();
-            $request->file('favicon')->move(public_path('images/settings'), $fileName);
+            $file = $request->file('favicon');
+            $fileName = 'favicon_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $fileName);
             $faviconPath = $fileName;
 
-        } elseif ($request->filled('remove_favicon')) {
-
-            if (File::exists(public_path('images/settings/' . $setting->favicon_path))) {
-                File::delete(public_path('images/settings/' . $setting->favicon_path));
+        } elseif ($request->has('remove_favicon')) {
+            if ($faviconPath && File::exists($uploadPath . '/' . $faviconPath)) {
+                File::delete($uploadPath . '/' . $faviconPath);
             }
-
             $faviconPath = null;
         }
 
         $setting->update([
-            'site_name' => $validated['site_name'],
-            'meta_description' => $validated['meta_description'],
-            'default_language' => $validated['default_language'],
-            'contact_email' => $validated['contact_email'],
-            'logo_path' => $logoPath,
-            'favicon_path' => $faviconPath,
+            'site_name'         => $validated['site_name'],
+            'meta_description'  => $validated['meta_description'],
+            'default_language'  => $validated['default_language'],
+            'contact_email'     => $validated['contact_email'],
+            'logo_path'         => $logoPath,
+            'favicon_path'      => $faviconPath,
         ]);
 
-        return redirect()->route('Settings.index')->with('ok', 'تنظیمات سایت با موفقیت ذخیره شد.');
+        return redirect()
+            ->route('settings.index')
+            ->with('success', 'تنظیمات سایت با موفقیت ذخیره شد.');
     }
 }
