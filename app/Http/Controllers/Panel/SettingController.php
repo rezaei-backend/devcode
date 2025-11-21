@@ -18,16 +18,7 @@ class SettingController extends Controller
 
     public function edit()
     {
-        $setting = Setting::firstOrCreate(
-            ['id' => 1],
-            [
-                'site_name' => 'نام سایت شما',
-                'default_language' => 'fa',
-                'meta_description' => 'توضیحات پیش‌فرض سایت شما...',
-                'contact_email' => 'info@yoursite.com',
-            ]
-        );
-
+        $setting = Setting::first();
         return view('panel.settings.edit', compact('setting'));
     }
 
