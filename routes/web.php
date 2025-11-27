@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Panel\AboutusController;
 use App\Http\Controllers\Panel\questionController;
 use App\Http\Controllers\Panel\QuizController;
 use Illuminate\Support\Facades\Route;
@@ -65,12 +66,7 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('docs', DocCountroller::class)->names('doc');
 
+    Route::get('about', [AboutusController::class, 'edit'])->name('about.edit');
+    Route::put('about', [AboutusController::class, 'update'])->name('about.update');
 
-
-});
-
-<<<<<<< HEAD
-=======
-// auth routes
-//require __DIR__.'/auth.php';
->>>>>>> origin/rein
+    });
