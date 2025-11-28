@@ -1,12 +1,5 @@
 <?php
 
-<<<<<<< Updated upstream
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-=======
 use App\Http\Controllers\Panel\AboutusController;
 use App\Http\Controllers\Panel\ActivityLogController;
 use App\Http\Controllers\Panel\DocController;
@@ -14,6 +7,7 @@ use App\Http\Controllers\Panel\LanguageController;
 use App\Http\Controllers\Panel\PanelController;
 use App\Http\Controllers\Panel\questionController;
 use App\Http\Controllers\Panel\QuizController;
+use App\Http\Controllers\Panel\ResourceController;
 use App\Http\Controllers\Panel\SettingController;
 use App\Http\Controllers\Panel\SubjectController;
 use App\Http\Controllers\ProfileController;
@@ -87,12 +81,18 @@ Route::prefix('Admin')->middleware('admin')->group(function () {
         Route::get('/edit', [AboutusController::class, 'edit'])->name('edit');
         Route::put('/update', [AboutusController::class, 'update'])->name('update');
     });
-});
 
+    Route::prefix('resources')->name('resources.')->group(function () {
+        Route::post('/store', [ResourceController::class, 'store'])->name('store');
+        Route::put('/{resource}', [ResourceController::class, 'update'])->name('update');
+        Route::delete('/{resource}', [ResourceController::class, 'destroy'])->name('destroy');
+    });
+
+});
 
 Route::delete('/activity-logs', [ActivityLogController::class, 'destroy'])
     ->name('activity-logs.destroy')
     ->middleware('admin');
 
 require __DIR__.'/auth.php';
->>>>>>> Stashed changes
+
