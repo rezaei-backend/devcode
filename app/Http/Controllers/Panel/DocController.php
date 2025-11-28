@@ -32,27 +32,13 @@ class DocController extends Controller
             'content'      => 'required',
             'example_code' => 'required',
             'output'       => 'required',
-            'image'        => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
         ]);
 
-        if ($request->hasFile('image')) {
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images/docs'), $fileName);
-            $validated['image'] = $fileName;
-        }
-
-        $validated['slug'] = \Str::slug($validated['title']);
         $doc = Doc::create($validated);
 
         $this->logActivity('created', $doc);
 
         return redirect()->route('doc.index')->with('success', 'مستند با موفقیت ایجاد شد.');
-    }
-
-    public function show(string $id)
-    {
-        $doc = Doc::with(['subject.langitem'])->findOrFail($id);
-        return view('panel.doc.show', compact('doc'));
     }
 
     public function edit(string $id)
@@ -76,32 +62,9 @@ class DocController extends Controller
             'content'      => 'required',
             'example_code' => 'required',
             'output'       => 'required',
-            'image'        => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
-            'remove_image' => 'sometimes|in:1',
         ]);
 
-        $data = $request->only(['title', 'subject_id', 'content', 'example_code', 'output']);
-        $data['slug'] = \Str::slug($data['title']);
-
-        $destinationPath = public_path('images/docs');
-
-        if ($request->has('remove_image') && $request->remove_image == '1') {
-            if ($doc->image && file_exists($destinationPath . '/' . $doc->image)) {
-                unlink($destinationPath . '/' . $doc->image);
-            }
-            $data['image'] = null;
-        }
-
-        if ($request->hasFile('image')) {
-            if ($doc->image && file_exists($destinationPath . '/' . $doc->image)) {
-                unlink($destinationPath . '/' . $doc->image);
-            }
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move($destinationPath, $fileName);
-            $data['image'] = $fileName;
-        }
-
-        $doc->update($data);
+        $doc->update($validated);
 
         $this->logActivity('updated', $doc);
 
@@ -111,11 +74,6 @@ class DocController extends Controller
     public function destroy(string $id)
     {
         $doc = Doc::findOrFail($id);
-
-        $path = public_path('images/docs/' . $doc->image);
-        if ($doc->image && file_exists($path)) {
-            unlink($path);
-        }
 
         $this->logActivity('deleted', $doc);
 
