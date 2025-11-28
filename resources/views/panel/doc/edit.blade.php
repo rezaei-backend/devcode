@@ -81,4 +81,11 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor.create(document.querySelector('#editor-edit'), { language: 'fa' })
+        ClassicEditor.create(document.querySelector('#editor-create'), { language: 'fa' })
+            .then(editor => {
+                document.getElementById('doc-form-create').addEventListener('submit', () => {
+                    document.getElementById('content-create').value = editor.getData();
+                });
+            });
+    </script>
+@endsection
