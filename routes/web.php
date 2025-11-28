@@ -82,11 +82,8 @@ Route::prefix('Admin')->middleware('admin')->group(function () {
         Route::put('/update', [AboutusController::class, 'update'])->name('update');
     });
 
-    Route::prefix('resources')->name('resources.')->group(function () {
-        Route::post('/store', [ResourceController::class, 'store'])->name('store');
-        Route::put('/{resource}', [ResourceController::class, 'update'])->name('update');
-        Route::delete('/{resource}', [ResourceController::class, 'destroy'])->name('destroy');
-    });
+    Route::post('/admin/resources', [ResourceController::class, 'storeOrUpdate'])
+        ->name('resources.storeOrUpdate');
 
 });
 

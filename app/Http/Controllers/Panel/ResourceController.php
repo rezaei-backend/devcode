@@ -11,7 +11,7 @@ class ResourceController extends Controller
 {
     use LogsActivity;
 
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
         $validated = $request->validate([
             'title'      => 'required|string|max:255',
@@ -19,38 +19,18 @@ class ResourceController extends Controller
             'subject_id' => 'required|exists:subjects,id',
         ]);
 
-        $resource = Resource::create($validated);
+        $resource = Resource::updateOrCreate(
+            ['subject_id' => $validated['subject_id']],
+            $validated
+        );
 
-        $this->logActivity('created', $resource);
+        $action = $resource->wasRecentlyCreated ? 'created' : 'updated';
+        $this->logActivity($action, $resource);
 
-        return redirect()->back()->with('success', 'منبع با موفقیت اضافه شد.');
-    }
-
-    public function update($id, Request $request)
-    {
-        $resource = Resource::findOrFail($id);
-
-        $validated = $request->validate([
-            'title'      => 'required|string|max:255',
-            'url'        => 'required|url|max:255',
-            'subject_id' => 'required|exists:subjects,id',
-        ]);
-
-        $resource->update($validated);
-
-        $this->logActivity('updated', $resource);
-
-        return redirect()->back()->with('success', 'منبع با موفقیت ویرایش شد.');
-    }
-
-    public function destroy($id)
-    {
-        $resource = Resource::findOrFail($id);
-
-        $this->logActivity('deleted', $resource);
-
-        $resource->delete();
-
-        return redirect()->back()->with('success', 'منبع با موفقیت حذف شد.');
+        return redirect()->back()->with('success',
+            $resource->wasRecentlyCreated
+                ? 'منبع با موفقیت اضافه شد.'
+                : 'منبع با موفقیت به‌روزرسانی شد.'
+        );
     }
 }
