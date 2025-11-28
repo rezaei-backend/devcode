@@ -43,6 +43,7 @@ return view('panel.doc.create',compact('subjects','oldsubject'));
     {
         $validatedData = $request->validate([
             'title' => 'required|unique:docs',
+
             'subject_id' => 'required',
             'content' => 'required',
             'example_code'=>'required',
@@ -104,8 +105,8 @@ return view('panel.doc.create',compact('subjects','oldsubject'));
         'output' => 'required',
     ]);
 }
-
-        $doc->fill($validatedData);
+        $doc->slug=null;
+        $doc->update($validatedData);
         $doc->save();
 
         return redirect()->route('doc.index')->with('massage','با موفقیت اپدیت شد');

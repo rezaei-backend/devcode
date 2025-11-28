@@ -103,7 +103,7 @@ return redirect('admin/subjects/')->with('massage','با موفقیت ثبت ش�
                 'language_id' => 'required',
             ]);
         }
-        $subject->slug=$request->title;
+        $subject->slug=null;
         $subject->fill($validatedData);
 
 

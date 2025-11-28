@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
             $table->string('title');
+            $table->string('slug');
             $table->longText('content');
             $table->text('example_code')->nullable();
             $table->text('output')->nullable();

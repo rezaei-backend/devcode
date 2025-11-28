@@ -37,4 +37,6 @@ Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->name
 });
 
 
+
+
 require __DIR__.'/auth.php';
