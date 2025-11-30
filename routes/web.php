@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Panel\AboutusController;
 use App\Http\Controllers\Panel\ActivityLogController;
+use App\Http\Controllers\Panel\BlogController;
+use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\Panel\DocController;
 use App\Http\Controllers\Panel\LanguageController;
 use App\Http\Controllers\Panel\PanelController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Panel\QuizController;
 use App\Http\Controllers\Panel\ResourceController;
 use App\Http\Controllers\Panel\SettingController;
 use App\Http\Controllers\Panel\SubjectController;
+use App\Http\Controllers\Panel\TagController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -84,6 +87,12 @@ Route::prefix('Admin')->middleware('admin')->group(function () {
 
     Route::post('/admin/resources', [ResourceController::class, 'storeOrUpdate'])
         ->name('resources.storeOrUpdate');
+
+    Route::resource('blog', BlogController::class)->except(['show']);
+
+    Route::resource('category', CategoryController::class)->except(['show']);
+
+    Route::resource('tag', TagController::class)->except(['show']);
 
 });
 

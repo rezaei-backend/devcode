@@ -16,89 +16,141 @@
         </div>
 
         @php
-            $cards = [
-                [
-                    'route' => 'profile.edit',
-                    'icon' => 'user',
-                    'bg_class' => 'bg-gradient-orange',
-                    'title' => 'پروفایل ادمین',
-                    'description' => 'اطلاعات حساب کاربری خود را مشاهده و ویرایش کنید',
-                    'count' => null,
-                    'button_text' => 'مشاهده پروفایل',
-                    'button_class' => 'btn-gradient-orange px-5 py-2',
-                    'roles' => ['main_admin', 'appearance_admin', 'support_admin', 'warehouse_admin'],
-                ],
-                [
-                    'route'        => 'language.index',
-                    'icon'         => 'globe',
-                    'bg_class'     => 'bg-gradient-blue',
-                    'title'        => 'زبان‌های برنامه‌نویسی',
-                    'description'  => 'تعداد زبان‌های ثبت‌شده',
-                    'count'        => \App\Models\Language::count(),
-                    'button_text'  => 'مدیریت زبان‌ها',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'subject.index',
-                    'icon'         => 'book-open',
-                    'bg_class'     => 'bg-gradient-info',
-                    'title'        => 'موضوعات',
-                    'description'  => 'تعداد موضوعات ثبت‌شده',
-                    'count'        => \App\Models\Subject::count(),
-                    'button_text'  => 'مدیریت موضوعات',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'quiz.index',
-                    'icon'         => 'check-square',
-                    'bg_class'     => 'bg-gradient-success',
-                    'title'        => 'آزمون‌ها',
-                    'description'  => 'تعداد آزمون‌های ایجادشده',
-                    'count'        => \App\Models\Quiz::count(),
-                    'button_text'  => 'مدیریت آزمون‌ها',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'quiz.index', // یا route جداگانه برای سوالات اگر دارید
-                    'icon'         => 'help-circle',
-                    'bg_class'     => 'bg-gradient-warning',
-                    'title'        => 'سوالات',
-                    'description'  => 'تعداد سوالات موجود',
-                    'count'        => \App\Models\Question::count(),
-                    'button_text'  => 'مشاهده همه سوالات',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'doc.index',
-                    'icon'         => 'file-text',
-                    'bg_class'     => 'bg-gradient-danger',
-                    'title'        => 'مستندات',
-                    'description'  => 'تعداد مستندات آپلودشده',
-                    'count'        => \App\Models\Doc::count(),
-                    'button_text'  => 'مدیریت مستندات',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'aboutus.index',
-                    'icon'         => 'info',
-                    'bg_class'     => 'bg-gradient-teal',
-                    'title'        => 'درباره ما',
-                    'description'  => 'ویرایش صفحه درباره ما',
-                    'count'        => '1',
-                    'button_text'  => 'ویرایش درباره ما',
-                    'col'          => '6 col-lg-3',
-                ],
-                [
-                    'route'        => 'settings.index',
-                    'icon'         => 'settings',
-                    'bg_class'     => 'bg-gradient-purple',
-                    'title'        => 'تنظیمات سایت',
-                    'description'  => 'تنظیمات کلی سایت',
-                    'count'        => \App\Models\Setting::count() ?: 1,
-                    'button_text'  => 'ویرایش تنظیمات',
-                    'col'          => '6 col-lg-3',
-                ],
-            ];
+                    $cards = [
+            // پروفایل ادمین
+            [
+                'route'        => 'profile.edit',
+                'icon'         => 'user',
+                'bg_class'     => 'bg-gradient-orange',
+                'title'        => 'پروفایل ادمین',
+                'description'  => 'اطلاعات حساب کاربری خود را مشاهده و ویرایش کنید',
+                'count'        => null,
+                'button_text'  => 'مشاهده پروفایل',
+                'button_class' => 'btn-gradient-orange px-5 py-2',
+                'roles'        => ['main_admin', 'appearance_admin', 'support_admin', 'warehouse_admin'],
+            ],
+
+            // زبان‌های برنامه‌نویسی
+            [
+                'route'        => 'language.index',
+                'icon'         => 'globe',
+                'bg_class'     => 'bg-gradient-blue',
+                'title'        => 'زبان‌های برنامه‌نویسی',
+                'description'  => 'تعداد زبان‌های ثبت‌شده',
+                'count'        => \App\Models\Language::count(),
+                'button_text'  => 'مدیریت زبان‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // موضوعات
+            [
+                'route'        => 'subject.index',
+                'icon'         => 'book-open',
+                'bg_class'     => 'bg-gradient-info',
+                'title'        => 'موضوعات',
+                'description'  => 'تعداد موضوعات ثبت‌شده',
+                'count'        => \App\Models\Subject::count(),
+                'button_text'  => 'مدیریت موضوعات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // آزمون‌ها
+            [
+                'route'        => 'quiz.index',
+                'icon'         => 'check-square',
+                'bg_class'     => 'bg-gradient-success',
+                'title'        => 'آزمون‌ها',
+                'description'  => 'تعداد آزمون‌های ایجادشده',
+                'count'        => \App\Models\Quiz::count(),
+                'button_text'  => 'مدیریت آزمون‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // سوالات
+            [
+                'route'        => 'quiz.index', // می‌تونی بعداً یه route جدا برای سوالات بزنی
+                'icon'         => 'help-circle',
+                'bg_class'     => 'bg-gradient-warning',
+                'title'        => 'سوالات',
+                'description'  => 'تعداد سوالات موجود',
+                'count'        => \App\Models\Question::count(),
+                'button_text'  => 'مشاهده همه سوالات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // مستندات
+            [
+                'route'        => 'doc.index',
+                'icon'         => 'file-text',
+                'bg_class'     => 'bg-gradient-danger',
+                'title'        => 'مستندات',
+                'description'  => 'تعداد مستندات آپلودشده',
+                'count'        => \App\Models\Doc::count(),
+                'button_text'  => 'مدیریت مستندات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // دسته‌بندی مقالات
+            [
+                'route'        => 'category.index',
+                'icon'         => 'grid',
+                'bg_class'     => 'bg-gradient-warning',
+                'title'        => 'دسته‌بندی مقالات',
+                'description'  => 'تعداد دسته‌بندی‌های بلاگ',
+                'count'        => \App\Models\Category::count(),
+                'button_text'  => 'مدیریت دسته‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // تگ‌ها
+            [
+                'route'        => 'tag.index',
+                'icon'         => 'tag',
+                'bg_class'     => 'bg-gradient-pink',
+                'title'        => 'تگ‌های بلاگ',
+                'description'  => 'تعداد تگ‌های استفاده‌شده',
+                'count'        => \App\Models\Tag::count(),
+                'button_text'  => 'مدیریت تگ‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // مقالات بلاگ
+            [
+                'route'        => 'blog.index',
+                'icon'         => 'file-plus',
+                'bg_class'     => 'bg-gradient-cyan',
+                'title'        => 'مقالات',
+                'description'  => 'تعداد مقالات منتشرشده',
+                'count'        => \App\Models\Blog::count(),
+                'button_text'  => 'مدیریت مقالات',
+                'col'          => '6 col-lg-3',
+            ],
+
+
+            // درباره ما
+            [
+                'route'        => 'aboutus.index',
+                'icon'         => 'info',
+                'bg_class'     => 'bg-gradient-teal',
+                'title'        => 'درباره ما',
+                'description'  => 'ویرایش صفحه درباره ما',
+                'count'        => '1',
+                'button_text'  => 'ویرایش درباره ما',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // تنظیمات سایت
+            [
+                'route'        => 'settings.index',
+                'icon'         => 'settings',
+                'bg_class'     => 'bg-gradient-purple',
+                'title'        => 'تنظیمات سایت',
+                'description'  => 'تنظیمات کلی سایت',
+                'count'        => \App\Models\Setting::count() ?: 1,
+                'button_text'  => 'ویرایش تنظیمات',
+                'col'          => '6 col-lg-3',
+            ],
+        ];
         @endphp
 
         <div class="row">

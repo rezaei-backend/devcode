@@ -9,6 +9,10 @@
         ['route' => 'quiz.index',      'icon' => 'feather icon-check-square',  'label' => 'آزمون‌ها'],
         ['route' => 'doc.index',      'icon' => 'feather icon-file-text',     'label' => 'مستندات'],
 
+        ['route' => 'category.index',   'icon' => 'feather icon-grid',          'label' => 'دسته‌بندی مقالات'],
+        ['route' => 'tag.index',        'icon' => 'feather icon-tag',           'label' => 'تگ‌ها'],
+        ['route' => 'blog.index',       'icon' => 'feather icon-file-plus',     'label' => 'مقالات'],
+
         ['separator' => true],
 
         ['route' => 'aboutus.index',   'icon' => 'feather icon-info',          'label' => 'درباره ما'],
