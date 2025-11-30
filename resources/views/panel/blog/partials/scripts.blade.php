@@ -2,7 +2,6 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/translations/fa.js"></script>
 
 <style>
-    /* استایل‌های قبلی بدون تغییر */
     .drop-zone { border: 2px dashed #ccc; border-radius: .5rem; padding: 2rem; text-align: center; background: #fafafa; transition: .3s; cursor: pointer; }
     .drop-zone.dragover { border-color: #1976d2; background: #e3f2fd; }
     .image-preview img { max-height: 180px; border-radius: .375rem; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
