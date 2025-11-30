@@ -10,7 +10,6 @@ class PanelController extends Controller
 {
     public function index()
     {
-        $settings = Setting::first();
-        return view('panel.index', compact('settings'));
+        return view('panel.index');
     }
 }

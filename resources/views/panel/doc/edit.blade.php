@@ -73,7 +73,7 @@
     </div>
     <style>
         .ck-editor__editable {
-            min-height: 400px !important; /* ارتفاع واقعی ادیتور */
+            min-height: 400px !important;
             max-height: 700px;
             overflow-y: auto;
         }

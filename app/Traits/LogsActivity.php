@@ -33,6 +33,8 @@ trait LogsActivity
             'Quiz'      => 'آزمون',
             'Question'  => 'سوال',
             'Setting'   => 'تنظیمات سایت',
+            'Aboutus'   => 'درباره ما',
+            'Resource'  => 'منبع',
             default     => class_basename($model)
         };
     }
