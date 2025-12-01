@@ -34,6 +34,15 @@ Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->name
     Route::put('/resource/{id}',[\App\Http\Controllers\panel\ResoureceContoroller::class, 'update']);
 
 //    end resourece
+
+//    team
+    Route::get('team/create', [\App\Http\Controllers\Panel\TeamController::class, 'create'])->name('team.create');
+    Route::post('team/create', [\App\Http\Controllers\Panel\TeamController::class, 'store'])->name('team.store');
+    Route::put('team/{id}/update', [\App\Http\Controllers\Panel\TeamController::class, 'update'])->name('team.update');
+    Route::delete('team/{id}', [\App\Http\Controllers\Panel\TeamController::class, 'destroy'])->name('team.destroy');
+    Route::get('team/',[\App\Http\Controllers\Panel\TeamController::class, 'index'])->name('team.index');
+
+//    endteam
 });
 
 
