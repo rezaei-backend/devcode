@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 
 class TeamController extends Controller
 {
-//    use LogsActivity;
+    use LogsActivity;
     /**
      * Display a listing of the resource.
      */
