@@ -1,41 +1,102 @@
 <?php
 
+use App\Http\Controllers\Panel\AboutusController;
+use App\Http\Controllers\Panel\ActivityLogController;
+use App\Http\Controllers\Panel\BlogController;
+use App\Http\Controllers\Panel\CategoryController;
+use App\Http\Controllers\Panel\DocController;
+use App\Http\Controllers\Panel\LanguageController;
+use App\Http\Controllers\Panel\PanelController;
+use App\Http\Controllers\Panel\questionController;
+use App\Http\Controllers\Panel\QuizController;
+use App\Http\Controllers\Panel\ResourceController;
+use App\Http\Controllers\Panel\SettingController;
+use App\Http\Controllers\Panel\SubjectController;
+use App\Http\Controllers\Panel\TagController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// صفحه اصلی
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// پروفایل کاربر
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::prefix('admin')->group(function () {
-Route::get('/subjects', [\App\Http\Controllers\Panel\SubjectController::class, 'index'])->name('subject.index');
-Route::get('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'create'])->name('subject.create');
-Route::post('/subjects/create', [\App\Http\Controllers\Panel\SubjectController::class, 'store'])->name('subject.store');
-Route::put('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'update'])->name('subject.update');
-Route::delete('/subjects/{slug}', [\App\Http\Controllers\Panel\SubjectController::class, 'destroy'])->name('subject.destroy');
+
+
+Route::prefix('Admin')->group(function () {
+
+    Route::get('/', [PanelController::class, 'index'])->name('Admin');
+
+    // زبان‌ها
+    Route::resource('language', LanguageController::class)->except(['show']);
+
+    // آزمون‌ها
+    Route::resource('quiz', QuizController::class)->except(['show']);
+
+    // === سوالات هر آزمون (مهم‌ترین قسمت) ===
+    Route::prefix('quiz/{quiz}')->group(function () {
+        Route::get('questions', [questionController::class, 'index'])
+            ->name('question.index');
+
+        Route::get('questions/create', [questionController::class, 'create'])
+            ->name('question.create');
+
+        Route::post('questions', [questionController::class, 'store'])
+            ->name('question.store');
+
+        Route::get('questions/{question}/edit', [questionController::class, 'edit'])
+            ->name('question.edit');
+
+        Route::put('questions/{question}', [questionController::class, 'update'])
+            ->name('question.update');
+
+        Route::delete('questions/{question}', [questionController::class, 'destroy'])
+            ->name('question.destroy');
+    });
+
+    // موضوعات
+    Route::resource('subjects', SubjectController::class)
+        ->names('subject')
+        ->parameters(['subjects' => 'subject:slug'])
+        ->except(['show']);
+
+    // مستندات
+    Route::resource('docs', DocController::class)
+        ->except(['show'])
+        ->parameters(['docs' => 'doc'])
+        ->names('doc');
+
+    // تنظیمات
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/', [SettingController::class, 'index'])->name('index');
+        Route::get('/edit', [SettingController::class, 'edit'])->name('edit');
+        Route::put('/', [SettingController::class, 'update'])->name('update');
+    });
+
+    Route::prefix('about-us')->name('aboutus.')->group(function () {
+        Route::get('/', [AboutusController::class, 'index'])->name('index');
+        Route::get('/edit', [AboutusController::class, 'edit'])->name('edit');
+        Route::put('/update', [AboutusController::class, 'update'])->name('update');
+    });
+
+    Route::post('/admin/resources', [ResourceController::class, 'storeOrUpdate'])
+        ->name('resources.storeOrUpdate');
+
+    Route::resource('blog', BlogController::class)->except(['show']);
+
+    Route::resource('category', CategoryController::class)->except(['show']);
+
+    Route::resource('tag', TagController::class)->except(['show']);
 
 
 
-Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->names('doc');
-
-
-// resourece
-
-    Route::post('/resource/store', [\App\Http\Controllers\panel\ResoureceContoroller::class, 'store']);
-    Route::put('/resource/{id}',[\App\Http\Controllers\panel\ResoureceContoroller::class, 'update']);
-
-//    end resourece
-
-//    team
+    //    team
     Route::get('team/create', [\App\Http\Controllers\Panel\TeamController::class, 'create'])->name('team.create');
     Route::post('team/create', [\App\Http\Controllers\Panel\TeamController::class, 'store'])->name('team.store');
     Route::put('team/{id}/update', [\App\Http\Controllers\Panel\TeamController::class, 'update'])->name('team.update');
@@ -45,7 +106,9 @@ Route::resource('docs', \App\Http\Controllers\Panel\DocCountroller::class)->name
 //    endteam
 });
 
-
-
+Route::delete('/activity-logs', [ActivityLogController::class, 'destroy'])
+    ->name('activity-logs.destroy')
+    ->middleware('admin');
 
 require __DIR__.'/auth.php';
+

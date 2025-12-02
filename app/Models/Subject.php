@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
+
 class Subject extends Model
 {
-
     use Sluggable;
+
     protected $fillable = [
         'title',
         'slug',
         'language_id',
-        'description'
-
-
-
+        'description',
     ];
+
     public function sluggable(): array
     {
         return [
@@ -24,20 +23,26 @@ class Subject extends Model
                 'source' => 'title',
                 'separator' => '-',
                 'unique' => true,
-
             ],
-
         ];
     }
-    public function joinresource()
-    {
-        return $this->hasOne(  resource::class, 'subject_id', 'id')->select('id','title','url');
-    }
-    public function docjoin(){
 
-        return $this->hasMany(Doc::class,'subject_id', 'id')->select('docs.id', 'docs.title' );
+    public function docjoin()
+    {
+        return $this->hasMany(Doc::class, 'subject_id', 'id')
+                    ->select('docs.id', 'docs.title');
     }
-    public function langitem(){
-        return $this->hasOne(Language::class,'id','language_id')->select('languages.id','languages.name');
+
+    public function langitem()
+    {
+        return $this->hasOne(Language::class, 'id', 'language_id')
+                    ->select('languages.id', 'languages.name');
+    }
+
+    // App\Models\Subject.php
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
     }
 }

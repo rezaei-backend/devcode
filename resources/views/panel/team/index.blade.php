@@ -108,7 +108,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="/admin/team/{{$team->id}}/update" method="post" enctype="multipart/form-data">
+                        <form action="/Admin/team/{{$team->id}}/update" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
@@ -252,7 +252,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                        <form action="/admin/team/{{$team->id}}" method="post">
+                        <form action="/Admin/team/{{$team->id}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">حذف</button>

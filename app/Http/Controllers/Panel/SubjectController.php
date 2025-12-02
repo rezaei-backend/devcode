@@ -4,120 +4,79 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\Resource;
 use App\Models\Subject;
+use App\Traits\LogsActivity;
 use Illuminate\Http\Request;
-
 
 class SubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use LogsActivity;
+
     public function index()
     {
-
+        $subjects = Subject::with('language')->orderBy('created_at', 'desc')->paginate(10);
         $langs = Language::all();
-        $subjects=Subject::orderBy('created_at', 'desc')->paginate(5);
-
-        return view('panel.subject.index',compact('subjects','langs'));
+        return view('panel.subject.index', compact('subjects', 'langs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        if (!empty(old('language_id'))) {
-            $oldlang=Language::find(old('language_id'));
-        }else{
-            $oldlang=null;
-        }
         $langs = Language::all();
-        return view('panel.subject.create',compact('langs', "oldlang"));
+        return view('panel.subject.create', compact('langs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|unique:subjects',
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255|unique:subjects,title',
             'description' => 'required',
-
-
-            'language_id' => 'required',
+            'language_id' => 'required|exists:languages,id',
         ]);
 
-        subject::create($validatedData);
+        $subject = Subject::create($validated);
 
-return redirect('admin/subjects/')->with('massage','با موفقیت ثبت شد');
+        $this->logActivity('created', $subject);
+
+        return redirect()->route('subject.index')->with('message', 'موضوع با موفقیت ایجاد شد');
     }
 
-
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($subject)
     {
-        //
+        $subject = Subject::where('slug', $subject)->firstOrFail();
+        $langs = Language::all();
+        return view('panel.subject.edit', compact('subject', 'langs'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $subject)
     {
-        //
-    }
+        $subject = Subject::where('slug', $subject)->firstOrFail();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $slug)
-    {
-//        if is dir
-        $subject=Subject::whereSlug($slug)->get()->first();
-        if($subject->title != $request->title){
-        $validatedData = $request->validate([
-            'title' => 'required|unique:subjects',
-
+        $rules = [
             'description' => 'required',
+            'language_id' => 'required|exists:languages,id',
+            'title'       => 'required|string|max:255',
+        ];
 
-
-
-            'language_id' => 'required',
-        ]);
-        }else{
-            $validatedData = $request->validate([
-                'title' => 'required',
-
-                'description' => 'required',
-
-
-
-                'language_id' => 'required',
-            ]);
+        if ($request->title !== $subject->title) {
+            $rules['title'] .= '|unique:subjects,title';
         }
-        $subject->slug=null;
-        $subject->fill($validatedData);
 
+        $validated = $request->validate($rules);
+        $subject->update($validated);
 
-        $subject->save();
-        return back()->with('massage','با موفقیت اپدیت شد');
+        $this->logActivity('updated', $subject);
+
+        return redirect()->route('subject.index')->with('message', 'موضوع با موفقیت بروزرسانی شد');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $slug)
+    public function destroy($subject)
     {
-$subject=Subject::whereSlug($slug);
-$subject->delete();
-return back()->with('unmassage','با موفقیت حذف شد');
+        $subject = Subject::where('slug', $subject)->firstOrFail();
+
+        $this->logActivity('deleted', $subject);
+
+        $subject->delete();
+
+        return back()->with('message', 'موضوع با موفقیت حذف شد');
     }
 }
