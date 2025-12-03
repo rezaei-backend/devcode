@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\panel;
+namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Resource;

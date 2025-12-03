@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('description');
+            $table->string('meta_description');
+            $table->string('logo');
             $table->string('primary_color');
             $table->string('secondary_color')->nullable();
             $table->timestamps();

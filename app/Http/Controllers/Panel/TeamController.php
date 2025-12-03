@@ -119,6 +119,11 @@ $data=$request->all();
     public function destroy(string $id)
     {
         $team=team::findorfail($id);
+        $public_path=public_path('images/team');
+
+        if (File::exists($public_path.'/'.$team->image)) {
+            File::delete($public_path.'/'.$team->image);
+        }
         $team->delete();
         $this->LogActivity('delete',$team);
         return back()->with('unmassage','با موفقیت حذف شد');

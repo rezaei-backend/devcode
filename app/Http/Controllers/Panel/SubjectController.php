@@ -62,6 +62,7 @@ class SubjectController extends Controller
         }
 
         $validated = $request->validate($rules);
+        $subject->slug = null;
         $subject->update($validated);
 
         $this->logActivity('updated', $subject);

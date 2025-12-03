@@ -40,7 +40,7 @@ class questionController extends Controller
             'correct_option' => 'required|integer',
         ]);
 
-        $question = Question::create([
+        $question = question::create([
             'question_text' => $validated['question_text'],
             'difficulty'    => $validated['difficulty'],
             'explanation'   => $validated['explanation'] ?? null,

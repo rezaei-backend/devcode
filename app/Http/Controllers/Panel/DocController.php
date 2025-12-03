@@ -50,6 +50,7 @@ class DocController extends Controller
 
     public function update(Request $request, string $id)
     {
+
         $doc = Doc::findOrFail($id);
 
         $titleRule = $request->title !== $doc->title
@@ -63,7 +64,7 @@ class DocController extends Controller
             'example_code' => 'required',
             'output'       => 'required',
         ]);
-
+        $doc->slug=null;
         $doc->update($validated);
 
         $this->logActivity('updated', $doc);
