@@ -12,12 +12,13 @@
         ['route' => 'category.index',   'icon' => 'feather icon-grid',          'label' => 'دسته‌بندی مقالات'],
         ['route' => 'tag.index',        'icon' => 'feather icon-tag',           'label' => 'تگ‌ها'],
         ['route' => 'blog.index',       'icon' => 'feather icon-file-plus',     'label' => 'مقالات'],
-
+        ['route'=> 'team.index'  ,'icon'=>'fa fa-child' ,'label'=>'تیم ما'],
         ['separator' => true],
 
         ['route' => 'aboutus.index',   'icon' => 'feather icon-info',          'label' => 'درباره ما'],
         ['route' => 'settings.index',  'icon' => 'feather icon-settings',      'label' => 'تنظیمات سایت'],
         ['route' => 'profile.edit', 'icon' => 'feather icon-user', 'label' => 'پروفایل من'],
+
     ];
 @endphp
 
