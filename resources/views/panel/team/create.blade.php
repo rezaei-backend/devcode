@@ -63,7 +63,7 @@
 
 
 
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="card m-b-30">
                     <div class="card-header">
                         <h5 class="card-title">email</h5>
@@ -78,6 +78,33 @@
             </div>
 
 
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-header">
+                            <h5 class="card-title">شماره(اختیاری)</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" name="phone" id="inputText" value="{{old('phone')}}" placeholder="شماره فرد مورد نظر را وارد کنید">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card m-b-30">
+                        <div class="card-header">
+                            <h5 class="card-title">رزومه(اختیاری)</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" name="resume" id="inputText" value="{{old('resume')}}" placeholder="رزومه فرد مورد نظر را وارد کنید">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

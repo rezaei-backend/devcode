@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('resume')->nullable();
             $table->string('fullname');
             $table->string('Expertise');
             $table->timestamps();
