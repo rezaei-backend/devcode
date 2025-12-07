@@ -126,6 +126,17 @@
                 'col'          => '6 col-lg-3',
             ],
 
+            // تیم
+            [
+                'route'        => 'team.index',
+                'icon'         => 'users',
+                'bg_class'     => 'bg-gradient-teal',
+                'title'        => 'تیم',
+                'description'  => 'تعداد اعضای تیم',
+                'count'        => \App\Models\Team::count(),
+                'button_text'  => 'مدیریت تیم',
+                'col'          => '6 col-lg-3',
+            ],
 
             // درباره ما
             [

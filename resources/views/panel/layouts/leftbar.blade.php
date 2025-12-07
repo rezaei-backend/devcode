@@ -12,6 +12,7 @@
         ['route' => 'category.index',   'icon' => 'feather icon-grid',          'label' => 'دسته‌بندی مقالات'],
         ['route' => 'tag.index',        'icon' => 'feather icon-tag',           'label' => 'تگ‌ها'],
         ['route' => 'blog.index',       'icon' => 'feather icon-file-plus',     'label' => 'مقالات'],
+        ['route'=> 'team.index'  ,'icon'=>'fa fa-child' ,'label'=>'تیم ما'],
 
         ['separator' => true],
 
