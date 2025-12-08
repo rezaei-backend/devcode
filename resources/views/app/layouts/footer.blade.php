@@ -3,29 +3,29 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-3">
-                <h5 class="text-white mb-3">devcode چیه؟</h5>
+                <h5 class="text-white mb-3">{{ $settings->site_name }} چیه؟</h5>
                 <p class="my-3 text-muted">
-                    devcode جاییه برای <strong>یادگیری و سنجش مهارت برنامه‌نویسی</strong>؛
+                    {{ $settings->site_name }} جاییه برای <strong>یادگیری و سنجش مهارت برنامه‌نویسی</strong>؛
                     ❤️
                 </p>
                 <ul class="list-inline mb-0 mt-3">
                     <li class="list-inline-item">
-                        <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="https://www.youtube.com/@underdevelops" aria-label="یوتوب devcode" target="_blank" rel="noopener nofollow">
+                        <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="https://www.youtube.com/@underdevelops" aria-label="یوتوب {{ $settings->site_name }}" target="_blank" rel="noopener nofollow">
                             <i class="fab fa-fw fa-youtube"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="https://instagram.com/underdevelops" aria-label="اینستاگرام devcode" target="_blank" rel="noopener nofollow">
+                        <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="https://instagram.com/underdevelops" aria-label="اینستاگرام {{ $settings->site_name }}" target="_blank" rel="noopener nofollow">
                             <i class="fab fa-fw fa-instagram"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="https://aparat.com/underdevelops" aria-label="آپارات devcode" target="_blank" rel="noopener nofollow">
+                        <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="https://aparat.com/underdevelops" aria-label="آپارات {{ $settings->site_name }}" target="_blank" rel="noopener nofollow">
                             <i class="fas fa-fw fa-video"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="https://t.me/underdevelopscom" aria-label="تلگرام devcode" target="_blank" rel="noopener nofollow">
+                        <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="https://t.me/underdevelopscom" aria-label="تلگرام {{ $settings->site_name }}" target="_blank" rel="noopener nofollow">
                             <i class="fab fa-fw fa-telegram"></i>
                         </a>
                     </li>
@@ -40,7 +40,7 @@
                                 <a class="nav-link" href="index.html">صفحه اصلی</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">درباره devcode</a>
+                                <a class="nav-link" href="about.html">درباره {{ $settings->site_name }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">ارتباط با تیم</a>
@@ -93,9 +93,12 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <h5 class="mb-2 mb-md-4 text-white">تماس با devcode</h5>
+                <h5 class="mb-2 mb-md-4 text-white">تماس با {{ $settings->site_name }}</h5>
                 <p class="mb-2 text-muted">
                     سوال، باگ یا پیشنهاد داری؟ خوشحال می‌شیم بشنویمش 🙂
+                </p>
+                <p class="mb-2 text-muted">
+                    ایمیل: <a href="mailto:{{ $settings->contact_email }}" class="text-primary">{{ $settings->contact_email }}</a>
                 </p>
                 <p class="mb-0 text-muted">
                     از طریق کانال و چت تلگرام:
@@ -111,7 +114,7 @@
             <div class="container px-0">
                 <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
                     <div class="text-muted text-primary-hover">
-                        ساخته شده با ❤️ در <strong>devcode</strong> — توسعه‌یافته توسط UnderDevelops
+                        ساخته شده با ❤️ در <strong>{{ $settings->site_name }}</strong> — توسعه‌یافته توسط UnderDevelops
                     </div>
                 </div>
             </div>
