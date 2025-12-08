@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\HomeController;
 use App\Http\Controllers\Panel\AboutusController as PanelAboutusController;
 use App\Http\Controllers\Panel\ActivityLogController as PanelActivityLogController;
 use App\Http\Controllers\Panel\BlogController as PanelBlogController;
@@ -18,9 +19,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // صفحه اصلی
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // پروفایل کاربر
 Route::middleware('auth')->group(function () {
