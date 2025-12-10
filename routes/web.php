@@ -17,7 +17,7 @@ use App\Http\Controllers\Panel\TagController as PanelTagController;
 use App\Http\Controllers\Panel\TeamController as PanelTeamController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Panel\LanguageController;
 use App\Http\Controllers\Panel\SubjectController;
 use App\Http\Controllers\Panel\DocCountroller;

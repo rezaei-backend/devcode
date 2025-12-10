@@ -3,8 +3,8 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container-fluid px-3 px-xl-5">
             <a class="navbar-brand" href="index.html">
-                <img class="light-mode-item navbar-brand-item" src="{{ $settings->logo_path }}" alt="لوگوی {{ $settings->site_name }}" fetchpriority="high" decoding="async">
-                <img class="dark-mode-item navbar-brand-item" src="{{ $settings->logo_path }}" alt="لوگوی {{ $settings->site_name }}" fetchpriority="high" decoding="async">
+                <img class="light-mode-item navbar-brand-item" src="{{ $settings->logo_path ?? ''}}" alt="لوگوی {{ $settings->site_name ?? ''}}" fetchpriority="high" decoding="async">
+                <img class="dark-mode-item navbar-brand-item" src="{{ $settings->logo_path ?? ''}}" alt="لوگوی {{ $settings->site_name ?? ''}}" fetchpriority="high" decoding="async">
             </a>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-animation">
@@ -18,7 +18,7 @@
                 </ul>
                 <ul class="navbar-nav navbar-nav-scroll me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">صفحه اصلی {{ $settings->site_name }}</a>
+                        <a class="nav-link" href="index.html">صفحه اصلی {{ $settings->site_name ?? ''}}</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="docsMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">مستندات و راهنماها</a>
@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">درباره {{ $settings->site_name }}</a>
+                        <a class="nav-link" href="about.html">درباره {{ $settings->site_name ?? ''}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">تماس با ما</a>

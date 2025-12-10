@@ -4,25 +4,25 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', $settings->site_name . ' — آموزش رایگان برنامه‌نویسی به فارسی')</title>
-    <meta name="description" content="{{ $settings->meta_description }}" />
+    <title>@yield('title', $settings->site_name ?? ' — آموزش رایگان برنامه‌نویسی به فارسی')</title>
+    <meta name="description" content="{{ $settings->meta_description ?? '' }}" />
     <meta name="keywords" content="UnderDevelops, تحت توسعه, آموزش رایگان برنامه نویسی, آموزش برنامه‌نویسی, ترجمه مستندات, W3Schools فارسی, Tutorialspoint فارسی, مقاله آموزشی, ویدیو آموزشی, آموزش C#, آموزش جاوااسکریپت, آموزش پایتون, دات نت" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <link rel="canonical" href="index.html" />
     <link rel="next" href="about.html" />
-    <link rel="icon" href="{{ $settings->favicon_path }}" type="image/x-icon">
-    <meta property="og:site_name" content="{{ $settings->site_name }}" />
+    <link rel="icon" href="{{ $settings->favicon_path ?? '' }}" type="image/x-icon">
+    <meta property="og:site_name" content="{{ $settings->site_name ?? '' }}" />
     <meta property="og:locale" content="fa_IR" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ $settings->site_name }} — آموزش رایگان برنامه‌نویسی" />
-    <meta property="og:description" content="{{ $settings->meta_description }}" />
+    <meta property="og:title" content="{{ $settings->site_name ?? ''}} — آموزش رایگان برنامه‌نویسی" />
+    <meta property="og:description" content="{{ $settings->meta_description ?? ''}}" />
     <meta property="og:url" content="index.html" />
     <meta property="og:image" content="images/og/default-1200x630.html" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ $settings->site_name }} — آموزش رایگان برنامه‌نویسی" />
-    <meta name="twitter:description" content="{{ $settings->meta_description }}" />
+    <meta name="twitter:title" content="{{ $settings->site_name ?? ''}} — آموزش رایگان برنامه‌نویسی" />
+    <meta name="twitter:description" content="{{ $settings->meta_description ?? ''}}" />
     <meta name="twitter:image" content="images/og/default-1200x630.html" />
     <script>
         const storedTheme = localStorage.getItem('theme')
