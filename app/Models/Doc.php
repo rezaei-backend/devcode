@@ -6,21 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doc extends Model
 {
-
-
     protected $fillable = [
         'title',
         'content',
         'example_code',
         'subject_id',
-        'output',
+        'output'
     ];
 
-    public function subjectjoin()
+    public function subject()
     {
-        return $this->hasOne(Subject::class,'id','subject_id')->select('subjects.id','subjects.title');
+        return $this->belongsTo(Subject::class, 'subject_id');
     }
-
-
-
 }

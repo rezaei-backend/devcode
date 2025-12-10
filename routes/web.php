@@ -1,21 +1,31 @@
 <?php
 
-use App\Http\Controllers\Panel\questionController;
-use App\Http\Controllers\Panel\QuizController;
+use App\Http\Controllers\App\HomeController;
+use App\Http\Controllers\Panel\AboutusController as PanelAboutusController;
+use App\Http\Controllers\Panel\ActivityLogController as PanelActivityLogController;
+use App\Http\Controllers\Panel\BlogController as PanelBlogController;
+use App\Http\Controllers\Panel\CategoryController as PanelCategoryController;
+use App\Http\Controllers\Panel\DocController as PanelDocController;
+use App\Http\Controllers\Panel\LanguageController as PanelLanguageController;
+use App\Http\Controllers\Panel\PanelController;
+use App\Http\Controllers\Panel\questionController as PanelquestionController;
+use App\Http\Controllers\Panel\QuizController as PanelQuizController;
+use App\Http\Controllers\Panel\ResourceController as PanelResourceController;
+use App\Http\Controllers\Panel\SettingController as PanelSettingController;
+use App\Http\Controllers\Panel\SubjectController as PanelSubjectController;
+use App\Http\Controllers\Panel\TagController as PanelTagController;
+use App\Http\Controllers\Panel\TeamController as PanelTeamController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Panel\LanguageController;
 use App\Http\Controllers\Panel\SubjectController;
 use App\Http\Controllers\Panel\DocCountroller;
 
+// صفحه اصلی
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-
-// داشبورد Breeze
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-// پروفایل Breeze
+// پروفایل کاربر
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -23,54 +33,86 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::prefix('Admin')->middleware('admin')->group(function () {
 
-Route::prefix('admin')->group(function () {
-    Route::resource('language', LanguageController::class);
-    Route::resource('quiz', QuizController::class);
+    Route::get('/', [PanelController::class, 'index'])->name('Admin');
 
+    // زبان‌ها
+    Route::resource('language', PanelLanguageController::class)->except(['show']);
 
-    // همه روت‌های مربوط به سوالات یک آزمون
-    Route::prefix('quiz/{quiz_id}')->group(function () {
+    // آزمون‌ها
+    Route::resource('quiz', PanelQuizController::class)->except(['show']);
 
-        Route::get('questions', [questionController::class, 'index'])
+    // === سوالات هر آزمون (مهم‌ترین قسمت) ===
+    Route::prefix('quiz/{quiz}')->group(function () {
+        Route::get('questions', [PanelquestionController::class, 'index'])
             ->name('question.index');
 
-        // ایجاد سوال جدید
-        Route::get('questions/create', [questionController::class, 'create'])
+        Route::get('questions/create', [PanelquestionController::class, 'create'])
             ->name('question.create');
-        Route::post('questions', [questionController::class, 'store'])
+
+        Route::post('questions', [PanelquestionController::class, 'store'])
             ->name('question.store');
 
-        // ویرایش سوال
-        Route::get('questions/{question_id}/edit', [questionController::class, 'edit'])
+        Route::get('questions/{question}/edit', [PanelquestionController::class, 'edit'])
             ->name('question.edit');
-        Route::put('questions/{question_id}', [questionController::class, 'update'])
+
+        Route::put('questions/{question}', [PanelquestionController::class, 'update'])
             ->name('question.update');
 
-        // حذف سوال
-        Route::delete('questions/{question_id}', [questionController::class, 'destroy'])
+        Route::delete('questions/{question}', [PanelquestionController::class, 'destroy'])
             ->name('question.destroy');
     });
 
-    Route::patch('quiz/questions/{question_id}/toggle', [questionController::class, 'toggle'])
-        ->name('question.toggle');
+    // موضوعات
+    Route::resource('subjects', PanelSubjectController::class)
+        ->names('subject')
+        ->parameters(['subjects' => 'subject:slug'])
+        ->except(['show']);
 
+    // مستندات
+    Route::resource('docs', PanelDocController::class)
+        ->except(['show'])
+        ->parameters(['docs' => 'doc'])
+        ->names('doc');
 
-//    Route::resource('question', questionController::class);
-    Route::get('/subjects', [SubjectController::class, 'index'])->name('subject.index');
-    Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subject.create');
-    Route::post('/subjects/create', [SubjectController::class, 'store'])->name('subject.store');
-    Route::put('/subjects/{slug}', [SubjectController::class, 'update'])->name('subject.update');
-    Route::delete('/subjects/{slug}', [SubjectController::class, 'destroy'])->name('subject.destroy');
+    // تنظیمات
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/', [PanelSettingController::class, 'index'])->name('index');
+        Route::get('/edit', [PanelSettingController::class, 'edit'])->name('edit');
+        Route::put('/', [PanelSettingController::class, 'update'])->name('update');
+    });
 
-    Route::resource('docs', DocCountroller::class)->names('doc');
+    Route::prefix('about-us')->name('aboutus.')->group(function () {
+        Route::get('/', [PanelAboutusController::class, 'index'])->name('index');
+        Route::get('/edit', [PanelAboutusController::class, 'edit'])->name('edit');
+        Route::put('/update', [PanelAboutusController::class, 'update'])->name('update');
+    });
 
+    Route::post('/admin/resources', [PanelResourceController::class, 'storeOrUpdate'])
+        ->name('resources.storeOrUpdate');
 
+    Route::resource('blog', PanelBlogController::class)->except(['show']);
+
+    Route::resource('category', PanelCategoryController::class)->except(['show']);
+
+    Route::resource('tag', PanelTagController::class)->except(['show']);
+
+    //    team
+    Route::prefix('team')->group(function () {
+        Route::get('/', [PanelTeamController::class, 'index'])->name('team.index');
+        Route::get('create', [PanelTeamController::class, 'create'])->name('team.create');
+        Route::post('/', [PanelTeamController::class, 'store'])->name('team.store');
+        Route::get('{id}/edit', [PanelTeamController::class, 'edit'])->name('team.edit');
+        Route::put('{id}', [PanelTeamController::class, 'update'])->name('team.update');
+        Route::delete('{id}', [PanelTeamController::class, 'destroy'])->name('team.destroy');
+    });
 
 });
 
-<<<<<<< HEAD
-=======
-// auth routes
-//require __DIR__.'/auth.php';
->>>>>>> origin/rein
+Route::delete('/activity-logs', [PanelActivityLogController::class, 'destroy'])
+    ->name('activity-logs.destroy')
+    ->middleware('admin');
+
+require __DIR__.'/auth.php';
+

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>آزمون آنلاین — تست مهارت برنامه‌نویسی | تحت توسعه</title>
+
+    <meta name="description"
+        content="آزمون آنلاین و رایگان برای سنجش مهارت شما در HTML، CSS، JavaScript و PHP. شامل سوال‌های چهارگزینه‌ای و محاسبه نمره." />
+    <meta name="keywords"
+        content="آزمون HTML, آزمون CSS, آزمون JavaScript, آزمون PHP, تست آنلاین برنامه نویسی" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+
+    <link rel="canonical" href="html-skill-test-run.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="UnderDevelops" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="آزمون آنلاین — تست مهارت برنامه‌نویسی" />
+    <meta property="og:description"
+        content="در این آزمون آنلاین، میزان تسلط خود را بر HTML، CSS، JavaScript و PHP بسنجید." />
+    <meta property="og:url" content="html-skill-test-run.html" />
+    <meta property="og:image" content="../uploads/2025/09/aaaa52a4-396f-42e6-9e66-75a7ae3a218e.webp" />
+    <meta property="og:image:width" content="819" />
+    <meta property="og:image:height" content="819" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@UnderDevelops" />
+    <meta name="twitter:creator" content="@UnderDevelops" />
+    <meta name="twitter:title" content="آزمون آنلاین — تست مهارت برنامه‌نویسی" />
+    <meta name="twitter:description"
+        content="آزمون چهارگزینه‌ای با تصحیح خودکار برای سنجش مهارت توسعه‌دهندگان." />
+    <meta name="twitter:image" content="../uploads/2025/09/aaaa52a4-396f-42e6-9e66-75a7ae3a218e.webp" />
+
+    <script type="importmap">{}</script>
+
+    <script>
+        const storedTheme = localStorage.getItem('theme')
+
+        const getPreferredTheme = () => {
+            if (storedTheme) {
+                return storedTheme
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+
+        const setTheme = function (theme) {
+            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', theme)
+            }
+        }
+
+        setTheme(getPreferredTheme())
+
+        window.addEventListener('DOMContentLoaded', () => {
+            var el = document.querySelector('.theme-icon-active');
+            if (el != 'undefined' && el != null) {
+                const showActiveTheme = theme => {
+                    const activeThemeIcon = document.querySelector('.theme-icon-active use')
+                    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+                    const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+                    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                        element.classList.remove('active')
+                    })
+
+                    btnToActive.classList.add('active')
+                    activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+                }
+
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                    if (storedTheme !== 'light' || storedTheme !== 'dark') {
+                        setTheme(getPreferredTheme())
+                    }
+                })
+
+                showActiveTheme(getPreferredTheme())
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', () => {
+                            const theme = toggle.getAttribute('data-bs-theme-value')
+                            localStorage.setItem('theme', theme)
+                            setTheme(theme)
+                            showActiveTheme(theme)
+                        })
+                    })
+
+            }
+        })
+    </script>
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/" crossorigin>
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/font-awesome/css/all.minc74b.css?v=6fnf9K7jzMc68QzgpIJCVPY_jNQ-wskxIAgLIRho8H0">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/bootstrap-icons/bootstrap-icons9a04.css?v=cKs41vL6H84DqDpUvRCfSaiCLfpjNkQuA-9HZqwRlDU">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/tiny-slider/tiny-slider1b21.css?v=1CXVlacnwYLmg9X2AhCKvYcSgR53GWiU3z4qZJDrb68">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/glightbox/css/glightboxd790.css?v=yMoCTayb6wccTz561YN_R0qK756JifYXnA40MUtR-k">
+    <link rel="stylesheet" type="text/css"
+        href="../css/style-rtlde33.css?v=_LiaJmssPW9ho0X5aF_Je6hvr2_xqHuofrk9iTrDOhI">
+
+    <style>
+        .course-hero {
+            position: relative;
+            background: #0b0e14;
+            min-height: 320px;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--hero);
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) brightness(.55);
+            transform: scale(1.08);
+        }
+
+        .course-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, .35),
+                    rgba(0, 0, 0, .65) 45%,
+                    rgba(0, 0, 0, .85));
+        }
+
+        .course-hero>.container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, .45);
+        }
+
+        .ltr {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .question-card.correct {
+            border-color: #28a745 !important;
+        }
+
+        .question-card.incorrect {
+            border-color: #dc3545 !important;
+        }
+
+        /* حالت آزمون فعال */
+        body.exam-active {
+            background: #05070b;
+        }
+
+        /* لایه‌ی تارکننده‌ی پس‌زمینه هنگام آزمون */
+        .exam-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .65);
+            backdrop-filter: blur(6px);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+        }
+
+        .exam-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* باکس آزمون در حالت فعال روی همه‌چیز قرار بگیره و انیمیشن داشته باشه */
+        .exam-card-outer {
+            position: relative;
+            z-index: 1;
+        }
+
+        body.exam-active .exam-card-outer {
+            position: relative;
+            z-index: 1050;
+            animation: examIn .35s ease-out;
+        }
+
+        @keyframes examIn {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* جلوگیری از انتخاب متن در کل صفحه */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* اجازه انتخاب/نوشتن داخل فرم‌ها */
+        input,
+        textarea,
+        select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- لایه تار شدن صفحه هنگام آزمون -->
+    <div id="exam-overlay" class="exam-overlay d-none"></div>
+
+    <!-- Header START -->
+    <header class="navbar-light navbar-sticky header-static">
+        <!-- Nav START -->
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid px-3 px-xl-5">
+                <!-- Logo START -->
+                <a class="navbar-brand" href="../index.html">
+                    <img class="light-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه"
+                        fetchpriority="high" decoding="async">
+                    <img class="dark-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه"
+                        fetchpriority="high" decoding="async">
+                </a>
+                <!-- Logo END -->
+                <!-- Responsive navbar toggler -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+
+                    <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
+
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">صفحه اصلی</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="docsMenu" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">مستندات</a>
+                            <ul class="dropdown-menu" aria-labelledby="docsMenu">
+                                <li><span class="dropdown-item-text text-muted">به زودی</span></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="coursesMenu" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">دوره‌ها</a>
+                            <ul class="dropdown-menu" aria-labelledby="coursesMenu">
+                                <li> <a class="dropdown-item" href="html-zero-to-pro.html">دوره جامع HTML</a></li>
+                                <li> <a class="dropdown-item" href="javascript-zero-to-pro.html">دوره جامع
+                                        JavaScript</a></li>
+                                <li> <a class="dropdown-item" href="python-zero-to-pro.html">دوره جامع Python</a></li>
+                                <li> <a class="dropdown-item" href="ui-ux-zero-to-pro.html">دوره جامع UI/UX</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../about.html">درباره ما</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../contact.html">تماس باما</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Main navbar END -->
+            </div>
+        </nav>
+        <!-- Nav END -->
+    </header>
+    <!-- Header END -->
+
+    <main>
+
+        <!-- Hero START -->
+        <section class="course-hero" style="--hero:url('../uploads/2025/09/aaaa52a4-396f-42e6-9e66-75a7ae3a218e.webp')">
+            <div class="container position-relative">
+                <div class="row align-items-end py-5">
+                    <div class="col-lg-8 text-center text-lg-start">
+                        <h6 class="mb-2">
+                            <span class="badge bg-danger bg-opacity-10 text-danger">آزمون هوشمند برنامه‌نویسی</span>
+                        </h6>
+
+                        <h1 class="fs-3 text-white text-shadow">
+                            آزمون آنلاین — تست مهارت HTML, CSS, JavaScript, PHP
+                        </h1>
+
+                        <p class="text-white-50 mb-3">
+                            این آزمون سطح تسلط تو را روی مفاهیم کلیدی زبان‌های محبوب توسعه وب می‌سنجد.
+                            سوال‌ها به‌صورت خودکار ساخته می‌شوند و در پایان، نمره‌ات به‌صورت خودکار محاسبه می‌شود.
+                        </p>
+
+                        <ul class="list-inline mb-3 small text-white-50">
+                            <li class="list-inline-item me-3 mb-1 mb-sm-0">
+                                <i class="fas fa-list-ol text-warning me-2"></i>
+                                سوالات چهارگزینه‌ای
+                            </li>
+                            <li class="list-inline-item me-3 mb-1 mb-sm-0">
+                                <i class="far fa-clock text-info me-2"></i>
+                                ۶۰ ثانیه برای هر سؤال
+                            </li>
+                            <li class="list-inline-item mb-1 mb-sm-0">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                نمره قبولی: ۷۰٪
+                            </li>
+                        </ul>
+
+                        <a href="#exam-section" class="btn btn-success">
+                            شروع آزمون
+                            <i class="bi bi-arrow-down-short"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Hero END -->
+
+        <!-- Exam content START -->
+        <section class="py-4 py-lg-5" id="exam-section">
+            <div class="container">
+                <div class="row">
+                    <!-- Main content START -->
+                    <div class="col-lg-8">
+                        <div class="exam-card-outer">
+                            <div class="card shadow rounded-2 p-0">
+                                <div class="card-header d-flex justify-content-between align-items-center px-4 py-3">
+                                    <div>
+                                        <h4 class="mb-1 fs-5">آزمون هوشمند</h4>
+                                        <p class="mb-0 small text-muted">
+                                            بعد از شروع آزمون، سوال‌ها یکی‌یکی نمایش داده می‌شوند. برای هر سؤال ۶۰ ثانیه
+                                            زمان داری.
+                                            خروج از صفحه یا تغییر تب باعث باطل شدن آزمون می‌شود.
+                                        </p>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="small text-muted">وضعیت آزمون</div>
+                                        <span class="badge bg-success bg-opacity-10 text-success">
+                                            آنلاین و رایگان
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-4">
+
+                                    <!-- فرم شروع آزمون هوشمند -->
+                                    <form id="start-exam-form" class="row gy-2 gx-2 align-items-end mb-3">
+                                        <div class="col-12 col-md-4">
+                                            <label for="exam-language" class="form-label small mb-1">زبان</label>
+                                            <select id="exam-language" class="form-select form-select-sm" required>
+                                                <option value="html" selected>HTML</option>
+                                                <option value="css">CSS</option>
+                                                <option value="javascript">JavaScript</option>
+                                                <option value="php">PHP</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-md-4">
+                                            <label for="exam-difficulty" class="form-label small mb-1">درجه سختی</label>
+                                            <select id="exam-difficulty" class="form-select form-select-sm" required>
+                                                <option value="easy">آسان</option>
+                                                <option value="medium" selected>متوسط</option>
+                                                <option value="hard">سخت</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-md-3">
+                                            <label for="exam-count" class="form-label small mb-1">تعداد سؤال</label>
+                                            <select id="exam-count" class="form-select form-select-sm" required>
+                                                <option value="5">۵ سؤال</option>
+                                                <option value="10" selected>۱۰ سؤال</option>
+                                                <option value="15">۱۵ سؤال</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-md-1 text-md-start text-center mt-2 mt-md-0">
+<button type="submit" class="btn btn-success btn-sm w-100 btn-start">
+    شروع
+</button>
+
+
+<style>
+.btn-start {
+  background-image: linear-gradient(135deg, #6366f1, #a855f7);
+  border: none;
+  color: #f9fafb;
+  font-weight: 600;
+  border-radius: 999px;
+  padding-block: 0.5rem;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  transition: 
+    background-image 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  /* یکم پایین و یکم سمت چپ */
+  transform: translate(-4px, 6px);
+}
+
+.btn-start:hover {
+  background-image: linear-gradient(135deg, #4f46e5, #c084fc);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  transform: translate(-2px, 4px) scale(1.03);
+}
+
+
+
+
+</style>
+                                        </div>
+                                    </form>
+
+                                    <!-- نوار وضعیت آزمون -->
+                                    <div id="exam-status"
+                                        class="d-flex justify-content-between align-items-center mb-3 d-none">
+                                        <div class="small">
+                                            <span id="question-progress"></span>
+                                        </div>
+                                        <div class="small text-danger fw-bold">
+                                            زمان باقیمانده این سؤال:
+                                            <span id="question-timer">60</span>
+                                            ثانیه
+                                        </div>
+                                    </div>
+
+                                    <div id="exam-result" class="alert d-none" role="alert"></div>
+
+                                    <form id="exam-form" class="content-reset">
+                                        <!-- سوالات به صورت داینامیک در اینجا اضافه می‌شوند -->
+                                        <div id="questions-container"></div>
+
+                                        <!-- دکمه‌های قدیمی (فعلاً مخفی) -->
+                                        <div id="exam-actions"
+                                            class="d-flex justify-content-between align-items-center mt-4 d-none">
+                                            <button type="reset" class="btn btn-outline-secondary">
+                                                پاک‌کردن پاسخ‌ها
+                                            </button>
+                                            <button type="submit" class="btn btn-success">
+                                                اتمام آزمون و مشاهده کارنامه
+                                                <i class="bi bi-check2-circle"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Main content END -->
+
+                    <!-- Sidebar START -->
+                    <div class="col-lg-4 pt-5 pt-lg-0">
+                        <div class="row mb-5 mb-lg-0">
+                            <div class="col-md-6 col-lg-12">
+                                <div class="card card-body shadow p-4 mb-4">
+                                    <h4 class="mb-3 fs-5">اطلاعات آزمون</h4>
+                                    <ul class="list-group list-group-borderless">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="h6 fw-light mb-0">
+                                                <i class="fas fa-fw fa-book-open text-primary"></i>
+                                                زبان‌ها
+                                            </span>
+                                            <span>HTML, CSS, JS, PHP</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="h6 fw-light mb-0">
+                                                <i class="fas fa-fw fa-clock text-primary"></i>
+                                                زمان هر سؤال
+                                            </span>
+                                            <span>۶۰ ثانیه</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="h6 fw-light mb-0">
+                                                <i class="fas fa-fw fa-signal text-primary"></i>
+                                                سطح
+                                            </span>
+                                            <span>آسان تا سخت</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="h6 fw-light mb-0">
+                                                <i class="fas fa-fw fa-check text-primary"></i>
+                                                نمره قبولی
+                                            </span>
+                                            <span>۷۰٪</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="card card-body shadow p-4">
+                                    <h4 class="mb-3 fs-5">قوانین آزمون</h4>
+                                    <ul class="small text-muted mb-0">
+                                        <li>برای هر سؤال فقط ۶۰ ثانیه زمان داری.</li>
+                                        <li>امکان برگشت به سوالات قبلی وجود ندارد.</li>
+                                        <li>خروج از صفحه یا تغییر تب باعث باطل شدن آزمون می‌شود.</li>
+                                        <li>کپی متن و راست‌کلیک هنگام آزمون غیرفعال است.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <!-- Sidebar END -->
+                </div>
+            </div>
+        </section>
+        <!-- Exam content END -->
+
+    </main>
+
+    <!-- Footer START -->
+    <footer class="bg-dark pt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <p class="my-3 text-muted">
+                        تحت توسعه با هدف جمع‌آوری و ارائه مستندات اصلی از منابع معتبر در حوزه
+                        نرم‌افزار در حال توسعه است. کپی‌برداری از مطالب ترجمه شده آزاد است.
+                        امیدواریم این اقدام به اشتراک‌گذاری دانش و پیشرفت جامعه کمک کند. ❤️
+                    </p>
+                    <ul class="list-inline mb-0 mt-3">
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-facebook"
+                                href="https://www.youtube.com/@underdevelops" aria-label="یوتوب" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-instagram"
+                                href="https://instagram.com/underdevelops" aria-label="اینستاگرام" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-twitter"
+                                href="https://aparat.com/underdevelops" aria-label="آپارات" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fas fa-fw fa-video"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-linkedin"
+                                href="https://t.me/underdevelopscom" aria-label="تلگرام" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-telegram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">لینک های مفید</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">صفحه اصلی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../about.html">درباره ما</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../contact.html">تماس باما</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">مستندات</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/html/default.html">HTML</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/css/default.html">CSS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/javascript/default.html">JavaScript</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/python/default.html">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/php/default.html">PHP</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/java/default.html">Java</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/csharp/index.html">C#</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">دوره‌ها</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="html-zero-to-pro.html">دوره جامع HTML</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="javascript-zero-to-pro.html">دوره جامع JavaScript</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="python-zero-to-pro.html">دوره جامع Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="ui-ux-zero-to-pro.html">دوره جامع UI/UX</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <h5 class="mb-2 mb-md-4 text-white">تماس با ما</h5>
+                    <p class="mb-2 text-muted">
+                        در تلگرام پاسخگوی شما خواهیم بود.
+                    </p>
+                </div>
+            </div>
+
+            <hr class="mt-4 mb-0">
+
+            <div class="py-3">
+                <div class="container px-0">
+                    <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
+                        <div class="text-muted text-primary-hover">توسعه یافته در UnderDevelops</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+
+    <!-- Back to top -->
+    <div class="back-top">
+        <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>
+    </div>
+
+    <script src="../vendor/bootstrap/dist/js/bootstrap.bundle.mine634.js?v=gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0"
+        defer></script>
+    <script src="../vendor/tiny-slider/tiny-slider-rtl0f0f.js?v=k-em-LAc1fpO9_rjzgJN6vdtDZjtKCNGlFg_zvStwyg"
+        defer></script>
+    <script src="../vendor/glightbox/js/glightbox71ad.js?v=y5UGfqUEDlOshy15lIjsxYWSeNPV7tIXdsOJ2vMetgI" defer></script>
+    <script src="../vendor/purecounterjs/dist/purecounter_vanilla23ed.js?v=QS4WC03UpIUx8aByHrcPlhCTwRzB4BgHZ5-K1P9PKXI"
+        defer></script>
+    <script src="../js/functionse8bb.js?v=nwi5Tl0l6drAcq_2yDVeejD07PNutyjSIw5a33p4X04" defer></script>
+
+    <!-- NToastNotify (در صورت استفاده در پروژه اصلی) -->
+    <script src="../_content/NToastNotify/toastrf461.js?8.0.0.0" type="text/javascript"></script>
+
+    <!-- Exam Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // --- لایه‌ی ضدکپی و ضد DevTools (تا حد ممکن در فرانت) ---
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('copy', function (e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        // Ctrl / Cmd + C, X, S, U, P
+        if ((e.ctrlKey || e.metaKey) && ['c','x','s','u','p','C','X','S','U','P'].includes(e.key)) {
+            e.preventDefault();
+        }
+
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+        }
+
+        // Ctrl+Shift+I / J / C
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c','I','J','C'].includes(e.key)) {
+            e.preventDefault();
+        }
+    });
+
+    // --- بقیه‌ی منطق آزمون هوشمند ---
+    const startForm = document.getElementById('start-exam-form');
+    const examForm = document.getElementById('exam-form');
+    const questionsContainer = document.getElementById('questions-container');
+    const questionCardsSelector = '.question-card';
+    const resultAlert = document.getElementById('exam-result');
+    const examSection = document.getElementById('exam-section');
+
+    const examStatus = document.getElementById('exam-status');
+    const questionProgressEl = document.getElementById('question-progress');
+    const questionTimerEl = document.getElementById('question-timer');
+    const examOverlay = document.getElementById('exam-overlay');
+
+    // وضعیت آزمون
+    let currentQuestions = [];
+    let currentMeta = null;
+    let currentIndex = 0;
+    let score = 0;
+
+    let examInProgress = false;
+    let cheatDetected = false;
+
+    let questionTimerId = null;
+    let timeLeft = 60;
+
+    // === ۱. گرفتن سوال‌ها از PHP روی XAMPP (با محدودیت IP) ===
+    async function fetchQuestionsFromAI({ language, difficulty, count }) {
+        const response = await fetch('/underdevelops/api/generate-questions.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ language, difficulty, count })
+        });
+
+        console.log('API status:', response.status);
+
+        let data = null;
+        try {
+            data = await response.json();
+        } catch (e) {
+            console.error('خطا در parse کردن JSON:', e);
+        }
+
+        console.log('API data:', data);
+
+        // محدودیت IP
+        if (data && data.error === 'rate_limited') {
+            throw new Error('تو به‌تازگی آزمون دادی؛ باید حدود یک ساعت صبر کنی بعد دوباره امتحان بدی 🙂');
+        }
+
+        // سایر خطاها
+        if (!response.ok) {
+            const msg = (data && data.message)
+                ? data.message
+                : ('وضعیت پاسخ نامعتبر بود: ' + response.status);
+            throw new Error(msg);
+        }
+
+        const questions = (data && Array.isArray(data.questions)) ? data.questions : [];
+
+        return questions.map((q, index) => ({
+            id: `q${index + 1}`,
+            text: q.text,
+            options: q.options,
+            correctIndex: q.answerIndex
+        }));
+    }
+
+    // === ۲. رندر فقط "یک" سوال فعلی ===
+    function renderCurrentQuestion() {
+        if (!questionsContainer || !currentQuestions.length) return;
+
+        const q = currentQuestions[currentIndex];
+        const total = currentQuestions.length;
+
+        questionsContainer.innerHTML = '';
+
+        const card = document.createElement('div');
+        card.className = 'mb-4 border rounded p-3 question-card';
+        card.dataset.question = q.id;
+
+        const header = document.createElement('h6');
+        header.className = 'mb-2 fw-bold';
+        header.textContent = `${currentIndex + 1}. ${q.text}`;
+        card.appendChild(header);
+
+        const hint = document.createElement('div');
+        hint.className = 'small text-muted mb-2';
+        hint.textContent = 'یک گزینه را انتخاب کن. زمان هر سؤال ۶۰ ثانیه است.';
+        card.appendChild(hint);
+
+        (q.options || []).forEach((opt, optIndex) => {
+            const optionId = `${q.id}_opt${optIndex}`;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'form-check';
+
+            const input = document.createElement('input');
+            input.className = 'form-check-input';
+            input.type = 'radio';
+            input.name = q.id;
+            input.id = optionId;
+            input.value = String(optIndex);
+
+            const label = document.createElement('label');
+            label.className = 'form-check-label';
+            label.setAttribute('for', optionId);
+            label.textContent = opt;
+
+            wrapper.appendChild(input);
+            wrapper.appendChild(label);
+            card.appendChild(wrapper);
+        });
+
+        const btnWrapper = document.createElement('div');
+        btnWrapper.className = 'mt-3 d-flex justify-content-end';
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.id = 'next-question-btn';
+        nextBtn.className = 'btn btn-success';
+        nextBtn.textContent = (currentIndex === total - 1)
+            ? 'ثبت و اتمام آزمون'
+            : 'ثبت و سوال بعدی';
+
+        btnWrapper.appendChild(nextBtn);
+        card.appendChild(btnWrapper);
+
+        questionsContainer.appendChild(card);
+
+        if (questionProgressEl) {
+            questionProgressEl.textContent = `سؤال ${currentIndex + 1} از ${total}`;
+        }
+    }
+
+    // === ۳. تایمر هر سوال ===
+    function updateTimerUI() {
+        if (questionTimerEl) {
+            questionTimerEl.textContent = timeLeft;
+        }
+    }
+
+    function clearQuestionTimer() {
+        if (questionTimerId) {
+            clearInterval(questionTimerId);
+            questionTimerId = null;
+        }
+    }
+
+    function startQuestionTimer() {
+        clearQuestionTimer();
+        timeLeft = 60;
+        updateTimerUI();
+
+        questionTimerId = setInterval(() => {
+            timeLeft--;
+            updateTimerUI();
+
+            if (timeLeft <= 0) {
+                clearQuestionTimer();
+                // وقت تموم شد → بدون پاسخ، غلط حساب می‌شود ولی تقلب نیست
+                handleAnswerAndNext(true);
+            }
+        }, 1000);
+    }
+
+    // === ۴. هندل ثبت پاسخ و رفتن به سوال بعدی ===
+    function handleAnswerAndNext(autoDueToTime = false) {
+        if (!examInProgress) return;
+
+        const q = currentQuestions[currentIndex];
+        const card = document.querySelector(`.question-card[data-question="${q.id}"]`);
+        const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+
+        let isCorrect = false;
+
+        // اگر کاربر گزینه‌ای انتخاب کرده
+        if (selected) {
+            const selectedIndex = parseInt(selected.value, 10);
+            if (!Number.isNaN(selectedIndex) && selectedIndex === q.correctIndex) {
+                isCorrect = true;
+            }
+        }
+        // اگر هیچ گزینه‌ای انتخاب نشده، سوال به‌سادگی غلط حساب می‌شود (بدون ابطال آزمون)
+
+        if (card) {
+            card.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+
+        if (isCorrect) {
+            score++;
+        }
+
+        clearQuestionTimer();
+
+        if (currentIndex < currentQuestions.length - 1) {
+            currentIndex++;
+            renderCurrentQuestion();
+            startQuestionTimer();
+        } else {
+            finishExam();
+        }
+    }
+
+    // === ۵. اتمام آزمون و ذخیره کارنامه ===
+    function finishExam() {
+        examInProgress = false;
+        clearQuestionTimer();
+        document.body.classList.remove('exam-active');
+        if (examOverlay) {
+            examOverlay.classList.add('d-none');
+            examOverlay.classList.remove('active');
+        }
+
+        const total = currentQuestions.length;
+        const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+        const isPassed = percent >= 70;
+
+        if (resultAlert) {
+            resultAlert.classList.remove('d-none', 'alert-success', 'alert-danger');
+            resultAlert.classList.add(isPassed ? 'alert-success' : 'alert-danger');
+
+            resultAlert.innerHTML =
+                `<strong>نتیجه آزمون:</strong> ${score} از ${total} (${percent}٪) — ` +
+                (isPassed ? 'آفرین! نمره قبولی گرفتی 🎉' : 'این بار قبول نشدی، دوباره تلاش کن 🙂');
+        }
+
+        const report = {
+            score,
+            total,
+            percent,
+            language: currentMeta?.language || null,
+            difficulty: currentMeta?.difficulty || null,
+            count: currentMeta?.count || null,
+            takenAt: new Date().toISOString(),
+            status: 'finished'
+        };
+
+        sessionStorage.setItem('htmlExamResult', JSON.stringify(report));
+        window.location.href = 'html-skill-test-result.html';
+    }
+
+    // === ۶. ابطال آزمون (تقلب / خروج از صفحه) ===
+    function cancelExam(reason) {
+        if (!examInProgress || cheatDetected) return;
+
+        cheatDetected = true;
+        examInProgress = false;
+        clearQuestionTimer();
+        document.body.classList.remove('exam-active');
+        if (examOverlay) {
+            examOverlay.classList.add('d-none');
+            examOverlay.classList.remove('active');
+        }
+
+        const total = currentQuestions.length || 0;
+
+        const report = {
+            score: 0,
+            total,
+            percent: 0,
+            language: currentMeta?.language || null,
+            difficulty: currentMeta?.difficulty || null,
+            count: currentMeta?.count || null,
+            takenAt: new Date().toISOString(),
+            status: 'cancelled',
+            reason
+        };
+
+        sessionStorage.setItem('htmlExamResult', JSON.stringify(report));
+        alert('آزمون به دلیل خروج از صفحه یا تلاش برای تقلب متوقف شد.');
+        window.location.href = 'html-skill-test-result.html';
+    }
+
+    // === ۷. شروع آزمون هوشمند ===
+    if (startForm) {
+        startForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const language = document.getElementById('exam-language').value;
+            const difficulty = document.getElementById('exam-difficulty').value;
+            const count = parseInt(document.getElementById('exam-count').value, 10);
+
+            const submitBtn = startForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'در حال ساخت سوالات...';
+
+            if (resultAlert) {
+                resultAlert.classList.add('d-none');
+            }
+
+            try {
+                const questions = await fetchQuestionsFromAI({ language, difficulty, count });
+
+                if (!questions.length) {
+                    alert('هیچ سوالی از سرور دریافت نشد.');
+                    return;
+                }
+
+                currentQuestions = questions;
+                currentMeta = { language, difficulty, count };
+                score = 0;
+                currentIndex = 0;
+                cheatDetected = false;
+
+                document.body.classList.add('exam-active');
+                if (examOverlay) {
+                    examOverlay.classList.remove('d-none');
+                    examOverlay.classList.add('active');
+                }
+
+                if (examStatus) {
+                    examStatus.classList.remove('d-none');
+                }
+
+                renderCurrentQuestion();
+                startQuestionTimer();
+
+                if (examSection) {
+                    examSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                examInProgress = true;
+            } catch (err) {
+                console.error('خطای دریافت سوالات:', err);
+
+                const msg = (err && err.message)
+                    ? err.message
+                    : 'در هنگام دریافت سوالات خطایی رخ داد. لطفاً بعداً دوباره تلاش کن.';
+
+                alert(msg);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
+
+    // دکمه "سوال بعدی"
+    if (questionsContainer) {
+        questionsContainer.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'next-question-btn') {
+                handleAnswerAndNext(false);
+            }
+        });
+    }
+
+    // ریست فرم (الان بیشتر برای تمیزکاری)
+    if (examForm) {
+        examForm.addEventListener('reset', () => {
+            document.querySelectorAll(questionCardsSelector).forEach(card => {
+                card.classList.remove('correct', 'incorrect');
+            });
+
+            if (resultAlert) {
+                resultAlert.classList.add('d-none');
+            }
+        });
+    }
+
+    // === ۸. قوانین ضدتقلب (خروج از تب / پنجره) ===
+
+    // خروج از تب / مخفی شدن صفحه → ابطال آزمون
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden && examInProgress) {
+            cancelExam('page-hidden');
+        }
+    });
+
+    // از دست دادن فوکوس پنجره (Alt+Tab و …) → ابطال آزمون
+    window.addEventListener('blur', () => {
+        if (examInProgress) {
+            cancelExam('window-blur');
+        }
+    });
+});
+</script>
+
+
+</body>
+
+</html>

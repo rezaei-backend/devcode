@@ -1,84 +1,111 @@
-@extends('panel.layouts.master')
-@section('title','subject')
+@extends('Panel.Layouts.master')
+@section('title', 'ایجاد موضوع جدید')
 @section('content')
-
-
-    <form action="{{route('subject.store')}}" method="post">
-        @csrf
-
-
-        <div class="contentbar">
-            <!-- Start row -->
-            <div class="row">
-
-            <div class="col-lg-12">            @if($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger" role="alert">
-                            {{$error }}
-                        </div>
-                    @endforeach
-
-                @endif
-
-            <div class="card m-b-30">
-                <div class="card-header">
-                    <h5 class="card-title">عنوان</h5>
-                </div>
-                <div class="card-body">
-
-                    <div class="form-group mb-0">
-                        <input type="text" class="form-control" name="title" id="inputText" value="{{old('title')}}" placeholder="عنوان">
+    <div class="contentbar">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card m-b-30 shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">ایجاد موضوع جدید</h5>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-                <div class="col-lg-6">
-                    <div class="card m-b-30">
-                        <div class="card-header">
-                            <h5 class="card-title">توضیحات </h5>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group">
-                                <textarea class="form-control" name="description" id="inputTextarea" rows="3"  placeholder="متن ">{{old('description')}}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card m-b-30">
-                        <div class="card-header">
-                            <h5 class="card-title">زبان ها</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group">
-                                <select class="form-control" name="language_id" id="formControlSelect">
-                                    @if(!empty(old('language_id')))
-                                        <option value="{{old('language_id')}}" >{{$oldlang->name}}</option>
-                                    @else
-                                        <option value="">یکی را انتخاب کنید</option>
-                                    @endif
-
-                                    @foreach($langs as $lang)
-                                    <option value="{{$lang->id}}" >{{$lang->name}}</option>
+                    <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
                                     @endforeach
-                                </select>
-                                <br>
-                                <br>
-                                <button type="submit" class="btn btn-primary">ثبت</button>
+                                </ul>
                             </div>
-                        </div>
+                        @endif
+                            <form action="{{ route('subject.store') }}" method="POST" enctype="multipart/form-data" id="subject-form">
+                            @csrf
+                            <!-- عنوان و زبان -->
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <label for="title" class="font-weight-bold">عنوان موضوع <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-sm" id="title" name="title"
+                                           value="{{ old('title') }}" required>
+                                    @error('title')
+                                    <span class="text-danger mt-2 d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="language_id" class="font-weight-bold">زبان برنامه‌نویسی <span class="text-danger">*</span></label>
+                                    <select class="form-control form-control-sm" id="language_id" name="language_id" required>
+                                        <option value="">انتخاب زبان</option>
+                                        @foreach ($langs as $lang)
+                                            <option value="{{ $lang->id }}" {{ old('language_id') == $lang->id ? 'selected' : '' }}>
+                                                {{ $lang->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('language_id')
+                                    <span class="text-danger mt-2 d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- توضیحات با CKEditor 5 -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label class="font-weight-bold">توضیحات موضوع <span class="text-danger">*</span></label>
+                                    <div id="editor-create">{!! old('description') !!}</div>
+                                    <input type="hidden" name="description" id="description-create">
+                                    @error('description')
+                                    <span class="text-danger mt-2 d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- دکمه‌ها -->
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-primary-rgba px-5 py-2">ایجاد موضوع</button>
+                                <a href="{{ route('subject.index') }}" class="btn btn-outline-secondary px-5 py-2 ms-2">لغو</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
+    </div>
 
-    </form>
+    <!-- CKEditor 5 CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/translations/fa.js"></script>
+    <style>
+        .ck-editor__editable { min-height: 400px; }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let editorCreate;
+            ClassicEditor
+                .create(document.querySelector('#editor-create'), {
+                    language: 'fa',
+                    toolbar: {
+                        items: [
+                            'heading', '|',
+                            'bold', 'italic', 'underline', 'strikethrough', '|',
+                            'alignment', '|',
+                            'bulletedList', 'numberedList', '|',
+                            'outdent', 'indent', '|',
+                            'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo', '|',
+                            'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor', '|',
+                            'code', 'codeBlock', '|',
+                            'horizontalLine'
+                        ],
+                        shouldNotGroupWhenFull: true
+                    },
+                    fontFamily: { options: ['default', 'Arial', 'Tahoma', 'IranSans', 'Vazir', 'B Nazanin'] },
+                    fontSize: { options: [10, 12, 14, 'default', 18, 22, 26] },
+                    table: { contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'] }
+                })
+                .then(editor => {
+                    editorCreate = editor;
+                    const form = document.getElementById('subject-form');
+                    form.addEventListener('submit', () => {
+                        document.getElementById('description-create').value = editor.getData();
+                    });
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
 @endsection

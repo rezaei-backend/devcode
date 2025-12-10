@@ -1,93 +1,74 @@
 @extends('panel.layouts.master')
-@section('title','ویرایش آزمون')
+@section('title', 'ویرایش آزمون: ' . $quiz->title)
 
 @section('content')
     <div class="contentbar">
-        <!-- Start row -->
         <div class="row">
-            <!-- Start col -->
             <div class="col-lg-12">
-                <div class="card m-b-30">
+                <div class="card m-b-30 shadow-sm">
                     <div class="card-header">
-                        <h5 class="card-title">ویرایش آزمون</h5>
+                        <h5 class="card-title mb-0">ویرایش آزمون: {{ $quiz->title }}</h5>
                     </div>
                     <div class="card-body">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <form action="{{ route('quiz.update', $quiz->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="row">
 
-                                {{-- انتخاب زبان --}}
-                                <div class="col-lg-6 mb-3">
-                                    <label for="languageInput" class="form-label">انتخاب زبان <span class="text-danger">*</span></label>
-                                    <select name="language_id"
-                                            id="languageInput"
-                                            class="form-control @error('language_id') is-invalid @enderror"
-                                            required>
-                                        <option value="">یک زبان انتخاب کنید</option>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="font-weight-bold">زبان برنامه‌نویسی <span class="text-danger">*</span></label>
+                                    <select name="language_id" class="form-control form-control-sm" required>
+                                        <option value="">انتخاب زبان</option>
                                         @foreach($languages as $language)
-                                            <option value="{{ $language->id }}" {{ $quiz->language_id == $language->id ? 'selected' : '' }}>
+                                            <option value="{{ $language->id }}"
+                                                {{ old('language_id', $quiz->language_id) == $language->id ? 'selected' : '' }}>
                                                 {{ $language->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('language_id')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
                                 </div>
 
-                                {{-- عنوان آزمون --}}
-                                <div class="col-lg-6 mb-3">
-                                    <label for="titleInput" class="form-label">عنوان آزمون <span class="text-danger">*</span></label>
-                                    <input type="text"
-                                           class="form-control @error('title') is-invalid @enderror"
-                                           name="title"
-                                           id="titleInput"
-                                           value="{{ old('title', $quiz->title) }}"
-                                           placeholder="عنوان آزمون را وارد کنید"
-                                           required>
-                                    @error('title')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                <div class="col-md-6">
+                                    <label class="font-weight-bold">عنوان آزمون <span class="text-danger">*</span></label>
+                                    <input type="text" name="title" class="form-control form-control-sm"
+                                           value="{{ old('title', $quiz->title) }}" required>
                                 </div>
-
-                                {{-- توضیحات آزمون --}}
-                                <div class="col-lg-12 mb-3">
-                                    <label for="descriptionInput" class="form-label">توضیحات <span class="text-danger">*</span></label>
-                                    <textarea rows="5"
-                                              class="form-control @error('description') is-invalid @enderror"
-                                              name="description"
-                                              id="descriptionInput"
-                                              placeholder="توضیحات آزمون">{{ old('description', $quiz->description) }}</textarea>
-                                    @error('description')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                {{-- مدت زمان آزمون --}}
-                                <div class="col-lg-3 mb-3">
-                                    <label for="durationInput" class="form-label">مدت زمان (دقیقه) <span class="text-danger">*</span></label>
-                                    <input type="number"
-                                           class="form-control @error('duration_minutes') is-invalid @enderror"
-                                           name="duration_minutes"
-                                           id="durationInput"
-                                           value="{{ old('duration_minutes', $quiz->duration_minutes) }}"
-                                           placeholder="مثلاً 60"
-                                           required>
-                                    @error('duration_minutes')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
                             </div>
 
-                            <button type="submit" class="btn btn-success">به‌روزرسانی آزمون</button>
-                            <a href="{{ route('quiz.index') }}" class="btn btn-secondary">بازگشت</a>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label class="font-weight-bold">توضیحات آزمون <span class="text-danger">*</span></label>
+                                    <textarea name="description" class="form-control" rows="6" required>{{ old('description', $quiz->description) }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">مدت زمان آزمون (دقیقه) <span class="text-danger">*</span></label>
+                                    <input type="number" name="duration_minutes" class="form-control form-control-sm"
+                                           value="{{ old('duration_minutes', $quiz->duration_minutes) }}" min="1" required>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success-rgba px-5 py-2">ذخیره تغییرات</button>
+                                <a href="{{ route('quiz.index') }}" class="btn btn-outline-secondary px-5 py-2 ms-3">لغو</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End row -->
     </div>
 @endsection
