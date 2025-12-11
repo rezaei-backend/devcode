@@ -1,22 +1,28 @@
 <?php
 
 use App\Http\Controllers\Panel\AboutusController;
+use App\Http\Controllers\Panel\ActivityLogController;
+use App\Http\Controllers\Panel\BlogController;
+use App\Http\Controllers\Panel\CategoryController;
+use App\Http\Controllers\Panel\ContactusController;
+use App\Http\Controllers\Panel\DocController;
+use App\Http\Controllers\Panel\LanguageController;
+use App\Http\Controllers\Panel\PanelController;
 use App\Http\Controllers\Panel\questionController;
 use App\Http\Controllers\Panel\QuizController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Panel\LanguageController;
+use App\Http\Controllers\Panel\ResourceController;
+use App\Http\Controllers\Panel\SettingController;
 use App\Http\Controllers\Panel\SubjectController;
-use App\Http\Controllers\Panel\DocCountroller;
+use App\Http\Controllers\Panel\TagController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
+// صفحه اصلی
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
-// داشبورد Breeze
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-// پروفایل Breeze
+// پروفایل کاربر
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -24,49 +30,81 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::prefix('Admin')->middleware('admin')->group(function () {
 
-Route::prefix('admin')->group(function () {
-    Route::resource('language', LanguageController::class);
-    Route::resource('quiz', QuizController::class);
+    Route::get('/', [PanelController::class, 'index'])->name('Admin');
 
+    // زبان‌ها
+    Route::resource('language', LanguageController::class)->except(['show']);
 
-    // همه روت‌های مربوط به سوالات یک آزمون
-    Route::prefix('quiz/{quiz_id}')->group(function () {
+    // آزمون‌ها
+    Route::resource('quiz', QuizController::class)->except(['show']);
 
+    // === سوالات هر آزمون (مهم‌ترین قسمت) ===
+    Route::prefix('quiz/{quiz}')->group(function () {
         Route::get('questions', [questionController::class, 'index'])
             ->name('question.index');
 
-        // ایجاد سوال جدید
         Route::get('questions/create', [questionController::class, 'create'])
             ->name('question.create');
+
         Route::post('questions', [questionController::class, 'store'])
             ->name('question.store');
 
-        // ویرایش سوال
-        Route::get('questions/{question_id}/edit', [questionController::class, 'edit'])
+        Route::get('questions/{question}/edit', [questionController::class, 'edit'])
             ->name('question.edit');
-        Route::put('questions/{question_id}', [questionController::class, 'update'])
+
+        Route::put('questions/{question}', [questionController::class, 'update'])
             ->name('question.update');
 
-        // حذف سوال
-        Route::delete('questions/{question_id}', [questionController::class, 'destroy'])
+        Route::delete('questions/{question}', [questionController::class, 'destroy'])
             ->name('question.destroy');
     });
 
-    Route::patch('quiz/questions/{question_id}/toggle', [questionController::class, 'toggle'])
-        ->name('question.toggle');
+    // موضوعات
+    Route::resource('subjects', SubjectController::class)
+        ->names('subject')
+        ->parameters(['subjects' => 'subject:slug'])
+        ->except(['show']);
 
+    // مستندات
+    Route::resource('docs', DocController::class)
+        ->except(['show'])
+        ->parameters(['docs' => 'doc'])
+        ->names('doc');
 
-//    Route::resource('question', questionController::class);
-    Route::get('/subjects', [SubjectController::class, 'index'])->name('subject.index');
-    Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subject.create');
-    Route::post('/subjects/create', [SubjectController::class, 'store'])->name('subject.store');
-    Route::put('/subjects/{slug}', [SubjectController::class, 'update'])->name('subject.update');
-    Route::delete('/subjects/{slug}', [SubjectController::class, 'destroy'])->name('subject.destroy');
-
-    Route::resource('docs', DocCountroller::class)->names('doc');
-
-    Route::get('about', [AboutusController::class, 'edit'])->name('about.edit');
-    Route::put('about', [AboutusController::class, 'update'])->name('about.update');
-
+    // تنظیمات
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/', [SettingController::class, 'index'])->name('index');
+        Route::get('/edit', [SettingController::class, 'edit'])->name('edit');
+        Route::put('/', [SettingController::class, 'update'])->name('update');
     });
+
+    Route::prefix('about-us')->name('aboutus.')->group(function () {
+        Route::get('/', [AboutusController::class, 'index'])->name('index');
+        Route::get('/edit', [AboutusController::class, 'edit'])->name('edit');
+        Route::put('/update', [AboutusController::class, 'update'])->name('update');
+    });
+
+    Route::prefix('contact-us')->name('contactus.')->group(function () {
+        Route::get('/', [ContactusController::class, 'index'])->name('index');
+        Route::get('/show/{id}', [ContactusController::class, 'show'])->name('show');
+        Route::post('/{id}/toggle-status', [ContactusController::class, 'toggleStatus'])->name('toggleStatus');
+    });
+
+    Route::post('/admin/resources', [ResourceController::class, 'storeOrUpdate'])
+        ->name('resources.storeOrUpdate');
+
+    Route::resource('blog', BlogController::class)->except(['show']);
+
+    Route::resource('category', CategoryController::class)->except(['show']);
+
+    Route::resource('tag', TagController::class)->except(['show']);
+
+});
+
+Route::delete('/activity-logs', [ActivityLogController::class, 'destroy'])
+    ->name('activity-logs.destroy')
+    ->middleware('admin');
+
+require __DIR__.'/auth.php';
