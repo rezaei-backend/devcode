@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>کارنامه آزمون — UnderDevelops</title>
+
+    <meta name="description" content="نمایش نتیجه آزمون آنلاین هوشمند در UnderDevelops." />
+    <meta name="robots" content="noindex,nofollow" />
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/font-awesome/css/all.minc74b.css?v=6fnf9K7jzMc68QzgpIJCVPY_jNQ-wskxIAgLIRho8H0">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/bootstrap-icons/bootstrap-icons9a04.css?v=cKs41vL6H84DqDpUvRCfSaiCLfpjNkQuA-9HZqwRlDU">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/tiny-slider/tiny-slider1b21.css?v=1CXVlacnwYLmg9X2AhCKvYcSgR53GWiU3z4qZJDrb68">
+    <link rel="stylesheet" type="text/css"
+        href="../vendor/glightbox/css/glightboxd790.css?v=yMoCTayb6wccTz561YN_R0qK756JifYXnA40MUtR-k">
+    <link rel="stylesheet" type="text/css"
+        href="../css/style-rtlde33.css?v=_LiaJmssPW9ho0X5aF_Je6hvr2_xqHuofrk9iTrDOhI">
+
+    <style>
+        .result-hero {
+            position: relative;
+            background: #0b0e14;
+            overflow: hidden;
+            padding: 3rem 0 2.5rem;
+        }
+
+        .result-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(135deg, #1e293b, #020617);
+            opacity: 0.95;
+        }
+
+        .result-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%);
+            mix-blend-mode: screen;
+        }
+
+        .result-hero>.container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .result-badge {
+            font-size: .85rem;
+        }
+
+        .score-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 6px solid rgba(34, 197, 94, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #ecfdf5;
+            background: radial-gradient(circle at top, rgba(22, 163, 74, 0.35), transparent 55%);
+        }
+
+        .score-circle.failed {
+            border-color: rgba(239, 68, 68, 0.6);
+            background: radial-gradient(circle at top, rgba(248, 113, 113, 0.35), transparent 55%);
+        }
+
+        .score-label {
+            font-size: .9rem;
+            color: #e5e7eb;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            border-radius: 999px;
+            padding: .25rem .8rem;
+            font-size: .8rem;
+        }
+
+        .pill-soft {
+            background: rgba(15, 23, 42, 0.06);
+            color: #4b5563;
+        }
+
+        .pill-soft i {
+            font-size: .9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header START (همان هدر سایت اصلی) -->
+    <header class="navbar-light header-static navbar-sticky">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container-fluid px-3 px-xl-5">
+                <!-- Logo START -->
+                <a class="navbar-brand" href="../index.html">
+                    <img class="light-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه"
+                        fetchpriority="high" decoding="async">
+                    <img class="dark-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه"
+                        fetchpriority="high" decoding="async">
+                </a>
+                <!-- Logo END -->
+
+                <!-- Responsive navbar toggler -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+
+                <!-- Main navbar START -->
+                <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+
+                    <ul class="navbar-nav navbar-nav-scroll me-auto"></ul>
+
+                    <ul class="navbar-nav navbar-nav-scroll me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">صفحه اصلی</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="docsMenu" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">مستندات</a>
+                            <ul class="dropdown-menu" aria-labelledby="docsMenu">
+                                <li><span class="dropdown-item-text text-muted">به زودی</span></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="coursesMenu" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">دوره‌ها</a>
+                            <ul class="dropdown-menu" aria-labelledby="coursesMenu">
+                                <li> <a class="dropdown-item" href="html-zero-to-pro.html">دوره جامع HTML</a></li>
+                                <li> <a class="dropdown-item" href="javascript-zero-to-pro.html">دوره جامع
+                                        JavaScript</a></li>
+                                <li> <a class="dropdown-item" href="python-zero-to-pro.html">دوره جامع Python</a></li>
+                                <li> <a class="dropdown-item" href="ui-ux-zero-to-pro.html">دوره جامع UI/UX</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../about.html">درباره ما</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="../contact.html">تماس باما</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Main navbar END -->
+            </div>
+        </nav>
+    </header>
+    <!-- Header END -->
+
+    <main>
+
+        <!-- Hero / Summary -->
+        <section class="result-hero">
+            <div class="container px-3 px-lg-5">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-7 text-white">
+                        <h1 class="fs-3 mb-2">کارنامه آزمون هوشمند</h1>
+                        <p class="mb-3 text-white-50">
+                            خلاصه عملکردت در این آزمون در این صفحه نمایش داده شده است. می‌تونی براساس نتیجه، برای آزمون
+                            بعدی برنامه‌ریزی کنی.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <span id="result-status-badge" class="badge result-badge"></span>
+                            <span id="result-extra-pill" class="pill pill-soft d-none">
+                                <i class="bi bi-lightning-charge"></i>
+                                <span></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 text-center">
+                        <div id="score-circle" class="score-circle">
+                            <span id="score-percent">0%</span>
+                        </div>
+                        <div class="score-label">
+                            <span id="score-detail"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details -->
+        <section class="py-4 py-lg-5 bg-light">
+            <div class="container px-3 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div id="result-card" class="card shadow-sm p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="mb-0 fs-5">جزئیات آزمون</h4>
+                                <span class="small text-muted" id="result-time-label"></span>
+                            </div>
+
+                            <div id="result-content">
+                                <p class="text-muted mb-0">
+                                    در حال خواندن اطلاعات آزمون...
+                                </p>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="azmon.html" class="btn btn-success">
+                                    شرکت در آزمون جدید
+                                </a>
+                                <a href="../index.html" class="btn btn-outline-secondary">
+                                    بازگشت به صفحه اصلی
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="no-result-card" class="card shadow-sm p-4 d-none">
+                            <h4 class="mb-3 fs-5">هیچ کارنامه‌ای یافت نشد</h4>
+                            <p class="text-muted">
+                                به نظر می‌رسد هنوز آزمونی ندادی یا اطلاعات آزمون قبلی در این مرورگر موجود نیست.
+                            </p>
+                            <a href="azmon.html" class="btn btn-success">
+                                رفتن به صفحه آزمون
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer START (همان فوتر سایت اصلی) -->
+    <footer class="bg-dark pt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <p class="my-3 text-muted">
+                        تحت توسعه با هدف جمع‌آوری و ارائه مستندات اصلی از منابع معتبر در حوزه
+                        نرم‌افزار در حال توسعه است. کپی‌برداری از مطالب ترجمه شده آزاد است.
+                        امیدواریم این اقدام به اشتراک‌گذاری دانش و پیشرفت جامعه کمک کند. ❤️
+                    </p>
+                    <ul class="list-inline mb-0 mt-3">
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-facebook"
+                                href="https://www.youtube.com/@underdevelops" aria-label="یوتوب" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-instagram"
+                                href="https://instagram.com/underdevelops" aria-label="اینستاگرام" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-twitter"
+                                href="https://aparat.com/underdevelops" aria-label="آپارات" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fas fa-fw fa-video"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn-white btn-sm shadow px-2 text-linkedin"
+                                href="https://t.me/underdevelopscom" aria-label="تلگرام" target="_blank"
+                                rel="noopener nofollow">
+                                <i class="fab fa-fw fa-telegram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">لینک های مفید</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">صفحه اصلی</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../about.html">درباره ما</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../contact.html">تماس باما</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">مستندات</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/html/default.html">HTML</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/css/default.html">CSS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/javascript/default.html">JavaScript</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/python/default.html">Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/php/default.html">PHP</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/java/default.html">Java</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="../docs/csharp/index.html">C#</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-6 col-md-4">
+                            <h5 class="mb-2 mb-md-4 text-white">دوره‌ها</h5>
+                            <ul class="nav flex-column text-primary-hover">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="html-zero-to-pro.html">دوره جامع HTML</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="javascript-zero-to-pro.html">دوره جامع JavaScript</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="python-zero-to-pro.html">دوره جامع Python</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="ui-ux-zero-to-pro.html">دوره جامع UI/UX</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <h5 class="mb-2 mb-md-4 text-white">تماس با ما</h5>
+                    <p class="mb-2 text-muted">
+                        در تلگرام پاسخگوی شما خواهیم بود.
+                    </p>
+                </div>
+            </div>
+
+            <hr class="mt-4 mb-0">
+
+            <div class="py-3">
+                <div class="container px-0">
+                    <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
+                        <div class="text-muted text-primary-hover">توسعه یافته در UnderDevelops</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+
+    <!-- Back to top -->
+    <div class="back-top">
+        <i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i>
+    </div>
+
+    <!-- Scripts (مثل بقیه صفحات سایت) -->
+    <script src="../vendor/bootstrap/dist/js/bootstrap.bundle.mine634.js?v=gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0"
+        defer></script>
+    <script src="../vendor/tiny-slider/tiny-slider-rtl0f0f.js?v=k-em-LAc1fpO9_rjzgJN6vdtDZjtKCNGlFg_zvStwyg"
+        defer></script>
+    <script src="../vendor/glightbox/js/glightbox71ad.js?v=y5UGfqUEDlOshy15lIjsxYWSeNPV7tIXdsOJ2vMetgI" defer></script>
+    <script src="../vendor/purecounterjs/dist/purecounter_vanilla23ed.js?v=QS4WC03UpIUx8aByHrcPlhCTwRzB4BgHZ5-K1P9PKXI"
+        defer></script>
+    <script src="../js/functionse8bb.js?v=nwi5Tl0l6drAcq_2yDVeejD07PNutyjSIw5a33p4X04" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const raw = sessionStorage.getItem('htmlExamResult');
+            const resultContent = document.getElementById('result-content');
+            const resultCard = document.getElementById('result-card');
+            const noResultCard = document.getElementById('no-result-card');
+            const statusBadge = document.getElementById('result-status-badge');
+            const scoreCircle = document.getElementById('score-circle');
+            const scorePercentEl = document.getElementById('score-percent');
+            const scoreDetailEl = document.getElementById('score-detail');
+            const resultTimeLabel = document.getElementById('result-time-label');
+            const extraPill = document.getElementById('result-extra-pill');
+            const extraPillText = extraPill ? extraPill.querySelector('span') : null;
+
+            if (!raw) {
+                resultCard.classList.add('d-none');
+                noResultCard.classList.remove('d-none');
+                return;
+            }
+
+            let data;
+            try {
+                data = JSON.parse(raw);
+            } catch (err) {
+                console.error('خطا در پارس کارنامه:', err);
+                resultCard.classList.add('d-none');
+                noResultCard.classList.remove('d-none');
+                return;
+            }
+
+            const {
+                score = 0,
+                total = 0,
+                percent = 0,
+                language = null,
+                difficulty = null,
+                count = null,
+                takenAt = null,
+                status = 'finished',
+                reason = null
+            } = data;
+
+            const languageMap = {
+                html: 'HTML',
+                css: 'CSS',
+                javascript: 'JavaScript',
+                php: 'PHP',
+                null: 'نامشخص'
+            };
+
+            const difficultyMap = {
+                easy: 'آسان',
+                medium: 'متوسط',
+                hard: 'سخت',
+                null: 'نامشخص'
+            };
+
+            // وضعیت کلی
+            if (status === 'finished') {
+                statusBadge.className = 'badge result-badge bg-success bg-opacity-10 text-success';
+                statusBadge.textContent = percent >= 70
+                    ? 'وضعیت: قبولی ✅'
+                    : 'وضعیت: عدم قبولی ❌';
+            } else if (status === 'cancelled') {
+                statusBadge.className = 'badge result-badge bg-danger bg-opacity-10 text-danger';
+                statusBadge.textContent = 'وضعیت: آزمون باطل شد';
+            } else {
+                statusBadge.className = 'badge result-badge bg-secondary bg-opacity-10 text-secondary';
+                statusBadge.textContent = 'وضعیت: نامشخص';
+            }
+
+            // دایره نمره
+            scorePercentEl.textContent = `${percent}%`;
+            scoreDetailEl.textContent = `${score} از ${total} سوال صحیح`;
+
+            if (percent < 70) {
+                scoreCircle.classList.add('failed');
+            }
+
+            // متن کوچیک کناری (پیل)
+            if (extraPill && extraPillText) {
+                if (status === 'cancelled') {
+                    extraPill.classList.remove('d-none');
+                    extraPillText.textContent = 'آزمون به دلیل خروج از صفحه / تغییر تب ابطال شده است.';
+                } else if (percent >= 90) {
+                    extraPill.classList.remove('d-none');
+                    extraPillText.textContent = 'عالی! تسلط خیلی خوبی روی این مباحث داری.';
+                } else if (percent >= 70) {
+                    extraPill.classList.remove('d-none');
+                    extraPillText.textContent = 'قبولی خوب! اگر می‌خوای عالی بشی، دوباره تمرین کن.';
+                } else {
+                    extraPill.classList.remove('d-none');
+                    extraPillText.textContent = 'اشکالی نداره، نتیجه را به‌عنوان نقشه راه تمرین ببین 🙂';
+                }
+            }
+
+            // زمان آزمون
+            let takenText = 'زمان نامشخص';
+            if (takenAt) {
+                try {
+                    const d = new Date(takenAt);
+                    takenText = d.toLocaleString('fa-IR');
+                } catch (e) {
+                    takenText = takenAt;
+                }
+            }
+            if (resultTimeLabel) {
+                resultTimeLabel.textContent = `تاریخ آزمون: ${takenText}`;
+            }
+
+            // جزئیات
+            resultContent.innerHTML = `
+                <ul class="list-group list-group-borderless small mb-0">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">زبان آزمون</span>
+                        <span>${languageMap[language] ?? language}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">درجه سختی</span>
+                        <span>${difficultyMap[difficulty] ?? difficulty}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">تعداد سوالات</span>
+                        <span>${count ?? total}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">تعداد پاسخ‌های صحیح</span>
+                        <span>${score} از ${total}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">درصد کل</span>
+                        <span>${percent}%</span>
+                    </li>
+                    ${status === 'cancelled' && reason ? `
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="text-muted">علت ابطال</span>
+                            <span>${reason}</span>
+                        </li>
+                    ` : ''}
+                </ul>
+            `;
+        });
+    </script>
+
+</body>
+
+</html>

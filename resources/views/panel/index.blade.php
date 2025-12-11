@@ -1,382 +1,251 @@
 @extends('panel.layouts.master')
-@section('title','خانه')
+
+@section('title', 'داشبورد')
+
 @section('content')
+    <!-- Start Contentbar -->
     <div class="contentbar">
         <!-- Start row -->
         <div class="row">
-            <!-- Start col -->
-            <div class="col-lg-12 col-xl-6">
-                <!-- Start row -->
-                <div class="row">
-                    <!-- Start col -->
-                    <div class="col-lg-12">
-                        <div class="card m-b-30">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col-9">
-                                        <h5 class="card-title mb-0">Revenue Statistics</h5>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="dropdown">
-                                            <button class="btn btn-link p-0 font-18 float-left" type="button" id="widgetRevenue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-more-horizontal-"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="widgetRevenue">
-                                                <a class="dropdown-item font-13" href="#">Refresh</a>
-                                                <a class="dropdown-item font-13" href="#">Export</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body py-0">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-3">
-                                        <div class="revenue-box border-bottom mb-2">
-                                            <h4>+ 4598</h4>
-                                            <p>Inward Amount</p>
-                                        </div>
-                                        <div class="revenue-box">
-                                            <h4>- 296</h4>
-                                            <p>Outward Amount</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <div id="apex-line-chart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-6">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <div class="media">
-                                    <span class="align-self-center ml-3 action-icon badge badge-secondary-inverse"><i class="feather icon-folder"></i></span>
-                                    <div class="media-body">
-                                        <p class="mb-0">Projects</p>
-                                        <h5 class="mb-0">85</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-6">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <div class="media">
-                                    <span class="align-self-center ml-3 action-icon badge badge-secondary-inverse"><i class="feather icon-clipboard"></i></span>
-                                    <div class="media-body">
-                                        <p class="mb-0">Tasks</p>
-                                        <h5 class="mb-0">259</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                </div>
-                <!-- End row -->
-            </div>
-            <!-- End col -->
-            <!-- Start col -->
-            <div class="col-lg-12 col-xl-6">
-                <div class="card m-b-30 dash-widget">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-5">
-                                <h5 class="card-title mb-0">Index</h5>
-                            </div>
-                            <div class="col-7">
-                                <ul class="nav nav-pills float-left" id="pills-index-tab-justified" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="pills-sales-tab-justified" data-toggle="pill" href="#pills-sales-justified" role="tab" aria-selected="true">Sales</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="pills-clients-tab-justified" data-toggle="pill" href="#pills-clients-justified" role="tab" aria-selected="false">Clients</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body py-0 pl-0 pr-2">
-                        <div id="apex-bar-chart"></div>
-                    </div>
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="text-center mt-3 mb-5">
+                    <h4>خوش آمدید!</h4>
+                    <p class="text-muted">آمار کلی پنل مدیریت آزمون آنلاین</p>
                 </div>
             </div>
-            <!-- End col -->
         </div>
-        <!-- End row -->
-        <!-- Start row -->
+
+        @php
+                    $cards = [
+            // پروفایل ادمین
+            [
+                'route'        => 'profile.edit',
+                'icon'         => 'user',
+                'bg_class'     => 'bg-gradient-orange',
+                'title'        => 'پروفایل ادمین',
+                'description'  => 'اطلاعات حساب کاربری خود را مشاهده و ویرایش کنید',
+                'count'        => null,
+                'button_text'  => 'مشاهده پروفایل',
+                'button_class' => 'btn-gradient-orange px-5 py-2',
+                'roles'        => ['main_admin', 'appearance_admin', 'support_admin', 'warehouse_admin'],
+            ],
+
+            // زبان‌های برنامه‌نویسی
+            [
+                'route'        => 'language.index',
+                'icon'         => 'globe',
+                'bg_class'     => 'bg-gradient-blue',
+                'title'        => 'زبان‌های برنامه‌نویسی',
+                'description'  => 'تعداد زبان‌های ثبت‌شده',
+                'count'        => \App\Models\Language::count(),
+                'button_text'  => 'مدیریت زبان‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // موضوعات
+            [
+                'route'        => 'subject.index',
+                'icon'         => 'book-open',
+                'bg_class'     => 'bg-gradient-info',
+                'title'        => 'موضوعات',
+                'description'  => 'تعداد موضوعات ثبت‌شده',
+                'count'        => \App\Models\Subject::count(),
+                'button_text'  => 'مدیریت موضوعات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // آزمون‌ها
+            [
+                'route'        => 'quiz.index',
+                'icon'         => 'check-square',
+                'bg_class'     => 'bg-gradient-success',
+                'title'        => 'آزمون‌ها',
+                'description'  => 'تعداد آزمون‌های ایجادشده',
+                'count'        => \App\Models\Quiz::count(),
+                'button_text'  => 'مدیریت آزمون‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // سوالات
+            [
+                'route'        => 'quiz.index', // می‌تونی بعداً یه route جدا برای سوالات بزنی
+                'icon'         => 'help-circle',
+                'bg_class'     => 'bg-gradient-warning',
+                'title'        => 'سوالات',
+                'description'  => 'تعداد سوالات موجود',
+                'count'        => \App\Models\Question::count(),
+                'button_text'  => 'مشاهده همه سوالات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // مستندات
+            [
+                'route'        => 'doc.index',
+                'icon'         => 'file-text',
+                'bg_class'     => 'bg-gradient-danger',
+                'title'        => 'مستندات',
+                'description'  => 'تعداد مستندات آپلودشده',
+                'count'        => \App\Models\Doc::count(),
+                'button_text'  => 'مدیریت مستندات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // دسته‌بندی مقالات
+            [
+                'route'        => 'category.index',
+                'icon'         => 'grid',
+                'bg_class'     => 'bg-gradient-warning',
+                'title'        => 'دسته‌بندی مقالات',
+                'description'  => 'تعداد دسته‌بندی‌های بلاگ',
+                'count'        => \App\Models\Category::count(),
+                'button_text'  => 'مدیریت دسته‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // تگ‌ها
+            [
+                'route'        => 'tag.index',
+                'icon'         => 'tag',
+                'bg_class'     => 'bg-gradient-pink',
+                'title'        => 'تگ‌های بلاگ',
+                'description'  => 'تعداد تگ‌های استفاده‌شده',
+                'count'        => \App\Models\Tag::count(),
+                'button_text'  => 'مدیریت تگ‌ها',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // مقالات بلاگ
+            [
+                'route'        => 'blog.index',
+                'icon'         => 'file-plus',
+                'bg_class'     => 'bg-gradient-cyan',
+                'title'        => 'مقالات',
+                'description'  => 'تعداد مقالات منتشرشده',
+                'count'        => \App\Models\Blog::count(),
+                'button_text'  => 'مدیریت مقالات',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // تیم
+            [
+                'route'        => 'team.index',
+                'icon'         => 'users',
+                'bg_class'     => 'bg-gradient-teal',
+                'title'        => 'تیم',
+                'description'  => 'تعداد اعضای تیم',
+                'count'        => \App\Models\Team::count(),
+                'button_text'  => 'مدیریت تیم',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // درباره ما
+            [
+                'route'        => 'aboutus.index',
+                'icon'         => 'info',
+                'bg_class'     => 'bg-gradient-teal',
+                'title'        => 'درباره ما',
+                'description'  => 'ویرایش صفحه درباره ما',
+                'count'        => '1',
+                'button_text'  => 'ویرایش درباره ما',
+                'col'          => '6 col-lg-3',
+            ],
+
+            // تنظیمات سایت
+            [
+                'route'        => 'settings.index',
+                'icon'         => 'settings',
+                'bg_class'     => 'bg-gradient-purple',
+                'title'        => 'تنظیمات سایت',
+                'description'  => 'تنظیمات کلی سایت',
+                'count'        => \App\Models\Setting::count() ?: 1,
+                'button_text'  => 'ویرایش تنظیمات',
+                'col'          => '6 col-lg-3',
+            ],
+        ];
+        @endphp
+
         <div class="row">
-            <!-- Start col -->
-            <div class="col-lg-12 col-xl-9">
-                <!-- Start row -->
-                <div class="row">
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card m-b-30">
-                            <div class="card-header">
-                                <h5 class="card-title mb-0">Issues</h5>
+            @foreach ($cards as $card)
+                <div class="col-md-{{ $card['route'] === 'profile.edit' ? '12' : '6 col-lg-3' }} mb-4">
+                    <div class="card {{ $card['route'] === 'profile.edit' ? 'profile-card' : 'stats-card' }} shadow-sm">
+                        <div class="card-body {{ $card['route'] === 'profile.edit' ? 'd-flex align-items-center' : 'text-center' }}">
+                            <div class="icon-circle {{ $card['bg_class'] }} {{ $card['route'] === 'profile.edit' ? 'me-4' : 'mb-3' }}">
+                                <i data-feather="{{ $card['icon'] }}"></i>
                             </div>
-                            <div class="card-body">
-                                <div id="apex-pie-chart"></div>
-                                <div class="row">
-                                    <div class="col-6 text-left">
-                                        <p class="mb-1">Open<i class="mdi mdi-circle text-primary mr-2"></i></p>
-                                        <h5 class="mb-0">105</h5>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="mb-1"><i class="mdi mdi-circle text-light ml-2"></i>Close</p>
-                                        <h5 class="mb-0">45</h5>
-                                    </div>
-                                </div>
+                            <div class="{{ $card['route'] === 'profile.edit' ? 'flex-grow-1 mr-2' : '' }}">
+                                <h5 class="card-title {{ $card['route'] === 'profile.edit' ? 'mb-1' : '' }}">{{ $card['title'] }}</h5>
+                                <p class="text-muted mb-0">{{ $card['description'] }}</p>
+                                @if ($card['count'] !== null)
+                                    <h3 class="stats-number">{{ $card['count'] }}</h3>
+                                @endif
                             </div>
-                            <div class="card-footer text-center">
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <p class="my-2"><span class="font-18 f-w-6 text-primary">75%</span></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="my-2">See All</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card m-b-30">
-                            <div class="card-header">
-                                <h5 class="card-title mb-0">Progress</h5>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="mb-4">Project Think Tank</h5>
-                                <p>Prototyping <span class="float-left">75%</span></p>
-                                <div class="progress mb-4" style="height: 4px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p>Designing <span class="float-left">30%</span></p>
-                                <div class="progress mb-4" style="height: 4px;">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p>Development <span class="float-left">50%</span></p>
-                                <div class="progress mb-1" style="height: 4px;">
-                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <span class="ml-0">Teams : </span>
-                                <div class="avatar-group">
-                                    <div class="avatar">
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Amy Adams">
-                                            <img src="{{asset('Panel/images/users/men.svg')}}" alt="avatar" class="rounded-circle">
-                                        </a>
-                                    </div>
-                                    <div class="avatar">
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Amy Adams">
-                                            <img src="{{asset('Panel/images/users/women.svg')}}" alt="avatar" class="rounded-circle">
-                                        </a>
-                                    </div>
-                                </div>
-                                <span class="float-left mt-2"><i class="feather icon-paperclip mr-1"></i>5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card m-b-30">
-                            <div class="card-body text-center">
-                                <div class="user-slider">
-                                    <div class="user-slider-item">
-                                        <img src="{{asset('Panel/images/users/men.svg')}}" alt="avatar" class="rounded-circle mt-3 mb-4">
-                                        <h5>James Smith</h5>
-                                        <p>Senior Sales Executive</p>
-                                        <p>55 Avenue, North Street Road, Carolina State, New York City, USA</p>
-                                    </div>
-                                    <div class="user-slider-item">
-                                        <img src="{{asset('Panel/images/users/women.svg')}}" alt="avatar" class="rounded-circle mt-3 mb-4">
-                                        <h5>James Smith</h5>
-                                        <p>Senior Sales Executive</p>
-                                        <p>55 Avenue, North Street Road, Carolina State, New York City, USA</p>
-                                    </div>
-                                    <div class="user-slider-item">
-                                        <img src="{{asset('Panel/images/users/girl.svg')}}" alt="avatar" class="rounded-circle mt-3 mb-4">
-                                        <h5>James Smith</h5>
-                                        <p>Senior Sales Executive</p>
-                                        <p>55 Avenue, North Street Road, Carolina State, New York City, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer text-center">
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <p class="my-2">Follow</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="my-2">Message</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-6 col-xl-6">
-                        <div class="card m-b-30">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col-7">
-                                        <h5 class="card-title mb-0">Recent Activity</h5>
-                                    </div>
-                                    <div class="col-5">
-                                        <button class="btn btn-secondary-rgba float-left font-13">View All</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="activities-history">
-                                    <div class="activities-history-list">
-                                        <div class="activities-history-item">
-                                            <h6>Finished prototyping Project X.</h6>
-                                            <p class="mb-0">Just Now</p>
-                                        </div>
-                                    </div>
-                                    <div class="activities-history-list">
-                                        <div class="activities-history-item">
-                                            <h6>Received confirmation from marketing manager.</h6>
-                                            <p class="mb-0">11:00 AM - 3 Oct, 2019</p>
-                                        </div>
-                                    </div>
-                                    <div class="activities-history-list">
-                                        <div class="activities-history-item">
-                                            <h6>Zoe Updated quick start guide for development process.</h6>
-                                            <p class="mb-0">09:25 PM - 27 Sep, 2019</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                    <!-- Start col -->
-                    <div class="col-lg-12 col-xl-6">
-                        <div class="card m-b-30">
-                            <div class="card-header">
-                                <div class="row align-items-center">
-                                    <div class="col-9">
-                                        <h5 class="card-title mb-0">Best Performers</h5>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="dropdown">
-                                            <button class="btn btn-link p-0 font-18 float-left" type="button" id="widgetPerformers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-more-horizontal-"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="widgetPerformers">
-                                                <a class="dropdown-item font-13" href="#">Refresh</a>
-                                                <a class="dropdown-item font-13" href="#">Export</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-borderless">
-                                        <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>%</th>
-                                            <th>Task</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><img src="{{asset('Panel/images/users/men.svg')}}" class="img-fluid" width="35" alt="customer"></td>
-                                            <td>John Doe</td>
-                                            <td>demo@example.com</td>
-                                            <td>95%</td>
-                                            <td>1500</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="{{asset('Panel/images/users/women.svg')}}" class="img-fluid" width="35" alt="customer"></td>
-                                            <td>Daniel Chris</td>
-                                            <td>demo@example.com</td>
-                                            <td>93%</td>
-                                            <td>1300</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="{{asset('Panel/images/users/boy.svg')}}" class="img-fluid" width="35" alt="customer"></td>
-                                            <td>John Joshua</td>
-                                            <td>demo@example.com</td>
-                                            <td>87%</td>
-                                            <td>1250</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End col -->
-                </div>
-                <!-- End row -->
-            </div>
-            <!-- End col -->
-            <!-- Start col -->
-            <div class="col-lg-12 col-xl-3">
-                <div class="card m-b-30">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-9">
-                                <h5 class="card-title mb-0">User Sources</h5>
-                            </div>
-                            <div class="col-3">
-                                <div class="dropdown">
-                                    <button class="btn btn-link p-0 font-18 float-left" type="button" id="widgetLeads" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-more-horizontal-"></i></button>
-                                    <div class="dropdown-menu" aria-labelledby="widgetLeads">
-                                        <a class="dropdown-item font-13" href="#">Refresh</a>
-                                        <a class="dropdown-item font-13" href="#">Export</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body text-center">
-                        <div id="apex-radial-chart"></div>
-                        <h4 class="mb-3">Project X</h4>
-                        <p class="mb-5">List of top sources for above project</p>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="mb-1">News</p>
-                                <h4>259</h4>
-                                <p class="text-danger mb-5"><i class="feather icon-arrow-down-right mr-1"></i>7.5</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="mb-1">Media</p>
-                                <h4>25</h4>
-                                <p class="text-success mb-5"><i class="feather icon-arrow-up-right mr-1"></i>3.5</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="mb-1">Ads</p>
-                                <h4>95</h4>
-                                <p class="text-success mb-4"><i class="feather icon-arrow-up-right mr-1"></i>5.1</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="mb-1">Others</p>
-                                <h4>63</h4>
-                                <p class="text-danger mb-4"><i class="feather icon-arrow-down-right mr-1"></i>8.3</p>
-                            </div>
+                            <a href="{{ route($card['route']) }}" class="btn btn-primary-rgba mt-3">{{ $card['button_text'] }}</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End col -->
+            @endforeach
         </div>
         <!-- End row -->
     </div>
+    <!-- End Contentbar -->
+
+    <style>
+        /* گرادیان‌های رنگی یکسان با ویو مرجع */
+        .bg-gradient-blue    { background: linear-gradient(135deg, #007bff, #0069d9) !important; color: white !important; }
+        .bg-gradient-info    { background: linear-gradient(135deg, #17a2b8, #138496) !important; color: white !important; }
+        .bg-gradient-success { background: linear-gradient(135deg, #28a745, #218838) !important; color: white !important; }
+        .bg-gradient-warning { background: linear-gradient(135deg, #ffc107, #e0a800) !important; color: white !important; }
+        .bg-gradient-danger  { background: linear-gradient(135deg, #dc3545, #c82333) !important; color: white !important; }
+        .bg-gradient-purple  { background: linear-gradient(135deg, #6f42c1, #5a32a3) !important; color: white !important; }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .icon-circle i {
+            width: 28px;
+            height: 28px;
+        }
+
+        .stats-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+        }
+
+        .stats-number {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .btn-primary-rgba {
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+            border: 1px solid #007bff;
+            font-size: 0.875rem;
+        }
+        .btn-primary-rgba:hover {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            feather.replace({
+                width: 28,
+                height: 28
+            });
+        });
+    </script>
 @endsection
