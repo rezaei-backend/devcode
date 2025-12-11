@@ -81,6 +81,35 @@
                 <div class="col-lg-6">
                     <div class="card m-b-30">
                         <div class="card-header">
+                            <h5 class="card-title">گیت هاب</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" name="github" id="inputText" value="{{old('github')}}" placeholder="لینک گیت هاب فرد مورد نظر را وارد کنید">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-header">
+                            <h5 class="card-title">تلگرام</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" name="telegram" id="inputText" value="{{old('telegram')}}" placeholder="لینک تلگرام فرد مورد نظر را وارد کنید">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card m-b-30">
+                        <div class="card-header">
                             <h5 class="card-title">شماره(اختیاری)</h5>
                         </div>
                         <div class="card-body">

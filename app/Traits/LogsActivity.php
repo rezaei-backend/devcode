@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\ActivityLog;
+use App\Models\Team;
 use Illuminate\Support\Str;
 
 trait LogsActivity
@@ -35,6 +36,7 @@ trait LogsActivity
             'Setting'   => 'تنظیمات سایت',
             'Aboutus'   => 'درباره ما',
             'Resource'  => 'منبع',
+            'Team'      => 'تیم',
             default     => class_basename($model)
         };
     }

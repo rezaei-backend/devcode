@@ -17,9 +17,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // صفحه اصلی
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // پروفایل کاربر
 Route::middleware('auth')->group(function () {
@@ -27,6 +25,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::prefix('App')->group(function () {
+//    doc
+    Route::get('Doc/{lang}/{slug?}',[\App\Http\Controllers\app\DocCountroller::class, 'show'])->name('app.doc.index');
+//    end doc
+
+
+//    team
+        Route::get('Team/',[\App\Http\Controllers\app\TeamController::class, 'index'])->name('app.team.index');
+//    end team
+});
+
 
 
 Route::prefix('Admin')->group(function () {

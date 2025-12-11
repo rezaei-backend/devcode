@@ -9,6 +9,8 @@ class team extends Model
     protected $fillable = [
         'fullname',
         'email',
+        'github',
+        'telegram',
         'phone',
         'resume',
         'Expertise',

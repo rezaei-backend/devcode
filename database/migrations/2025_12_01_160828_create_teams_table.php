@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('email');
+            $table->string('github');
+            $table->string('telegram');
             $table->string('phone')->nullable();
             $table->string('resume')->nullable();
             $table->string('fullname');

@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page not found</title>
+        <meta name="robots" content="index,follow" />
+    <script type="importmap">{}</script>
+
+    <script>
+        const storedTheme = localStorage.getItem('theme')
+
+        const getPreferredTheme = () => {
+            if (storedTheme) {
+                return storedTheme
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+
+        const setTheme = function (theme) {
+            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', theme)
+            }
+        }
+
+        setTheme(getPreferredTheme())
+
+        window.addEventListener('DOMContentLoaded', () => {
+            var el = document.querySelector('.theme-icon-active');
+            if(el != 'undefined' && el != null) {
+                const showActiveTheme = theme => {
+                const activeThemeIcon = document.querySelector('.theme-icon-active use')
+                const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+                const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active')
+                })
+
+                btnToActive.classList.add('active')
+                activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (storedTheme !== 'light' || storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme())
+                }
+            })
+
+            showActiveTheme(getPreferredTheme())
+
+            document.querySelectorAll('[data-bs-theme-value]')
+                .forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const theme = toggle.getAttribute('data-bs-theme-value')
+                        localStorage.setItem('theme', theme)
+                        setTheme(theme)
+                        showActiveTheme(theme)
+                    })
+                })
+
+            }
+        })
+
+    </script>
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/all.min.css?v=6fnf9K7jzMc68QzgpIJCVPY_jNQ-wskxIAgLIRho8H0">
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-icons/bootstrap-icons.css?v=cKs41vL6H84DqDpUvRCfSaiCLfpjNkQuA-9HZqwRlDU">
+    <link rel="stylesheet" type="text/css" href="/vendor/tiny-slider/tiny-slider.css?v=1CXVlacnwYLmg9X2AhCKvYcSgR53GWiU3z4qZJDrb68">
+    <link rel="stylesheet" type="text/css" href="/vendor/glightbox/css/glightbox.css?v=yMoCTayb6wccTz561YN_R0qkP756JifYXnA40MUtR-k">
+    <link rel="stylesheet" type="text/css" href="/css/style-rtl.css?v=_LiaJmssPW9ho0X5aF_Je6hvr2_xqHuofrk9iTrDOhI">
+</head>
+<body>
+
+    <!-- Header START -->
+<header class="navbar-light navbar-sticky header-static">
+    <!-- Nav START -->
+    <nav class="navbar navbar-expand-xl">
+        <div class="container-fluid px-3 px-xl-5">
+            <!-- Logo START -->
+            <a class="navbar-brand" href="/">
+                <img class="light-mode-item navbar-brand-item" src="/images/logo.webp" alt="لوگوی تحت توسعه" fetchpriority="high" decoding="async">
+                <img class="dark-mode-item navbar-brand-item" src="/images/logo.webp" alt="لوگوی تحت توسعه" fetchpriority="high" decoding="async">
+            </a>
+            <!-- Logo END -->
+            <!-- Responsive navbar toggler -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-animation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+            <!-- Main navbar START -->
+            <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
+
+                <!-- Nav category menu START -->
+                <ul class="navbar-nav navbar-nav-scroll me-auto">
+                    <!-- Nav item 1 Demos -->
+                </ul>
+                <!-- Nav category menu END -->
+                <!-- Nav Main menu START -->
+
+
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+
+    <li class="nav-item">
+        <a class="nav-link" href="/">صفحه اصلی</a>
+    </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="docsMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">مستندات</a>
+            <ul class="dropdown-menu" aria-labelledby="docsMenu">
+                    <li><span class="dropdown-item-text text-muted">به زودی</span></li>
+            </ul>
+        </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="coursesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">دوره‌ها</a>
+        <ul class="dropdown-menu" aria-labelledby="coursesMenu">
+            <li> <a class="dropdown-item" href="/course/html-zero-to-pro">دوره جامع HTML</a></li>
+            <li> <a class="dropdown-item" href="/course/javascript-zero-to-pro">دوره جامع JavaScript</a></li>
+            <li> <a class="dropdown-item" href="/course/python-zero-to-pro">دوره جامع Python</a></li>
+            <li> <a class="dropdown-item" href="/course/ui-ux-zero-to-pro">دوره جامع UI/UX</a></li>
+        </ul>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/about">درباره ما</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/contact">تماس باما</a>
+    </li>
+</ul>
+
+                <!-- Nav Main menu END -->
+                <!-- Nav Search START -->
+                <!-- Nav Search END -->
+            </div>
+            <!-- Main navbar END -->
+            <!-- Profile START -->
+            <!-- Profile START -->
+        </div>
+    </nav>
+    <!-- Nav END -->
+</header>
+<!-- Header END -->
+    <main b-4he9412dhs>
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+    <section class="pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <!-- Image -->
+                    <img src="https://images.pexels.com/photos/2156881/pexels-photo-2156881.jpeg?cs=srgb&dl=pexels-anniroenkae-2156881.jpg&fm=jpg" class="h-200px h-md-400px mb-4" alt="تصویر مشکلی پیش آمد">
+                    <!-- Title -->
+                    <h1 class="display-1 text-danger mb-0">404</h1>
+                    <!-- Subtitle -->
+                    <h2>مشکلی پیش آمد!</h2>
+                    <!-- info -->
+                    <p class="mb-4">یا مشکلی پیش آمده یا این صفحه دیگر وجود ندارد.</p>
+                    <!-- Button -->
+                    <a class="btn btn-primary mb-0" href="/">برگشت به صفحه اصلی</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+    </main>
+    <!-- =======================
+Footer START -->
+<footer class="bg-dark pt-5">
+    <div class="container">
+        <!-- Row START -->
+        <div class="row g-4">
+
+            <!-- Widget 1 START -->
+            <div class="col-lg-3">
+                <p class="my-3 text-muted">تحت توسعه با هدف جمع‌آوری و ارائه مستندات اصلی از منابع معتبر در حوزه نرم‌افزار در حال توسعه است. کپی‌برداری از مطالب ترجمه شده آزاد است. امیدواریم این اقدام به اشتراک‌گذاری دانش و پیشرفت جامعه کمک کند. ❤️</p>
+                <!-- Social media icon -->
+                <ul class="list-inline mb-0 mt-3">
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="https://www.youtube.com/@underdevelops" aria-label="یوتوب" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="https://instagram.com/underdevelops" aria-label="اینستاگرام" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="https://aparat.com/underdevelops" aria-label="آپارات" target="_blank" rel="noopener nofollow">
+                            <i class="fas fa-fw fa-video" aria-label="یوتوب" target="_blank" rel="noopener nofollow"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="https://t.me/underdevelopscom" aria-label="تلگرام" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-telegram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Widget 1 END -->
+            <!-- Widget 2 START -->
+            <div class="col-lg-6">
+                <div class="row g-4">
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">لینک های مفید</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">صفحه اصلی</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about">درباره ما</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact">تماس باما</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">مستندات</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/html">HTML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/css">CSS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/javascript">JavaScript</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/python">Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/php">PHP</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/java">Java</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/docs/csharp">C#</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">دوره‌ها</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/course/html-zero-to-pro">دوره جامع HTML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/course/javascript-zero-to-pro">دوره جامع JavaScript</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/course/python-zero-to-pro">دوره جامع Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/course/ui-ux-zero-to-pro">دوره جامع UI/UX</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Widget 2 END -->
+            <!-- Widget 3 START -->
+            <div class="col-lg-3">
+                <h5 class="mb-2 mb-md-4 text-white">تماس با ما</h5>
+                <!-- Time -->
+                <p class="mb-2 text-muted">
+                    در تلگرام پاسخگوی شما خواهیم بود.
+                </p>
+            </div>
+            <!-- Widget 3 END -->
+        </div><!-- Row END -->
+        <!-- Divider -->
+        <hr class="mt-4 mb-0">
+
+        <!-- Bottom footer -->
+        <div class="py-3">
+            <div class="container px-0">
+                <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
+                    <!-- copyright text -->
+                    <div class="text-muted text-primary-hover">توسعه یافته در UnderDevelops</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- =======================
+Footer END -->
+
+
+
+    <!-- Back to top -->
+    <div b-4he9412dhs class="back-top"><i b-4he9412dhs class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+
+    <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js?v=gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0" defer></script>
+    <script src="/vendor/tiny-slider/tiny-slider-rtl.js?v=k-em-LAc1fpO9_rjzgJN6vdtDZjtKCNGlFg_zvStwyg" defer></script>
+    <script src="/vendor/glightbox/js/glightbox.js?v=y5UGfqUEDlOshy15lIjsxYWSeNPV7tIXdsOJ2vMetgI" defer></script>
+    <script src="/vendor/purecounterjs/dist/purecounter_vanilla.js?v=QS4WC03UpIUx8aByHrcPlhCTwRzB4BgHZ5-K1P9PKXI" defer></script>
+    <script src="/js/functions.js?v=nwi5Tl0l6drAcq_2yDVeejD07PNutyjSIw5a33p4X04" defer></script>
+
+    <script src=/_content/NToastNotify/toastr.js?8.0.0.0 type="text/javascript"></script>
+<script>
+    if (nToastNotify) {
+        nToastNotify.init({
+            firstLoadEvent: 'DOMContentLoaded',
+            messages: [],
+            responseHeaderKey: 'X-NToastNotify-Messages',
+            requestHeaderKey: 'X-Requested-With',
+            libraryDetails:{"varName":"toastr","scriptSrc":"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js","styleHref":"https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css","options":{"positionClass":"toast-bottom-center","timeOut":5000,"titleClass":"toast-title","messageClass":"toast-message","preventDuplicates":true,"progressBar":true,"type":"success"}},
+            disableAjaxToasts:false
+        });
+    };
+</script>
+
+
+
+</body>
+</html>

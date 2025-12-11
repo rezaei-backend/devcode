@@ -1,0 +1,947 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-bs-theme="dark">
+
+<!-- Mirrored from underdevelops.com/blog/what-is-material by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 22:52:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>&#x622;&#x645;&#x648;&#x632;&#x634; &#x628;&#x631;&#x646;&#x627;&#x645;&#x647;&#x200C;&#x646;&#x648;&#x6CC;&#x633;&#x6CC;&#x60C; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x648;&#x628; &#x648; &#x645;&#x647;&#x627;&#x631;&#x62A;&#x200C;&#x647;&#x627;&#x6CC; &#x62F;&#x6CC;&#x62C;&#x6CC;&#x62A;&#x627;&#x644; | &#x62A;&#x62D;&#x62A; &#x62A;&#x648;&#x633;&#x639;&#x647;</title>
+
+<meta name="robots"/>
+
+
+<!-- Open Graph -->
+<meta property="og:type"/>
+    <meta property="og:title" content="&#x622;&#x645;&#x648;&#x632;&#x634; &#x628;&#x631;&#x646;&#x627;&#x645;&#x647;&#x200C;&#x646;&#x648;&#x6CC;&#x633;&#x6CC;&#x60C; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x648;&#x628; &#x648; &#x645;&#x647;&#x627;&#x631;&#x62A;&#x200C;&#x647;&#x627;&#x6CC; &#x62F;&#x6CC;&#x62C;&#x6CC;&#x62A;&#x627;&#x644; | &#x62A;&#x62D;&#x62A; &#x62A;&#x648;&#x633;&#x639;&#x647;"/>
+
+<!-- Twitter -->
+<meta name="twitter:card"/>
+    <meta name="twitter:title" content="&#x622;&#x645;&#x648;&#x632;&#x634; &#x628;&#x631;&#x646;&#x627;&#x645;&#x647;&#x200C;&#x646;&#x648;&#x6CC;&#x633;&#x6CC;&#x60C; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x648;&#x628; &#x648; &#x645;&#x647;&#x627;&#x631;&#x62A;&#x200C;&#x647;&#x627;&#x6CC; &#x62F;&#x6CC;&#x62C;&#x6CC;&#x62A;&#x627;&#x644; | &#x62A;&#x62D;&#x62A; &#x62A;&#x648;&#x633;&#x639;&#x647;"/>
+    <script type="importmap">{}</script>
+
+    <script>
+        const storedTheme = localStorage.getItem('theme')
+
+        const getPreferredTheme = () => {
+            if (storedTheme) {
+                return storedTheme
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+
+        const setTheme = function (theme) {
+            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark')
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', theme)
+            }
+        }
+
+        setTheme(getPreferredTheme())
+
+        window.addEventListener('DOMContentLoaded', () => {
+            var el = document.querySelector('.theme-icon-active');
+            if(el != 'undefined' && el != null) {
+                const showActiveTheme = theme => {
+                const activeThemeIcon = document.querySelector('.theme-icon-active use')
+                const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+                const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active')
+                })
+
+                btnToActive.classList.add('active')
+                activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (storedTheme !== 'light' || storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme())
+                }
+            })
+
+            showActiveTheme(getPreferredTheme())
+
+            document.querySelectorAll('[data-bs-theme-value]')
+                .forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const theme = toggle.getAttribute('data-bs-theme-value')
+                        localStorage.setItem('theme', theme)
+                        setTheme(theme)
+                        showActiveTheme(theme)
+                    })
+                })
+
+            }
+        })
+
+    </script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" type="text/css" href="../vendor/font-awesome/css/all.minc74b.css?v=6fnf9K7jzMc68QzgpIJCVPY_jNQ-wskxIAgLIRho8H0">
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap-icons/bootstrap-icons9a04.css?v=cKs41vL6H84DqDpUvRCfSaiCLfpjNkQuA-9HZqwRlDU">
+    <link rel="stylesheet" type="text/css" href="../vendor/tiny-slider/tiny-slider1b21.css?v=1CXVlacnwYLmg9X2AhCKvYcSgR53GWiU3z4qZJDrb68">
+    <link rel="stylesheet" type="text/css" href="../vendor/glightbox/css/glightboxd790.css?v=yMoCTayb6wccTz561YN_R0qkP756JifYXnA40MUtR-k">
+    <link rel="stylesheet" type="text/css" href="../css/style-rtlde33.css?v=_LiaJmssPW9ho0X5aF_Je6hvr2_xqHuofrk9iTrDOhI">
+    <!-- Prism -->
+    <link rel="stylesheet" href="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet" href="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <style>
+        /* ===== متغیرهای پویا برای ارتفاع‌ها ===== */
+        :root {
+            --header-h: 64px; /* با JS آپدیت می‌شود */
+            --langbar-h: 44px; /* با JS آپدیت می‌شود */
+        }
+
+        /* ===== هدر را همیشه ثابت نگه می‌داریم (مثل W3) ===== */
+        header.navbar-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1040; /* بالاتر از محتوا */
+            transform: none !important; /* اگر قالب روی اسکرول کلاس hide می‌زد، بی‌اثر شود */
+        }
+
+            header.navbar-sticky[class*="hide"],
+            header.navbar-sticky[class*="off"],
+            header.navbar-sticky[class*="move"] {
+                transform: none !important;
+            }
+
+        /* سایدبار داکیومنت‌ها (اورجینال) */
+        .docs-sidebar .list-group-item {
+            border: 0;
+            border-radius: .5rem;
+            margin: .125rem 0
+        }
+
+            .docs-sidebar .list-group-item:hover {
+                background: rgba(25,135,84,.075)
+            }
+
+            .docs-sidebar .list-group-item.active {
+                background: rgba(25,135,84,.15);
+                color: var(--bs-success) !important;
+                font-weight: 600
+            }
+
+        /* سایدبار چسبان: با درنظر گرفتن هدر و نوار زبان‌ها */
+        .sticky-top-100 {
+            position: sticky;
+            top: calc(var(--header-h) + var(--langbar-h) + 16px);
+        }
+
+        .menu-scroll {
+            max-height: calc(100vh - 120px);
+            overflow: auto
+        }
+
+        .docs-sidebar-search-group .form-control {
+            box-shadow: none;
+        }
+
+            .docs-sidebar-search-group .form-control:focus {
+                border-color: rgba(25,135,84,.4);
+                box-shadow: 0 0 0 .2rem rgba(25,135,84,.15);
+            }
+
+        .docs-sidebar-search-group .input-group-text {
+            color: var(--bs-secondary-color);
+        }
+
+        .docs-sidebar-search-group .btn {
+            min-width: 2.5rem;
+        }
+
+        .docs-sidebar [data-docs-search-empty] {
+            border-top: 1px solid var(--bs-border-color);
+        }
+
+        /* نوار زبان‌ها (الهام از W3) */
+        .lang-topbar {
+            white-space: nowrap;
+            overflow: auto;
+            padding: .25rem .5rem;
+            border-radius: .5rem
+        }
+
+            .lang-topbar a {
+                display: inline-block;
+                padding: .35rem .75rem;
+                border-radius: .5rem;
+                margin: .125rem;
+                text-decoration: none
+            }
+
+                .lang-topbar a:hover {
+                    background: var(--bs-secondary-bg)
+                }
+
+        /* نوار زبان‌ها چسبان، دقیقاً زیر هدر */
+        .lang-topbar-wrap {
+            position: sticky;
+            top: var(--header-h);
+            z-index: 9; /* کم تا روی محتوا نیفته */
+            background: var(--bs-body-bg);
+            padding: .25rem 0 .75rem; /* فاصله‌ی ظریف */
+        }
+
+        /* تیترهای داخل محتوای داکیومنت‌ها */
+        .docs-article .card-body :is(h1, h2, h3, h4, h5, h6) {
+            margin-top: 1.25rem;
+            margin-bottom: .75rem;
+        }
+
+        .docs-article .card-body :is(h1, h2, h3, h4, h5, h6):first-child {
+            margin-top: 0;
+        }
+
+        .docs-article .card-body :is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) {
+            margin-top: .5rem;
+        }
+
+        /* Prism + Copy Button */
+        pre[class*="language-"] {
+            direction: ltr;
+            text-align: left;
+            border-radius: .75rem
+        }
+
+        .prism-toolbar {
+            inset-inline-end: .5rem;
+            inset-block-start: .5rem
+        }
+
+            .prism-toolbar .toolbar-item button {
+                background: rgba(0,0,0,.35);
+                color: #fff;
+                border: 0;
+                padding: .25rem .5rem;
+                border-radius: .375rem
+            }
+
+        [data-bs-theme=light] .prism-toolbar .toolbar-item button {
+            background: rgba(0,0,0,.45)
+        }
+
+        [data-bs-theme=dark] .prism-toolbar .toolbar-item button {
+            background: rgba(255,255,255,.18)
+        }
+
+        /* هماهنگی دارک‌مود با بک‌گراند کدها */
+        [data-bs-theme="dark"] pre[class*="language-"] {
+            background: #0f172a;
+            color: #e2e8f0
+        }
+
+        /* Offcanvas موبایل از بالای صفحه */
+        .offcanvas {
+            top: 0
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header START (اورجینال قالب) -->
+<header class="navbar-light navbar-sticky">
+    <nav class="navbar navbar-expand-xl">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img class="light-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه" fetchpriority="high" decoding="async">
+                <img class="dark-mode-item navbar-brand-item" src="../images/logo.webp" alt="لوگوی تحت توسعه" fetchpriority="high" decoding="async">
+            </a>
+
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDocsCollapse"
+                    aria-controls="navbarDocsCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-animation"><span></span><span></span><span></span></span>
+            </button>
+
+            <div class="navbar-collapse w-100 collapse" id="navbarDocsCollapse">
+
+
+<ul class="navbar-nav navbar-nav-scroll me-auto">
+
+    <li class="nav-item">
+        <a class="nav-link" href="../index.html">صفحه اصلی</a>
+    </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="docsMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">مستندات</a>
+            <ul class="dropdown-menu" aria-labelledby="docsMenu">
+                    <li><span class="dropdown-item-text text-muted">به زودی</span></li>
+            </ul>
+        </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="coursesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">دوره‌ها</a>
+        <ul class="dropdown-menu" aria-labelledby="coursesMenu">
+            <li> <a class="dropdown-item" href="../course/html-zero-to-pro.html">دوره جامع HTML</a></li>
+            <li> <a class="dropdown-item" href="../course/javascript-zero-to-pro.html">دوره جامع JavaScript</a></li>
+            <li> <a class="dropdown-item" href="../course/python-zero-to-pro.html">دوره جامع Python</a></li>
+            <li> <a class="dropdown-item" href="../course/ui-ux-zero-to-pro.html">دوره جامع UI/UX</a></li>
+        </ul>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="../about.html">درباره ما</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="../contact.html">تماس باما</a>
+    </li>
+</ul>
+
+            </div>
+
+        </div>
+    </nav>
+</header>
+<!-- Header END -->
+
+    <main class="pt-3 pt-xl-5">
+
+
+<main>
+    <section class="pt-3 pt-xl-5">
+        <div class="container">
+
+            <!-- HERO -->
+            <div class="row g-4">
+                <div class="col-12">
+                    <header class="hero-cover rounded-4"
+                            style="--hero:url('../uploads/2025/11/84a7c287-f8d5-4baa-b131-52a1ebffb860.webp')"
+                            role="banner"
+                            aria-label="کاور مطلب">
+                        <div class="hero-content">
+<p class="badge bg-warning bg-opacity-10 text-warning">طراحی</p>
+                            <h1 class="hero-title fs-2 fw-bold mb-0">
+                                &#x622;&#x645;&#x648;&#x632;&#x634; &#x645;&#x62A;&#x631;&#x6CC;&#x627;&#x644; &#x62F;&#x6CC;&#x632;&#x627;&#x6CC;&#x646; &#x6AF;&#x648;&#x6AF;&#x644;
+                            </h1>
+
+                            <div class="hero-meta small">
+                                    <span class="text-muted">
+                                        <i class="bi bi-calendar-week me-1" aria-hidden="true"></i>
+                                        تاریخ ایجاد:
+                                        1404/08/25
+                                    </span>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+            </div>
+
+            <!-- محتوا + سایدبار -->
+            <div class="row g-4 mt-1">
+
+                <!-- سایدبار (چپ در دسکتاپ) -->
+                <aside class="col-xl-4 order-2 order-sidebar-xl">
+
+                    <div class="row mb-5 mb-lg-0">
+
+                        <div class="col-md-6 col-xl-12">
+                            <!-- آخرین دوره‌ها -->
+                            <div class="card card-body shadow p-4 mb-4"
+                                 aria-labelledby="last-courses">
+                                <h2 id="last-courses"
+                                    class="mb-3 fs-5">
+                                    آخرین دوره‌ها
+                                </h2>
+
+                                    <div class="row gx-3 mb-3 align-items-center">
+                                        <div class="col-4">
+                                            <a class="d-inline-block" href="../course/ui-ux-zero-to-pro.html">
+                                                <img class="rounded w-100"
+                                                     src="../uploads/2025/09/ba3fc9cb-7c57-431d-ab9f-19a941296ae9.webp"
+                                                     alt="&#x62F;&#x648;&#x631;&#x647; &#x62C;&#x627;&#x645;&#x639; UI/UX &#x2014; &#x627;&#x632; &#x62A;&#x641;&#x6A9;&#x631; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x62A;&#x627; &#x648;&#x627;&#x6CC;&#x631;&#x641;&#x631;&#x6CC;&#x645;"
+                                                     loading="lazy" />
+                                            </a>
+                                        </div>
+                                        <div class="col-8">
+                                            <h3 class="h6 mb-0 fw-normal">
+                                                <a class="text-reset" href="../course/ui-ux-zero-to-pro.html">
+                                                    &#x62F;&#x648;&#x631;&#x647; &#x62C;&#x627;&#x645;&#x639; UI/UX &#x2014; &#x627;&#x632; &#x62A;&#x641;&#x6A9;&#x631; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x62A;&#x627; &#x648;&#x627;&#x6CC;&#x631;&#x641;&#x631;&#x6CC;&#x645;
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="row gx-3 mb-3 align-items-center">
+                                        <div class="col-4">
+                                            <a class="d-inline-block" href="../course/html-zero-to-pro.html">
+                                                <img class="rounded w-100"
+                                                     src="../uploads/2025/09/aaaa52a4-396f-42e6-9e66-75a7ae3a218e.webp"
+                                                     alt="&#x62F;&#x648;&#x631;&#x647; &#x62C;&#x627;&#x645;&#x639; HTML &#x2014; &#x627;&#x632; &#x635;&#x641;&#x631; &#x62A;&#x627; &#x646;&#x634;&#x627;&#x646;&#x647; &#x6AF;&#x630;&#x627;&#x631;&#x6CC;"
+                                                     loading="lazy" />
+                                            </a>
+                                        </div>
+                                        <div class="col-8">
+                                            <h3 class="h6 mb-0 fw-normal">
+                                                <a class="text-reset" href="../course/html-zero-to-pro.html">
+                                                    &#x62F;&#x648;&#x631;&#x647; &#x62C;&#x627;&#x645;&#x639; HTML &#x2014; &#x627;&#x632; &#x635;&#x641;&#x631; &#x62A;&#x627; &#x646;&#x634;&#x627;&#x646;&#x647; &#x6AF;&#x630;&#x627;&#x631;&#x6CC;
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <!-- دیگر مطالب -->
+                            <div class="card card-body shadow p-4 mb-4"
+                                 aria-labelledby="more-posts">
+                                <h2 id="more-posts"
+                                    class="mb-3 fs-5">
+                                    دیگر مطالب
+                                </h2>
+
+                                <ul class="list-unstyled mb-0 small">
+                                        <li class="mb-3 d-flex justify-content-between">
+                                            <a class="text-reset text-decoration-none" href="what-is-ui.html">
+                                                <i class="bi bi-link-45deg ms-1"></i>
+                                                &#x622;&#x645;&#x648;&#x632;&#x634; &#x6A9;&#x627;&#x645;&#x644; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x631;&#x627;&#x628;&#x637; &#x6A9;&#x627;&#x631;&#x628;&#x631;&#x6CC; (UI) &#x628;&#x631;&#x627;&#x6CC; &#x645;&#x628;&#x62A;&#x62F;&#x6CC; &#x647;&#x627;-&#x642;&#x62F;&#x645; &#x628;&#x647; &#x642;&#x62F;&#x645;
+                                            </a>
+                                                <time class="text-muted"
+                                                      datetime="2025-11-16">
+                                                    1404/08/25
+                                                </time>
+                                        </li>
+                                        <li class="mb-3 d-flex justify-content-between">
+                                            <a class="text-reset text-decoration-none" href="what-is-programming.html">
+                                                <i class="bi bi-link-45deg ms-1"></i>
+                                                &#x628;&#x631;&#x646;&#x627;&#x645;&#x647; &#x646;&#x648;&#x6CC;&#x633;&#x6CC; &#x686;&#x6CC;&#x633;&#x62A;&#x61F; &#x62A;&#x648;&#x636;&#x6CC;&#x62D; &#x633;&#x627;&#x62F;&#x647;
+                                            </a>
+                                                <time class="text-muted"
+                                                      datetime="2025-10-19">
+                                                    1404/07/27
+                                                </time>
+                                        </li>
+                                        <li class="mb-3 d-flex justify-content-between">
+                                            <a class="text-reset text-decoration-none" href="what-is-frontend.html">
+                                                <i class="bi bi-link-45deg ms-1"></i>
+                                                &#x641;&#x631;&#x627;&#x646;&#x62A; &#x627;&#x646;&#x62F; &#x686;&#x6CC;&#x633;&#x62A;&#x61F; &#x62A;&#x639;&#x631;&#x6CC;&#x641;&#x60C; &#x645;&#x647;&#x627;&#x631;&#x62A; &#x647;&#x627; &#x648; &#x627;&#x628;&#x632;&#x627;&#x631;&#x647;&#x627;&#x6CC; &#x636;&#x631;&#x648;&#x631;&#x6CC;
+                                            </a>
+                                                <time class="text-muted"
+                                                      datetime="2025-10-18">
+                                                    1404/07/26
+                                                </time>
+                                        </li>
+                                </ul>
+                            </div>
+
+                            <!-- برچسب‌ها -->
+                            <div class="card card-body shadow p-4">
+                                <h4 class="mb-3 fs-5">
+                                    برچسب‌ها
+                                </h4>
+                                <ul class="list-inline mb-0">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- محتوای اصلی -->
+                <article class="col-xl-8 order-1 order-content-xl"
+                         itemscope
+                         itemtype="https://schema.org/Article">
+
+                        <div class="position-relative mb-4">
+                            <img class="rounded-3 w-100"
+                                 src="../uploads/2025/11/84a7c287-f8d5-4baa-b131-52a1ebffb860.webp"
+                                 alt="&#x622;&#x645;&#x648;&#x632;&#x634; &#x645;&#x62A;&#x631;&#x6CC;&#x627;&#x644; &#x62F;&#x6CC;&#x632;&#x627;&#x6CC;&#x646; &#x6AF;&#x648;&#x6AF;&#x644;"
+                                 fetchpriority="high"
+                                 decoding="async" />
+                        </div>
+
+                    <div class="col-12">
+                        <div class="card border">
+                            <div class="card-body">
+<p><br></p><hr><p><strong>معرفی کوتاه متریال دیزاین</strong><br>
+متریال دیزاین یک سیستم طراحی است که توسط گوگل معرفی شده و هدفش ایجاد زبان بصری منسجم، قابل پیش بینی و قابل توسعه برای اپلیکیشن ها و وب سایت هاست. متریال دیزاین نه فقط ظاهر بلکه قواعدی برای حرکت، نشانه گذاری، چیدمان و تعامل را تعیین می کند تا تجربه کاربری یکپارچه ای بسازد.</p><hr><p><strong>اصول بنیادین متریال دیزاین</strong><br>
+متریال را با سه مفهوم کلیدی بفهم: سطح، حرکت و معنا.</p><ul>
+<li>
+<p>سطح: هر المان در صفحه مثل یک ورق کاغذ در فضای سه بعدی رفتار می کند (Elevation و Shadow).</p>
+</li>
+<li>
+<p>حرکت: انیمیشن ها و ترنزیشن ها باید علت مند باشند؛ حرکت باید مسیر توجه را هدایت کند.</p>
+</li>
+<li>
+<p>معنا: رنگ، تایپوگرافی و فضا باید معنا و سلسله مراتب را منتقل کنند، نه فقط تزئین.</p>
+</li>
+</ul><hr><p><strong>سیستم رنگ در متریال</strong><br>
+متریال یک رویکرد ساختارمند برای رنگ دارد: پالت های اصلی، رنگ های تکمیلی و رنگ های سطحی (surface).</p><ul>
+<li>
+<p>رنگ اصلی (Primary) برای اکشن ها و عناصر مهم استفاده می شود.</p>
+</li>
+<li>
+<p>رنگ ثانویه (Secondary) برای تاکیدهای کمتر به کار می رود.</p>
+</li>
+<li>
+<p>رنگ های سطحی و پس زمینه باید کنتراست کافی با متن داشته باشند.<br>
+قوانین دسترس پذیری (contrast ratio) را رعایت کن تا متن برای همه خوانا باشد.</p>
+</li>
+</ul><hr><p><strong>تایپوگرافی در متریال</strong><br>
+متریال توصیه به استفاده از مقیاس های رزولوشنی ثابت می کند: Display, Headline, Subtitle, Body, Caption.</p><ul>
+<li>
+<p>وزن ها و فاصله خطوط (line-height) باید معین باشند.</p>
+</li>
+<li>
+<p>بیشتر از دو خانواده فونت در یک پروژه استفاده نکن.<br>
+تایپوگرافی در متریال برای انتقال سلسله مراتب اطلاعات ساخته شده — از آن به عنوان ابزار هدایت استفاده کن.</p>
+</li>
+</ul><hr><p><strong>شبکه بندی و فاصله ها (Layout &amp; Spacing)</strong><br>
+متریال بر پایه ی یک سیستم Grid منظم است: ستون ها، گاترها و مارجین ها.</p><ul>
+<li>
+<p>برای موبایل معمولاً از 4 یا 6 ستون استفاده می شود، برای دسکتاپ 12 ستون.</p>
+</li>
+<li>
+<p>فاصله ها را با واحدهای ثابت (مثلاً 8px scale) تعریف کن تا طراحی یکنواخت بماند.<br>
+شبکه باعث می شود که اندازه ها و نسبت ها در صفحات مختلف هماهنگ بمانند.</p>
+</li>
+</ul><hr><p><strong>Elevation و سایه ها (Surface &amp; Elevation)</strong><br>
+یکی از امضای متریال، استفاده سیستماتیک از elevation است تا سلسله مراتب بصری شکل بگیرد.</p><ul>
+<li>
+<p>المان های مهم تر ارتفاع بیشتری دارند (سایه واضح تر).</p>
+</li>
+<li>
+<p>از سایه های مصنوعی بیش از حد یا رنگی استفاده نکن؛ سایه ها باید نرم و معقول باشند.<br>
+Elevation نه فقط برای زیبایی، بلکه برای نشان دادن تعامل پذیری و ترتیب لایه هاست.</p>
+</li>
+</ul><hr><p><strong>حرکت و انیمیشن (Motion)</strong><br>
+در متریال حرکت معنی دار است: نشان دهنده ی اتصال بین وضعیت ها و هدایت کاربر.</p><ul>
+<li>
+<p>از انیمیشن های کوتاه (100–300ms) برای تغییرات رابط استفاده کن.</p>
+</li>
+<li>
+<p>هنگام باز/بستن مودال یا انتقال صفحه، از حرکت برای نشان دادن علت و اثر بهره ببر.<br>
+حرکت باید توجیه پذیر باشد — حرکت بی مورد باعث حواس پرتی می شود.</p>
+</li>
+</ul><hr><p><strong>اجزای متداول و کامپوننت ها</strong><br>
+متریال مجموعه ای از کامپوننت های استاندارد دارد: App Bar، Floating Action Button، Cards، Bottom Navigation، Dialog، Text Field و غیره.</p><ul>
+<li>
+<p>از کامپوننت های استاندارد به عنوان پایه استفاده کن و فقط وقتی نیاز است آن ها را دستکاری کن.</p>
+</li>
+<li>
+<p>سیستم کامپوننت باعث سرعت در توسعه و همگونی UI می شود.</p>
+</li>
+</ul><hr><p><strong>دسترسی پذیری (Accessibility)</strong><br>
+متریال تاکید زیادی روی دسترس پذیری دارد: رنگ ها، اندازه متن، فاصله گذاری و کنترل های قابل دسترسی.</p><ul>
+<li>
+<p>همیشه رنگ ها را با ابزار بررسی Contrast چک کن.</p>
+</li>
+<li>
+<p>المان های قابل کلیک باید اندازه مناسبی داشته باشند (لمسی/موس).</p>
+</li>
+<li>
+<p>برای المان های تعاملی ARIA attributes را در وب در نظر بگیر.</p>
+</li>
+</ul><hr><p><strong>چطور در Figma یا ابزار طراحی متریال را اجرا کنیم — مراحل عملی</strong></p><ol>
+<li>
+<p>یک فایل پایه بساز: Grid و Scale spacing را تنظیم کن (8px grid).</p>
+</li>
+<li>
+<p>پالت رنگ و تایپوگرافی پروژه را تعریف کن (Tokens).</p>
+</li>
+<li>
+<p>کامپوننت های پایه را بساز: Button, Card, Input, App Bar.</p>
+</li>
+<li>
+<p>سیستم elevation را به صورت شفاف مستند کن (مثلاً elevation 0/1/2/4/8 با سایه مشخص).</p>
+</li>
+<li>
+<p>نمونه صفحات: صفحه اصلی، صفحه محصول، فرم ورود. از کامپوننت ها استفاده کن تا ببینی چطور همگن می شوند.</p>
+</li>
+<li>
+<p>Export tokens یا library برای توسعه دهنده ها تا از همان قواعد در کد استفاده شود.</p>
+</li>
+</ol><hr><p><strong>تمرین های پیشنهادی (برای تقویت مهارت)</strong></p><ul>
+<li>
+<p>تمرین 1: یک صفحه پروفایل ساده بساز که از App Bar، Card و Floating Action Button استفاده کند.</p>
+</li>
+<li>
+<p>تمرین 2: یک فرم ثبت نام با Text Fieldها و خطاهای معتبرسازی طراحی کن و حالات (focused, error, disabled) را مشخص کن.</p>
+</li>
+<li>
+<p>تمرین 3: یک نمونه انتقال صفحه با انیمیشن 200ms بساز که نشان دهد چگونه اطلاعات از یک کارت به صفحه جزئیات منتقل می شود.</p>
+</li>
+</ul><hr><p><strong>خطاهای رایج در پیاده سازی متریال</strong></p><ul>
+<li>
+<p>شکستن شبکه و استفاده از spacing تصادفی.</p>
+</li>
+<li>
+<p>استفاده از رنگ های نامناسب و عدم رعایت کنتراست.</p>
+</li>
+<li>
+<p>انیمیشن های طولانی یا زیاد که تجربه را کند می کنند.</p>
+</li>
+<li>
+<p>تغییر بیش از حد کامپوننت های استاندارد که همگنی را از بین می برد.</p>
+</li>
+</ul><hr><p><strong>منابع سریع برای مطالعه بیشتر</strong></p><ul>
+<li>
+<p>مستندات رسمی Material Design (مطالعه مستقیم قواعد و الگوها)</p>
+</li>
+<li>
+<p>کتابخانه  عناصر متریال در Figma (UI Kits)</p>
+</li>
+<li>
+<p>مقالات و مثال های پروژه های باز که متریال را پیاده کرده اند</p>
+</li>
+</ul><hr><p><strong>چک لیست سریع قبل از انتشار یا تحویل پروژه</strong></p><ul>
+<li>
+<p>آیا رنگ ها کنتراست کافی دارند؟</p>
+</li>
+<li>
+<p>آیا spacing با scale تعریف شده همخوانی دارد؟</p>
+</li>
+<li>
+<p>آیا تمام حالات المان ها (hover, focus, disabled, error) طراحی شده اند؟</p>
+</li>
+<li>
+<p>آیا کامپوننت ها مستندسازی و در لایبرری قرار گرفته اند؟</p>
+</li>
+<li>
+<p>آیا انیمیشن ها کوتاه و معنی دارند؟</p></li></ul>                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+                <section class="pt-4">
+                    <div class="row mb-3">
+                        <h2 class="mb-0 fs-5">
+                            مطالب پیشنهادی
+                        </h2>
+                    </div>
+
+                    <div class="row g-3">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="card h-100 shadow-sm">
+                                    <a class="ratio ratio-4x3" href="what-is-ui.html">
+                                        <img class="img-fluid object-fit-cover rounded-top"
+                                             src="../uploads/2025/11/ed357263-8641-406f-a8a2-af3209e316ab.webp"
+                                             alt="&#x1F3A8; &#x622;&#x645;&#x648;&#x632;&#x634; &#x6A9;&#x627;&#x645;&#x644; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x631;&#x627;&#x628;&#x637; &#x6A9;&#x627;&#x631;&#x628;&#x631;&#x6CC; (UI) &#x628;&#x631;&#x627;&#x6CC; &#x645;&#x628;&#x62A;&#x62F;&#x6CC; &#x647;&#x627; &#x2014; &#x642;&#x62F;&#x645; &#x628;&#x647; &#x642;&#x62F;&#x645;&#x60C; &#x639;&#x645;&#x644;&#x6CC; &#x648; &#x628;&#x62F;&#x648;&#x646; &#x67E;&#x6CC;&#x686;&#x6CC;&#x62F;&#x6AF;&#x6CC;"
+                                             loading="lazy" />
+                                    </a>
+                                    <div class="card-body">
+                                        <h3 class="h6 mb-1">
+                                            <a class="stretched-link text-reset" href="what-is-ui.html">
+                                                &#x622;&#x645;&#x648;&#x632;&#x634; &#x6A9;&#x627;&#x645;&#x644; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x631;&#x627;&#x628;&#x637; &#x6A9;&#x627;&#x631;&#x628;&#x631;&#x6CC; (UI) &#x628;&#x631;&#x627;&#x6CC; &#x645;&#x628;&#x62A;&#x62F;&#x6CC; &#x647;&#x627;-&#x642;&#x62F;&#x645; &#x628;&#x647; &#x642;&#x62F;&#x645;
+                                            </a>
+                                        </h3>
+                                            <p class="small text-muted mb-0">
+                                                &#x62F;&#x631; &#x627;&#x6CC;&#x646; &#x622;&#x645;&#x648;&#x632;&#x634;&#x60C; &#x647;&#x62F;&#x641; &#x641;&#x642;&#x637; &#x627;&#x6CC;&#x646; &#x646;&#x6CC;&#x633;&#x62A; &#x6A9;&#x647; &#x628;&#x641;&#x647;&#x645;&#x6CC; &#xAB;UI &#x686;&#x6CC;&#x633;&#x62A;&#xBB;.&#xD;&#xA;&#x647;&#x62F;&#x641; &#x627;&#x6CC;&#x646; &#x627;&#x633;&#x62A; &#x6A9;&#x647; &#x648;&#x642;&#x62A;&#x6CC; &#x62E;&#x648;&#x627;&#x646;&#x62F;&#x646;&#x634; &#x62A;&#x645;&#x627;&#x645; &#x634;&#x62F;&#x60C; &#x628;&#x62A;&#x648;&#x627;&#x646;&#x6CC; &#x6CC;&#x6A9; &#x635;&#x641;&#x62D;&#x647; &#x648;&#x627;&#x642;&#x639;&#x6CC; &#x637;&#x631;&#x627;&#x62D;&#x6CC; &#x6A9;&#x646;&#x6CC; &#x648; &#x628;&#x641;&#x647;&#x645;&#x6CC; &#x686;&#x631;&#x627; &#x647;&#x631; &#x628;&#x62E;&#x634; &#x645;&#x647;&#x645; &#x627;&#x633;&#x62A;.
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </section>
+        </div>
+    </section>
+</main>
+
+<style>
+    /* ---------- HERO (کاور بالا) ---------- */
+    .hero-cover {
+        position: relative;
+        min-height: 320px;
+        padding: 2rem;
+        display: flex;
+        align-items: flex-end;
+        color: #fff;
+        overflow: hidden;
+        isolation: isolate;
+        z-index: 0;
+        background: #0b0e14;
+    }
+
+        .hero-cover::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--hero);
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px) saturate(1.05) brightness(.72);
+            transform: scale(1.06);
+            z-index: -2;
+        }
+
+        .hero-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(900px 360px at 50% -8%, rgba(255,255,255,.08), transparent 60%), linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.82) 100%);
+            z-index: -1;
+        }
+
+    .hero-content {
+        position: relative;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: .35rem .7rem;
+        font-size: .85rem;
+        margin-bottom: .25rem;
+    }
+
+    .hero-title {
+        margin: .5rem 0 0;
+        line-height: 1.25;
+    }
+
+    .hero-meta {
+        margin-top: .5rem;
+        opacity: .95;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    /* ---------- سایدبار چپ در دسکتاپ ---------- */
+    @media (min-width:1200px) {
+        .order-sidebar-xl {
+            order: 1;
+        }
+
+        .order-content-xl {
+            order: 2;
+        }
+    }
+
+    /* ======== رفع افتادن منوی موبایل پشت hero (navbar از Layout) ======== */
+    .navbar-sticky {
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+    }
+
+        .navbar-sticky .navbar {
+            z-index: 2000;
+        }
+
+    .navbar-toggler {
+        position: relative;
+        z-index: 2200;
+    }
+
+    @media (max-width: 991.98px) {
+        #navMain {
+            z-index: 2100;
+        }
+
+            #navMain.show {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--bs-body-bg, #111);
+                overflow-y: auto;
+                padding: 1rem;
+            }
+    }
+</style>
+    </main>
+
+    <!-- =======================
+Footer START -->
+<footer class="bg-dark pt-5">
+    <div class="container">
+        <!-- Row START -->
+        <div class="row g-4">
+
+            <!-- Widget 1 START -->
+            <div class="col-lg-3">
+                <p class="my-3 text-muted">تحت توسعه با هدف جمع‌آوری و ارائه مستندات اصلی از منابع معتبر در حوزه نرم‌افزار در حال توسعه است. کپی‌برداری از مطالب ترجمه شده آزاد است. امیدواریم این اقدام به اشتراک‌گذاری دانش و پیشرفت جامعه کمک کند. ❤️</p>
+                <!-- Social media icon -->
+                <ul class="list-inline mb-0 mt-3">
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-facebook" href="https://www.youtube.com/@underdevelops" aria-label="یوتوب" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-instagram" href="https://instagram.com/underdevelops" aria-label="اینستاگرام" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-twitter" href="https://aparat.com/underdevelops" aria-label="آپارات" target="_blank" rel="noopener nofollow">
+                            <i class="fas fa-fw fa-video" aria-label="یوتوب" target="_blank" rel="noopener nofollow"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="https://t.me/underdevelopscom" aria-label="تلگرام" target="_blank" rel="noopener nofollow">
+                            <i class="fab fa-fw fa-telegram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Widget 1 END -->
+            <!-- Widget 2 START -->
+            <div class="col-lg-6">
+                <div class="row g-4">
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">لینک های مفید</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">صفحه اصلی</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../about.html">درباره ما</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../contact.html">تماس باما</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">مستندات</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/html/default.html">HTML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/css/default.html">CSS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/javascript/default.html">JavaScript</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/python/default.html">Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/php/default.html">PHP</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/java/default.html">Java</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../docs/csharp/index.html">C#</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Link block -->
+                    <div class="col-6 col-md-4">
+                        <h5 class="mb-2 mb-md-4 text-white">دوره‌ها</h5>
+                        <ul class="nav flex-column text-primary-hover">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../course/html-zero-to-pro.html">دوره جامع HTML</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../course/javascript-zero-to-pro.html">دوره جامع JavaScript</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../course/python-zero-to-pro.html">دوره جامع Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="../course/ui-ux-zero-to-pro.html">دوره جامع UI/UX</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Widget 2 END -->
+            <!-- Widget 3 START -->
+            <div class="col-lg-3">
+                <h5 class="mb-2 mb-md-4 text-white">تماس با ما</h5>
+                <!-- Time -->
+                <p class="mb-2 text-muted">
+                    در تلگرام پاسخگوی شما خواهیم بود.
+                </p>
+            </div>
+            <!-- Widget 3 END -->
+        </div><!-- Row END -->
+        <!-- Divider -->
+        <hr class="mt-4 mb-0">
+
+        <!-- Bottom footer -->
+        <div class="py-3">
+            <div class="container px-0">
+                <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-md-left">
+                    <!-- copyright text -->
+                    <div class="text-muted text-primary-hover">توسعه یافته در UnderDevelops</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- =======================
+Footer END -->
+
+
+    <!-- JS -->
+    <script src="../vendor/bootstrap/dist/js/bootstrap.bundle.mine634.js?v=gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0"></script>
+    <script src="../vendor/tiny-slider/tiny-slider-rtl0f0f.js?v=k-em-LAc1fpO9_rjzgJN6vdtDZjtKCNGlFg_zvStwyg"></script>
+    <script src="../vendor/glightbox/js/glightbox71ad.js?v=y5UGfqUEDlOshy15lIjsxYWSeNPV7tIXdsOJ2vMetgI"></script>
+    <script src="../vendor/purecounterjs/dist/purecounter_vanilla23ed.js?v=QS4WC03UpIUx8aByHrcPlhCTwRzB4BgHZ5-K1P9PKXI"></script>
+    <script src="../js/functionse8bb.js?v=nwi5Tl0l6drAcq_2yDVeejD07PNutyjSIw5a33p4X04"></script>
+    <script src="../lib/jquery/dist/jquery.min7872.js?v=_JqT3SQfawRcv_BIHPThkBvs0OEvtFFmqPF_lYI_Cxo"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min81b9.js?v=CDOy6cOibCWEdsRiZuaHf8dSGGJRYuBGC-mjoJimHGw"></script>
+
+    <!-- Prism -->
+    <script src="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/prism.min.js"></script>
+    <script src="../../cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs/components/';</script>
+    <script src="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="../../cdn.jsdelivr.net/npm/prismjs%401.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <script>
+        // محاسبه‌ی ارتفاع هدر و نوار زبان‌ها (چسبندگی دقیق)
+        (function(){
+            const header   = document.querySelector('header.navbar-sticky');
+            const langWrap = document.getElementById('langbarWrap');
+
+            const setHeights = () => {
+                if(header){ document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px'); }
+                if(langWrap){ document.documentElement.style.setProperty('--langbar-h', langWrap.offsetHeight + 'px'); }
+            };
+            setHeights();
+            window.addEventListener('load', setHeights);
+            window.addEventListener('resize', setHeights);
+            if (window.ResizeObserver){
+                if(header){ new ResizeObserver(setHeights).observe(header); }
+                if(langWrap){ new ResizeObserver(setHeights).observe(langWrap); }
+            }
+        })();
+
+        // اسکرول خودکار سایدبار به آیتم فعال
+        (function () {
+            const centerActiveItem = (container) => {
+                if (!container) { return; }
+                const activeItem = container.querySelector('.list-group-item.active');
+                if (!activeItem) { return; }
+                const containerRect = container.getBoundingClientRect();
+                const activeRect = activeItem.getBoundingClientRect();
+                const offset = (activeRect.top - containerRect.top) - (container.clientHeight / 2) + (activeItem.clientHeight / 2);
+                container.scrollTop += offset;
+            };
+
+            centerActiveItem(document.querySelector('.docs-sidebar .menu-scroll'));
+
+            const drawer = document.getElementById('tocDrawer');
+            if (drawer) {
+                const offcanvasBody = drawer.querySelector('.offcanvas-body');
+                const alignOffcanvas = () => centerActiveItem(offcanvasBody);
+                alignOffcanvas();
+                drawer.addEventListener('shown.bs.offcanvas', alignOffcanvas);
+            }
+        })();
+    </script>
+</body>
+
+<!-- Mirrored from underdevelops.com/blog/what-is-material by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 22:52:13 GMT -->
+</html>

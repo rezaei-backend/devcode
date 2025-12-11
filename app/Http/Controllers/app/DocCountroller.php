@@ -4,50 +4,33 @@ namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doc;
+use App\Models\Language;
+use App\Models\Subject;
+use App\Traits\DocActive;
 use Illuminate\Http\Request;
 
 class DocCountroller extends Controller
 {
-    public function index()
+    use DocActive;
+    public function show($lang,$slug=null)
     {
-        function textdoc($doc){
+        $languge=Language::where('slug',$lang)->firstOrFail();
+        $menus=Subject::with('docjoin')->where('language_id',$languge->id)->get();
+        if ($slug!=null) {
+            $doc = Doc::with('subject')->where('slug', $slug)->firstOrFail();
+        }else{
+            $doc = Doc::with('subject')->join('subjects','subjects.id','=','docs.subject_id')->join('Languages','Languages.id','=','subjects.language_id')->where('docs.title', 'home')->orWhere('docs.title','introduce')->orWhere('docs.title','basic')->firstOrFail();
 
-                $example_code=$doc->example_code;
-                $example_output=$doc->output;
-                $outputs=explode('@output',$example_output);
-                $codes=explode("@code",$example_code);
-                $codes=array_values(array_filter($codes));
-                $outputs=array_values(array_filter($outputs));
-                $contents=explode("@run",$doc->content);
+        }
+        $nextdoc=Doc::where('id',$doc->id+1)->first();
 
-                $contents=array_values(array_filter($contents));
-                $i=0;
-                $text="";
+            $subjects = $doc->subject;
 
 
-                foreach ($contents as $content){
-
-                    $text.= $content."<br>";
-                    if (!empty($codes[$i]) AND $codes[$i]!="@code") {
-
-                        $code=explode('@endcode',$codes[$i]);
-                        $output=explode("@endoutput",$outputs[$i]);
-                        $text .=  $code[0] ."<br>";
-                        $text .= $output[0] . "<br>";
-                        $text .="_______________________________________________________________________________________________________<br>";
-
-                    }
-                    $i++;
-                }
-
-                return $text;
-
-            }
-
-        $doc=Doc::find(3);
-
-$text= textdoc($doc);
-echo $text;
+            $textcher= $this->textdoc($doc);
+        $langs=Language::all();
+        return view('app.doc.index',compact('doc','textcher','langs','subjects',
+        'nextdoc','menus','languge'));
     }
 
 }

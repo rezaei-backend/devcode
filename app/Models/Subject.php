@@ -30,7 +30,8 @@ class Subject extends Model
     public function docjoin()
     {
         return $this->hasMany(Doc::class, 'subject_id', 'id')
-                    ->select('docs.id', 'docs.title');
+            ->select('docs.id', 'docs.title', 'docs.slug', 'docs.subject_id');
+
     }
 
     public function langitem()

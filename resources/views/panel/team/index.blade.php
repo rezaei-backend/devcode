@@ -57,6 +57,8 @@
                                 <th scope="col">اسم کامل</th>
                                 <th scope="col">تخصص</th>
                                 <th scope="col">ایمیل</th>
+                                <th scope="col">گیت هاب</th>
+                                <th scope="col">تلگرام</th>
                                 <th scope="col">actions</th>
                             </tr>
                             </thead>
@@ -71,6 +73,8 @@
                                     <td>{{$team->fullname}}</td>
                                     <td>{{$team->Expertise}}</td>
                                     <td>{{$team->email}}</td>
+                                    <td>{{$team->github}}</td>
+                                    <td>{{$team->telegram}}</td>
                                     <td><button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target=".bd-example-modal-{{$team->id}}"><i class="dripicons-document-edit" ></i></button>
                                         <button type="button" class="btn btn-danger mt-1" data-toggle="modal" data-target=".bd-example-modal-delete{{$team->id}}"><i class="dripicons-tag-delete" ></i></button>
 
@@ -194,6 +198,35 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card m-b-30">
+                                            <div class="card-header">
+                                                <h5 class="card-title">گیت هاب</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="form-group mb-0">
+                                                    <input type="text" class="form-control" name="github" id="inputText" value="{{old('github',$team->github)}}" placeholder="لینک گیت هاب فرد مورد نظر را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card m-b-30">
+                                            <div class="card-header">
+                                                <h5 class="card-title">تلگرام</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="form-group mb-0">
+                                                    <input type="text" class="form-control" name="telegram" id="inputText" value="{{old('telegram',$team->telegram)}}" placeholder="لینک تلگرام فرد مورد نظر را وارد کنید">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
 
                                     <div class="col-lg-6">
