@@ -66,7 +66,9 @@
                                                     <span class="badge badge-secondary">ندارد</span>
                                                 @endif
                                             </td>
-                                            <td>{{ datejallali($subject->created_at, 1) }}</td>
+{{--                                            <td>{{ datejallali($subject->created_at, 1) }}</td>--}}
+                                            <td>{{ $subject->created_at}}</td>
+
                                             <td class="text-center">
                                                 <div class="button-list">
                                                     <!-- ویرایش (صفحه جداگانه) -->

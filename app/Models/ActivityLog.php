@@ -15,20 +15,20 @@ class ActivityLog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getJalaliTimeAttribute()
-    {
-        return datejallali($this->created_at, true);
-    }
-
-    public function getJalaliDateAttribute()
-    {
-        return datejallali($this->created_at, 1);
-    }
-
-    public function getJalaliDatePersianAttribute()
-    {
-        return datejallali($this->created_at, 2);
-    }
+//    public function getJalaliTimeAttribute()
+//    {
+//        return datejallali($this->created_at, true);
+//    }
+//
+//    public function getJalaliDateAttribute()
+//    {
+//        return datejallali($this->created_at, 1);
+//    }
+//
+//    public function getJalaliDatePersianAttribute()
+//    {
+//        return datejallali($this->created_at, 2);
+//    }
 
     public static function record($action, $modelClass, $modelId, $extraInfo = '')
     {

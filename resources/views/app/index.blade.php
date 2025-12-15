@@ -71,86 +71,20 @@
                     </div>
                 </div>
                 <div class="row g-4 justify-content-center">
+                    @forelse($languages as $language)
                     <div class="col-sm-6 col-md-4 col-xl-3">
                         <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/html/default.html">
+                            <a class="stretched-link" href="{{route('language.show',$language->slug)}}">
                                 <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="لوگوی زبان HTML" loading="lazy" decoding="async">
+                                    <img class="rounded-5" src="{{asset('images/language/'.$language->logo) ?? 'https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg'}}" alt="لوگوی زبان {{$language->name}}" loading="lazy" decoding="async">
                                 </div>
-                                <h5 class="mb-1">HTML</h5>
+                                <h5 class="mb-1">{{display_language_name($language->name)}}</h5>
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/css/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="لوگوی زبان CSS" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">CSS</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/python/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="لوگوی زبان Python" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">Python</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/javascript/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="لوگوی زبان JavaScript" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">JavaScript</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/php/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="لوگوی زبان PHP" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">PHP</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/csharp/index.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="لوگوی زبان C#" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">C#</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/cpp/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="لوگوی زبان ++C" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">++C</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
-                            <a class="stretched-link" href="docs/java/default.html">
-                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3 d-flex align-items-center justify-content-center">
-                                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="لوگوی زبان Java" loading="lazy" decoding="async">
-                                </div>
-                                <h5 class="mb-1">Java</h5>
-                            </a>
-                        </div>
-                    </div>
+                    @empty
+                        <span>زبان موجود نیست</span>
+                    @endforelse
                 </div>
             </div>
         </div>

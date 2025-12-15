@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon"
-          href="{{ $settings->favicon_path ? asset('images/settings/' . $settings->favicon_path) : '' }}">
+          href="{{ $settings?->favicon_path ? asset('images/settings/' . $settings->favicon_path) : '' }}">
 
     <!-- Start CSS -->
     <link href="{{ asset('panel/assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet">

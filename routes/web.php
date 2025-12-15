@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\HomeController;
+use App\Http\Controllers\App\LanguageController as AppLanguageController;
 use App\Http\Controllers\Panel\AboutusController as PanelAboutusController;
 use App\Http\Controllers\Panel\ActivityLogController as PanelActivityLogController;
 use App\Http\Controllers\Panel\BlogController as PanelBlogController;
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 // صفحه اصلی
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
+// نمایش زبان
+Route::get('/language/{language}', [AppLanguageController::class, 'singleLanguage'])->name('language.show');
 
 // پروفایل کاربر
 Route::middleware('auth')->group(function () {

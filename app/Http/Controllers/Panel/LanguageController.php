@@ -36,6 +36,7 @@ class LanguageController extends Controller
         ]);
 
         $data = $request->all();
+//        dd($data);
         $destinationPath = public_path('images/language/');
 
         if ($request->hasFile('logo')) {
@@ -73,6 +74,8 @@ class LanguageController extends Controller
         $data = $request->only([
             'name', 'description', 'meta_description', 'primary_color', 'secondary_color'
         ]);
+
+//        dd($data);
 
         if ($request->hasFile('logo')) {
             $destinationPath = public_path('images/language/');

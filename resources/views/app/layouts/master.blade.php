@@ -77,6 +77,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app/assets/vendor/tiny-slider/tiny-slider1b21.css?v=1CXVlacnwYLmg9X2AhCKvYcSgR53GWiU3z4qZJDrb68') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/assets/vendor/glightbox/css/glightboxd790.css?v=yMoCTayb6wccTz561YN_R0qkP756JifYXnA40MUtR-k') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/assets/css/style-rtlde33.css?v=_LiaJmssPW9ho0X5aF_Je6hvr2_xqHuofrk9iTrDOhI') }}">
+    @yield('style')
 </head>
 <body>
 
@@ -95,6 +96,8 @@
 <script src="{{ asset('app/assets/js/functionse8bb.js?v=nwi5Tl0l6drAcq_2yDVeejD07PNutyjSIw5a33p4X04') }}" defer></script>
 <script src="{{ asset('app/assets/_content/NToastNotify/toastrf461.js?8.0.0.0') }}" type="text/javascript"></script>
 
+
+@yield('script')
 <script>
     if (nToastNotify) {
         nToastNotify.init({
@@ -107,6 +110,7 @@
         });
     };
 </script>
+
 
 </body>
 </html>
